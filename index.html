@@ -2,8 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="screen-orientation" content="landscape">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Math Quest - Juego de Matemáticas</title>
     
     <style>
@@ -15,9 +17,12 @@
 
         html, body {
             width: 100%;
-            min-height: 100vh;
             height: 100%;
-            overflow-x: hidden;
+            height: 100dvh;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
         }
 
         body {
@@ -26,7 +31,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px 12px 30px;
+            justify-content: center;
+            padding: 8px;
             position: relative;
         }
 
@@ -114,34 +120,41 @@
 
         .screen {
             width: 100%;
-            max-width: 900px;
+            max-width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 0;
             position: relative;
             z-index: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding: 4px 0;
         }
 
         .hidden {
             display: none !important;
         }
 
-        /* HOME SCREEN - Versión profesional */
+        /* HOME SCREEN - Versión compacta para móvil */
         .home-container {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 30px 25px;
+            border-radius: 16px;
+            padding: 12px 14px;
             width: 100%;
-            max-width: 850px;
+            max-width: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin: auto;
         }
 
         .home-header {
             text-align: center;
-            padding: 10px 0 20px;
+            padding: 2px 0 8px;
             position: relative;
         }
 
@@ -149,17 +162,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 8px;
+            gap: 8px;
+            margin-bottom: 2px;
         }
 
         .home-logo-icon {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             filter: drop-shadow(0 0 20px rgba(160, 120, 255, 0.5));
         }
 
         .home-title {
-            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+            font-size: clamp(1.3rem, 3vw, 2.2rem);
             font-weight: 900;
             background: linear-gradient(135deg, #c4b5fd, #818cf8, #a78bfa);
             -webkit-background-clip: text;
@@ -171,26 +184,28 @@
         .home-badge {
             background: linear-gradient(135deg, #7c3aed, #2563eb);
             color: white;
-            font-size: 0.75rem;
+            font-size: 0.6rem;
             font-weight: 700;
-            padding: 3px 12px;
+            padding: 2px 8px;
             border-radius: 20px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 5px;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
+            display: inline-block;
         }
 
         .home-sub {
-            font-size: clamp(0.85rem, 1.5vw, 1rem);
+            font-size: clamp(0.6rem, 1.2vw, 0.85rem);
             color: #a89ccc;
-            margin-top: 6px;
+            margin-top: 2px;
             font-weight: 500;
         }
 
         .home-kid {
-            width: clamp(120px, 18vw, 180px);
-            height: clamp(150px, 22vw, 200px);
-            margin: 15px auto 10px;
+            width: clamp(70px, 10vw, 120px);
+            height: clamp(85px, 12vw, 150px);
+            margin: 5px auto;
+            display: none; /* Oculto en móvil para ahorrar espacio */
         }
 
         .home-kid svg {
@@ -200,46 +215,46 @@
         }
 
         .divider {
-            width: 60px;
-            height: 3px;
+            width: 40px;
+            height: 2px;
             background: linear-gradient(90deg, #7c3aed, #2563eb);
             border-radius: 3px;
-            margin: 0 auto 20px;
+            margin: 4px auto 8px;
         }
 
         .mode-section {
-            margin: 20px 0;
+            margin: 4px 0;
         }
 
         .mode-label {
-            font-size: 0.8rem;
+            font-size: 0.65rem;
             font-weight: 700;
             color: #a89ccc;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin: 15px 0 12px;
+            margin: 4px 0 6px;
             padding-left: 2px;
         }
 
         .lvl-cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
             width: 100%;
         }
 
         .lvl-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1.5px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: clamp(16px, 2vw, 24px) clamp(12px, 2vw, 18px);
+            border-radius: 12px;
+            padding: clamp(8px, 1.5vw, 14px) clamp(6px, 1vw, 10px);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 3px;
             position: relative;
             overflow: hidden;
         }
@@ -257,10 +272,10 @@
         }
 
         .lvl-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-4px);
             border-color: rgba(200, 170, 255, 0.6);
             background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.25);
         }
 
         .lvl-card:hover::before {
@@ -272,38 +287,39 @@
         }
 
         .lvl-icon {
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
             position: relative;
             z-index: 1;
         }
 
         .lvl-name {
-            font-size: clamp(0.85rem, 1.5vw, 1rem);
+            font-size: clamp(0.6rem, 1.1vw, 0.8rem);
             font-weight: 800;
             color: #e0d4ff;
             position: relative;
             z-index: 1;
+            line-height: 1.2;
         }
 
         .lvl-desc {
-            font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+            font-size: clamp(0.5rem, 0.9vw, 0.65rem);
             color: #9b87cc;
-            line-height: 1.4;
+            line-height: 1.3;
             position: relative;
             z-index: 1;
         }
 
         .diff-pips {
             display: flex;
-            gap: 6px;
-            margin-top: 4px;
+            gap: 4px;
+            margin-top: 2px;
             position: relative;
             z-index: 1;
         }
 
         .pip {
-            width: 9px;
-            height: 9px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             transition: all 0.3s;
@@ -311,37 +327,30 @@
 
         .pip.lit {
             background: #f59e0b;
-            box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+            box-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
         }
 
         .lvl-card:hover .pip.lit {
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.7);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
         }
 
-        .lvl-card:nth-child(1) {
-            border-top: 3px solid #22c55e;
-        }
-
-        .lvl-card:nth-child(2) {
-            border-top: 3px solid #3b82f6;
-        }
-
-        .lvl-card:nth-child(3) {
-            border-top: 3px solid #f59e0b;
-        }
+        .lvl-card:nth-child(1) { border-top: 2px solid #22c55e; }
+        .lvl-card:nth-child(2) { border-top: 2px solid #3b82f6; }
+        .lvl-card:nth-child(3) { border-top: 2px solid #f59e0b; }
+        .lvl-card:nth-child(4) { border-top: 2px solid #ec4899; }
 
         .mute-row {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             color: #9b87cc;
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             cursor: pointer;
             user-select: none;
-            margin-top: 20px;
-            padding: 10px 16px;
+            margin-top: 8px;
+            padding: 6px 10px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 14px;
+            border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.2s;
         }
@@ -352,8 +361,8 @@
         }
 
         .mute-toggle {
-            width: 48px;
-            height: 26px;
+            width: 36px;
+            height: 20px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 50px;
             position: relative;
@@ -364,46 +373,49 @@
 
         .mute-toggle.on {
             background: #7c3aed;
-            box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
         }
 
         .mute-knob {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             background: #fff;
             border-radius: 50%;
             position: absolute;
-            top: 2px;
-            left: 2px;
+            top: 1px;
+            left: 1px;
             transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .mute-toggle.on .mute-knob {
-            left: 24px;
+            left: 17px;
         }
 
-        /* GAME SCREEN */
+        /* GAME SCREEN - Ultra compacto para móvil */
         .game-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 24px;
-            padding: clamp(16px, 2.5vw, 28px) clamp(14px, 2.5vw, 24px);
+            border-radius: 14px;
+            padding: clamp(8px, 1.5vw, 16px) clamp(8px, 1.5vw, 16px);
             width: 100%;
-            max-width: 850px;
+            max-width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: clamp(8px, 1.5vw, 14px);
+            justify-content: center;
+            gap: clamp(4px, 0.8vw, 8px);
             position: relative;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .kid-stage {
-            width: clamp(110px, 15vw, 160px);
-            height: clamp(135px, 18vw, 190px);
+            width: clamp(60px, 8vw, 100px);
+            height: clamp(75px, 10vw, 125px);
             position: relative;
+            flex-shrink: 0;
         }
 
         .kid-stage svg {
@@ -414,7 +426,7 @@
 
         .hud {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
             justify-content: center;
             flex-wrap: wrap;
@@ -424,13 +436,13 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 50px;
-            padding: 6px 18px;
-            font-size: clamp(0.78rem, 1.3vw, 0.95rem);
+            padding: 3px 10px;
+            font-size: clamp(0.6rem, 1vw, 0.8rem);
             font-weight: 700;
             color: #ddd0ff;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             backdrop-filter: blur(5px);
         }
 
@@ -438,30 +450,30 @@
             width: 100%;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
         }
 
         .tbar-bg {
             flex: 1;
-            height: 12px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .tbar {
             height: 100%;
             border-radius: 50px;
             transition: width 0.1s linear, background 0.3s;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
         }
 
         .tnum {
-            font-size: clamp(0.85rem, 1.3vw, 1rem);
+            font-size: clamp(0.7rem, 1.1vw, 0.85rem);
             font-weight: 800;
             color: #ddd0ff;
-            min-width: 24px;
+            min-width: 20px;
             text-align: right;
             font-variant-numeric: tabular-nums;
         }
@@ -469,30 +481,36 @@
         .qbox {
             background: rgba(255, 255, 255, 0.08);
             border: 1.5px solid rgba(200, 180, 255, 0.25);
-            border-radius: 18px;
-            padding: clamp(14px, 2vw, 22px) clamp(20px, 3vw, 40px);
-            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+            border-radius: 12px;
+            padding: clamp(8px, 1.2vw, 14px) clamp(12px, 2vw, 20px);
+            font-size: clamp(1.2rem, 3vw, 2rem);
             font-weight: 900;
             color: #fff;
             text-align: center;
             width: 100%;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(200, 180, 255, 0.3);
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 8px rgba(200, 180, 255, 0.3);
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+            word-break: break-word;
         }
 
         .ans-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: clamp(8px, 1.5vw, 14px);
+            gap: clamp(6px, 1vw, 10px);
             width: 100%;
         }
 
         .abtn {
             background: rgba(255, 255, 255, 0.06);
             border: 1.5px solid rgba(200, 180, 255, 0.22);
-            border-radius: 16px;
-            padding: clamp(14px, 2vw, 22px) 8px;
-            font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+            border-radius: 10px;
+            padding: clamp(10px, 1.5vw, 16px) 6px;
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
             font-weight: 800;
             color: #e8dfff;
             cursor: pointer;
@@ -514,33 +532,29 @@
             transition: opacity 0.2s;
         }
 
-        .abtn:hover::after {
-            opacity: 1;
-        }
+        .abtn:hover::after { opacity: 1; }
 
         .abtn:hover {
             background: rgba(200, 170, 255, 0.15);
             border-color: rgba(200, 170, 255, 0.5);
             transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.2);
         }
 
-        .abtn:active {
-            transform: scale(0.96);
-        }
+        .abtn:active { transform: scale(0.96); }
 
         .abtn.correct {
             background: rgba(52, 211, 153, 0.25);
             border-color: #34d399;
             color: #a7f3d0;
-            box-shadow: 0 0 20px rgba(52, 211, 153, 0.3);
+            box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
         }
 
         .abtn.wrong {
             background: rgba(248, 113, 113, 0.25);
             border-color: #f87171;
             color: #fecaca;
-            box-shadow: 0 0 20px rgba(248, 113, 113, 0.3);
+            box-shadow: 0 0 15px rgba(248, 113, 113, 0.3);
         }
 
         .abtn.reveal {
@@ -550,39 +564,40 @@
         }
 
         .fb {
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            font-size: clamp(0.7rem, 1.2vw, 0.9rem);
             font-weight: 700;
-            min-height: 1.5em;
+            min-height: 1.2em;
             text-align: center;
             color: #c4b5fd;
         }
 
         .lvlbadge {
             position: absolute;
-            top: -14px;
-            right: 20px;
+            top: -10px;
+            right: 10px;
             border-radius: 50px;
-            padding: 4px 16px;
-            font-size: clamp(0.7rem, 1.1vw, 0.8rem);
+            padding: 2px 10px;
+            font-size: clamp(0.55rem, 0.9vw, 0.7rem);
             font-weight: 800;
             color: #fff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            z-index: 2;
         }
 
         .prog-track {
             width: 100%;
-            height: 8px;
+            height: 5px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .prog-fill {
             height: 100%;
             border-radius: 50px;
             transition: width 0.5s ease;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
         }
 
         .back-btn {
@@ -590,82 +605,77 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #c4b5fd;
             border-radius: 50px;
-            padding: 8px 20px;
-            font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+            padding: 4px 12px;
+            font-size: clamp(0.6rem, 1vw, 0.75rem);
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
             align-self: flex-start;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             backdrop-filter: blur(5px);
         }
 
         .back-btn:hover {
             background: rgba(255, 255, 255, 0.14);
             border-color: rgba(255, 255, 255, 0.3);
-            transform: translateX(-2px);
         }
 
-        .back-btn:active {
-            transform: scale(0.95);
-        }
+        .back-btn:active { transform: scale(0.95); }
 
         .go-box {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            padding: 15px 0;
+            gap: 8px;
+            padding: 8px 0;
             text-align: center;
         }
 
         .go-box h2 {
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
             font-weight: 800;
             color: #e0d4ff;
         }
 
         .go-box p {
             color: #9b87cc;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            font-size: clamp(0.7rem, 1.2vw, 0.9rem);
         }
 
         .stars-row {
-            font-size: clamp(2rem, 3.5vw, 2.6rem);
-            letter-spacing: 6px;
-            filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.5));
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            letter-spacing: 4px;
+            filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
         }
 
         .bigbtn {
             background: linear-gradient(135deg, #7c3aed, #2563eb);
             color: #fff;
             border: none;
-            border-radius: 14px;
-            padding: clamp(13px, 1.8vw, 18px) clamp(28px, 3.5vw, 44px);
-            font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+            border-radius: 10px;
+            padding: clamp(8px, 1.2vw, 12px) clamp(16px, 2.5vw, 28px);
+            font-size: clamp(0.7rem, 1.2vw, 0.9rem);
             font-weight: 800;
             cursor: pointer;
             transition: all 0.2s;
             touch-action: manipulation;
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
-            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
+            letter-spacing: 0.3px;
         }
 
         .bigbtn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(124, 58, 237, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
         }
 
-        .bigbtn:active {
-            transform: scale(0.97);
-        }
+        .bigbtn:active { transform: scale(0.97); }
 
         .mute-fab {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 38px;
-            height: 38px;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
@@ -673,9 +683,10 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 12px;
             transition: all 0.2s;
             backdrop-filter: blur(5px);
+            z-index: 2;
         }
 
         .mute-fab:hover {
@@ -687,35 +698,40 @@
         .home-footer {
             text-align: center;
             color: rgba(255, 255, 255, 0.3);
-            font-size: 0.75rem;
-            margin-top: 20px;
-            letter-spacing: 1px;
+            font-size: 0.55rem;
+            margin-top: 6px;
+            letter-spacing: 0.5px;
         }
 
-        /* Responsive */
-        @media (max-width: 640px) {
-            .lvl-cards {
-                grid-template-columns: 1fr;
-                gap: 12px;
+        /* Ajustes específicos para pantallas muy pequeñas */
+        @media (max-height: 500px) {
+            .kid-stage {
+                width: 50px;
+                height: 62px;
             }
             
-            .home-container {
-                padding: 20px 15px;
+            .qbox {
+                min-height: 35px;
+                padding: 6px 10px;
             }
             
-            .ans-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
+            .abtn {
+                padding: 8px 4px;
             }
             
-            body {
-                padding: 10px 8px 20px;
+            .game-card {
+                gap: 3px;
+                padding: 6px 8px;
             }
         }
 
-        @media (min-width: 768px) {
-            .lvl-cards {
-                grid-template-columns: repeat(3, 1fr);
+        @media (max-height: 400px) {
+            .hud {
+                gap: 3px;
+            }
+            
+            .pill {
+                padding: 2px 6px;
             }
         }
     </style>
@@ -746,15 +762,13 @@
             
             <div class="divider"></div>
             
-            <div class="home-kid" id="homeKid"></div>
-            
             <div class="mode-section">
                 <div class="mode-label">🎯 Elige tu modalidad</div>
                 <div class="lvl-cards">
                     <div class="lvl-card" data-mode="1" onclick="startMode(1)">
                         <div class="lvl-icon">➕➖</div>
                         <div class="lvl-name">Sumas & Restas</div>
-                        <div class="lvl-desc">Operaciones básicas con dificultad progresiva</div>
+                        <div class="lvl-desc">Operaciones progresivas</div>
                         <div class="diff-pips">
                             <div class="pip lit"></div>
                             <div class="pip"></div>
@@ -763,8 +777,8 @@
                     </div>
                     <div class="lvl-card" data-mode="2" onclick="startMode(2)">
                         <div class="lvl-icon">✖️➗</div>
-                        <div class="lvl-name">Multiplicación & División</div>
-                        <div class="lvl-desc">Tablas y divisiones cada vez más complejas</div>
+                        <div class="lvl-name">Mult & División</div>
+                        <div class="lvl-desc">Tablas y divisiones</div>
                         <div class="diff-pips">
                             <div class="pip lit"></div>
                             <div class="pip lit"></div>
@@ -773,9 +787,20 @@
                     </div>
                     <div class="lvl-card" data-mode="3" onclick="startMode(3)">
                         <div class="lvl-icon">💯📐</div>
-                        <div class="lvl-name">Porcentajes & Proporciones</div>
-                        <div class="lvl-desc">Cálculos avanzados para mentes brillantes</div>
+                        <div class="lvl-name">% & Regla de 3</div>
+                        <div class="lvl-desc">Porcentajes y proporciones</div>
                         <div class="diff-pips">
+                            <div class="pip lit"></div>
+                            <div class="pip lit"></div>
+                            <div class="pip lit"></div>
+                        </div>
+                    </div>
+                    <div class="lvl-card" data-mode="4" onclick="startMode(4)">
+                        <div class="lvl-icon">🧩🔍</div>
+                        <div class="lvl-name">Rompecabezas</div>
+                        <div class="lvl-desc">Lógica, secuencias y acertijos</div>
+                        <div class="diff-pips">
+                            <div class="pip lit"></div>
                             <div class="pip lit"></div>
                             <div class="pip lit"></div>
                             <div class="pip lit"></div>
@@ -793,17 +818,17 @@
             </div>
             
             <div class="home-footer">
-                Desarrollado con ❤️ · v4.1 · Optimizado para móviles
+                v4.3 · Optimizado para móviles · 4 modos de juego
             </div>
         </div>
     </div>
 
     <!-- GAME SCREEN -->
     <div class="screen hidden" id="gameScreen">
-        <button class="back-btn" onclick="goHome()">← Menú principal</button>
+        <button class="back-btn" onclick="goHome()">← Menú</button>
         <div class="game-card" id="gc">
             <div class="mute-fab" id="gameMuteFab" onclick="toggleMuteGame()">🔊</div>
-            <div id="app"></div>
+            <div id="app" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:inherit"></div>
         </div>
     </div>
 
@@ -811,14 +836,14 @@
         // ══ CREAR ESTRELLAS DE FONDO ══
         function createStars() {
             const container = document.getElementById('starsContainer');
-            const numberOfStars = 80;
+            const numberOfStars = 50;
             
             for (let i = 0; i < numberOfStars; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
-                star.style.width = (Math.random() * 3 + 1) + 'px';
+                star.style.width = (Math.random() * 2 + 1) + 'px';
                 star.style.height = star.style.width;
                 star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
                 star.style.setProperty('--delay', (Math.random() * 3) + 's');
@@ -852,18 +877,20 @@
 
         function tone(freq, dur, type, vol, delay = 0) {
             if (muted) return;
-            const o = AC.createOscillator(),
-                g = AC.createGain();
-            o.connect(g);
-            g.connect(AC.destination);
-            o.type = type;
-            o.frequency.value = freq;
-            const t = AC.currentTime + delay;
-            g.gain.setValueAtTime(0, t);
-            g.gain.linearRampToValueAtTime(vol, t + 0.06);
-            g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-            o.start(t);
-            o.stop(t + dur + 0.08);
+            try {
+                const o = AC.createOscillator(),
+                    g = AC.createGain();
+                o.connect(g);
+                g.connect(AC.destination);
+                o.type = type;
+                o.frequency.value = freq;
+                const t = AC.currentTime + delay;
+                g.gain.setValueAtTime(0, t);
+                g.gain.linearRampToValueAtTime(vol, t + 0.06);
+                g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+                o.start(t);
+                o.stop(t + dur + 0.08);
+            } catch(e) {}
         }
 
         const CHORDS = [
@@ -903,158 +930,54 @@
         function sfxWrong() { tone(180, 0.4, 'sawtooth', 0.09);
             tone(150, 0.3, 'sawtooth', 0.06, 0.15); }
 
-        function sfxLevelUp() { [523, 659, 784, 1047, 1318, 1568].forEach((f, i) => tone(f, 0.26, 'triangle', 0.12, i *
-                0.07)); }
-
         function sfxTimeout() { tone(300, 0.15, 'square', 0.07);
             tone(220, 0.3, 'sawtooth', 0.07, 0.12); }
 
-        // ══ KID SVG ══
+        // ══ KID SVG (versión simplificada) ══
         function kid(mood) {
             const sk = '#F5C5A3',
-                sk2 = '#E8A882',
                 hair = '#1a1a1a',
-                shoe1 = '#111',
-                shoe2 = '#222',
-                lace = '#fff',
-                pants1 = '#1c1c2e',
-                pants2 = '#14141f';
-            const shirtBg = '#111';
-            const shirtDetail = `
+                shirtBg = '#111';
+            
+            const faces = {
+                idle: { mouth: 'M58,74 Q65,79 72,74', eyes: 'ellipse cx="53" cy="59" rx="5.5" ry="6" fill="#2d1a06"/>ellipse cx="77" cy="59" rx="5.5" ry="6" fill="#2d1a06"/>ellipse cx="51" cy="57" rx="2" ry="2" fill="#fff"/>ellipse cx="75" cy="57" rx="2" ry="2" fill="#fff"/>', brows: 'M47,51 Q53,48 59,51M71,51 Q77,48 83,51' },
+                happy: { mouth: 'M51,73 Q65,88 79,73', eyes: 'M48,60 Q53,53 58,60M72,60 Q77,53 82,60', brows: 'M47,49 Q53,45 59,49M71,49 Q77,45 83,49' },
+                sad: { mouth: 'M55,79 Q65,70 75,79', eyes: 'ellipse cx="53" cy="60" rx="5.5" ry="6" fill="#2d1a06"/>ellipse cx="77" cy="60" rx="5.5" ry="6" fill="#2d1a06"/>ellipse cx="51" cy="58" rx="2" ry="2" fill="#fff"/>ellipse cx="75" cy="58" rx="2" ry="2" fill="#fff"/>ellipse cx="52" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/>ellipse cx="76" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/>', brows: 'M47,50 Q53,55 59,50M71,50 Q77,55 83,50' },
+                scared: { mouth: 'ellipse cx="65" cy="78" rx="7" ry="6" fill="#e74c3c"/>ellipse cx="65" cy="75" rx="5" ry="2.5" fill="'+sk+'"/>', eyes: 'ellipse cx="53" cy="59" rx="7" ry="7.5" fill="#2d1a06"/>ellipse cx="77" cy="59" rx="7" ry="7.5" fill="#2d1a06"/>ellipse cx="50" cy="56" rx="2.8" ry="2.8" fill="#fff"/>ellipse cx="74" cy="56" rx="2.8" ry="2.8" fill="#fff"/>', brows: 'M47,52 Q53,57 59,52M71,52 Q77,57 83,52' },
+                celebrate: { mouth: 'M49,72 Q65,90 81,72', eyes: 'M47,57 Q53,50 59,57M71,57 Q77,50 83,57', brows: 'M46,47 Q53,42 60,47M70,47 Q77,42 84,47' }
+            };
+            
+            const f = faces[mood] || faces.idle;
+            
+            return `<svg viewBox="0 0 130 210" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="65" cy="208" rx="36" ry="5" fill="rgba(0,0,0,0.25)"/>
+            <ellipse cx="65" cy="34" rx="36" ry="34" fill="${hair}"/>
+            <ellipse cx="29" cy="60" rx="6.5" ry="9" fill="${sk}"/>
+            <ellipse cx="101" cy="60" rx="6.5" ry="9" fill="${sk}"/>
+            <rect x="57" y="87" width="16" height="22" rx="8" fill="${sk}"/>
+            <path d="M20,104 Q20,96 65,94 Q110,96 110,104 L115,178 Q115,186 65,186 Q15,186 15,178 Z" fill="${shirtBg}"/>
+            <ellipse cx="65" cy="97" rx="13" ry="6" fill="#222"/>
             <ellipse cx="65" cy="130" rx="16" ry="16" fill="#f5d800"/>
             <ellipse cx="60" cy="126" rx="3" ry="4" fill="#111"/>
             <ellipse cx="70" cy="126" rx="3" ry="4" fill="#111"/>
             <path d="M58,134 Q65,141 72,134" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
-            <ellipse cx="58" cy="135" rx="2.5" ry="2" fill="#111"/>
-            <ellipse cx="72" cy="135" rx="2.5" ry="2" fill="#111"/>
-            <text x="65" y="159" font-size="7.5" fill="#555" text-anchor="middle" font-family="serif" font-weight="900" letter-spacing="1">NIRVANA</text>`;
-
-            const brows = {
-                idle: `<path d="M47,51 Q53,48 59,51" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M71,51 Q77,48 83,51" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>`,
-                happy: `<path d="M47,49 Q53,45 59,49" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M71,49 Q77,45 83,49" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>`,
-                sad: `<path d="M47,50 Q53,55 59,50" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M71,50 Q77,55 83,50" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>`,
-                celebrate: `<path d="M46,47 Q53,42 60,47" fill="none" stroke="#4a2c0a" stroke-width="2.4" stroke-linecap="round"/>
-                <path d="M70,47 Q77,42 84,47" fill="none" stroke="#4a2c0a" stroke-width="2.4" stroke-linecap="round"/>`,
-                scared: `<path d="M47,52 Q53,57 59,52" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M71,52 Q77,57 83,52" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>`
-            };
-            const eyes = {
-                idle: `<ellipse cx="53" cy="59" rx="5.5" ry="6" fill="#2d1a06"/>
-                <ellipse cx="77" cy="59" rx="5.5" ry="6" fill="#2d1a06"/>
-                <ellipse cx="51" cy="57" rx="2" ry="2" fill="#fff"/>
-                <ellipse cx="75" cy="57" rx="2" ry="2" fill="#fff"/>`,
-                happy: `<path d="M48,60 Q53,53 58,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>
-                <path d="M72,60 Q77,53 82,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>`,
-                sad: `<ellipse cx="53" cy="60" rx="5.5" ry="6" fill="#2d1a06"/>
-                <ellipse cx="77" cy="60" rx="5.5" ry="6" fill="#2d1a06"/>
-                <ellipse cx="51" cy="58" rx="2" ry="2" fill="#fff"/>
-                <ellipse cx="75" cy="58" rx="2" ry="2" fill="#fff"/>
-                <ellipse cx="52" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/>
-                <ellipse cx="76" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/>`,
-                celebrate: `<path d="M47,57 Q53,50 59,57" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>
-                <path d="M71,57 Q77,50 83,57" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>`,
-                scared: `<ellipse cx="53" cy="59" rx="7" ry="7.5" fill="#2d1a06"/>
-                <ellipse cx="77" cy="59" rx="7" ry="7.5" fill="#2d1a06"/>
-                <ellipse cx="50" cy="56" rx="2.8" ry="2.8" fill="#fff"/>
-                <ellipse cx="74" cy="56" rx="2.8" ry="2.8" fill="#fff"/>`
-            };
-            const mouths = {
-                idle: `<path d="M58,74 Q65,79 72,74" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>`,
-                happy: `<path d="M51,73 Q65,88 79,73" fill="#e74c3c"/>
-                <path d="M53,73 Q65,70 77,73" fill="${sk}"/>
-                <rect x="56" y="73" width="18" height="5" rx="2" fill="#fff" opacity="0.6"/>`,
-                sad: `<path d="M55,79 Q65,70 75,79" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>`,
-                celebrate: `<path d="M49,72 Q65,90 81,72" fill="#e74c3c"/>
-                <path d="M51,72 Q65,69 79,72" fill="${sk}"/>
-                <rect x="55" y="72" width="20" height="6" rx="2" fill="#fff" opacity="0.65"/>`,
-                scared: `<ellipse cx="65" cy="78" rx="7" ry="6" fill="#e74c3c"/>
-                <ellipse cx="65" cy="75" rx="5" ry="2.5" fill="${sk}"/>`
-            };
-
-            const blush = (mood === 'happy' || mood === 'celebrate') ?
-                `<ellipse cx="39" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/><ellipse cx="91" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/>` :
-                mood === 'sad' ?
-                `<ellipse cx="41" cy="70" rx="7" ry="4" fill="#93c5fd" opacity="0.35"/><ellipse cx="89" cy="70" rx="7" ry="4" fill="#93c5fd" opacity="0.35"/>` :
-                mood === 'scared' ?
-                `<ellipse cx="40" cy="68" rx="8" ry="4.5" fill="#fde68a" opacity="0.4"/><ellipse cx="90" cy="68" rx="8" ry="4.5" fill="#fde68a" opacity="0.4"/>` :
-                '';
-
-            const extras = mood === 'celebrate' ?
-                `<text x="6" y="30" font-size="18">⭐</text><text x="96" y="20" font-size="15">✨</text><text x="0" y="50" font-size="12">🌟</text>` :
-                mood === 'sad' ?
-                `<text x="87" y="44" font-size="14">💧</text><text x="91" y="57" font-size="10">💧</text>` :
-                mood === 'scared' ?
-                `<text x="0" y="40" font-size="13">😰</text>` :
-                '';
-
-            const armL = mood === 'celebrate' ?
-                `<path d="M28,108 Q12,84 4,66" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
-                <circle cx="4" cy="64" r="9" fill="${sk}"/>` :
-                mood === 'scared' ?
-                `<path d="M28,108 Q14,98 10,118" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
-                <circle cx="10" cy="120" r="9" fill="${sk}"/>` :
-                `<path d="M28,108 Q14,116 10,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
-                <circle cx="10" cy="132" r="9" fill="${sk}"/>`;
-            const armR = mood === 'celebrate' ?
-                `<path d="M102,108 Q118,84 126,66" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
-                <circle cx="126" cy="64" r="9" fill="${sk}"/>` :
-                mood === 'scared' ?
-                `<path d="M102,108 Q116,98 120,118" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
-                <circle cx="120" cy="120" r="9" fill="${sk}"/>` :
-                `<path d="M102,108 Q116,116 120,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
-                <circle cx="120" cy="132" r="9" fill="${sk}"/>`;
-
-            return `<svg viewBox="0 0 130 210" xmlns="http://www.w3.org/2000/svg">
-            ${extras}
-            <ellipse cx="65" cy="208" rx="36" ry="5" fill="rgba(0,0,0,0.25)"/>
-            <ellipse cx="65" cy="34" rx="36" ry="34" fill="${hair}"/>
-            <ellipse cx="29" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="29" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/>
-            <ellipse cx="101" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="101" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/>
-            <rect x="57" y="87" width="16" height="22" rx="8" fill="${sk}"/>
-            <path d="M20,104 Q20,96 65,94 Q110,96 110,104 L115,178 Q115,186 65,186 Q15,186 15,178 Z" fill="${shirtBg}"/>
-            <ellipse cx="65" cy="97" rx="13" ry="6" fill="#222"/>
-            ${shirtDetail}
-            ${armL}${armR}
-            <path d="M18,182 Q16,192 14,210 Q30,212 42,210 L54,186 Z" fill="${pants1}"/>
-            <path d="M112,182 Q114,192 116,210 Q100,212 88,210 L76,186 Z" fill="${pants1}"/>
-            <path d="M18,182 L54,186 L65,190 L76,186 L112,182 Q65,177 18,182Z" fill="${pants2}"/>
-            <line x1="25" y1="194" x2="38" y2="192" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-            <line x1="24" y1="198" x2="36" y2="196" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-            <line x1="92" y1="194" x2="105" y2="192" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-            <rect x="18" y="178" width="94" height="8" rx="4" fill="#2c1a0e"/>
-            <rect x="58" y="178" width="14" height="8" rx="2" fill="#8B6914"/>
-            <rect x="61" y="180" width="8" height="4" rx="1" fill="#D4A017"/>
-            <rect x="10" y="206" width="38" height="16" rx="8" fill="${shoe1}"/>
-            <rect x="10" y="206" width="38" height="8" rx="5" fill="${shoe2}"/>
-            <rect x="10" y="206" width="38" height="3" rx="2" fill="#333"/>
-            <line x1="15" y1="210" x2="42" y2="210" stroke="${lace}" stroke-width="1" opacity="0.6"/>
-            <line x1="16" y1="213" x2="43" y2="213" stroke="${lace}" stroke-width="0.8" opacity="0.4"/>
-            <circle cx="48" cy="214" r="5" fill="#555"/>
-            <rect x="82" y="206" width="38" height="16" rx="8" fill="${shoe1}"/>
-            <rect x="82" y="206" width="38" height="8" rx="5" fill="${shoe2}"/>
-            <rect x="82" y="206" width="38" height="3" rx="2" fill="#333"/>
-            <line x1="87" y1="210" x2="114" y2="210" stroke="${lace}" stroke-width="1" opacity="0.6"/>
-            <line x1="87" y1="213" x2="114" y2="213" stroke="${lace}" stroke-width="0.8" opacity="0.4"/>
-            <circle cx="82" cy="214" r="5" fill="#555"/>
+            <path d="M28,108 Q14,116 10,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
+            <circle cx="10" cy="132" r="9" fill="${sk}"/>
+            <path d="M102,108 Q116,116 120,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
+            <circle cx="120" cy="132" r="9" fill="${sk}"/>
+            <path d="M18,182 Q16,192 14,210 Q30,212 42,210 L54,186 Z" fill="#1c1c2e"/>
+            <path d="M112,182 Q114,192 116,210 Q100,212 88,210 L76,186 Z" fill="#1c1c2e"/>
+            <path d="M18,182 L54,186 L65,190 L76,186 L112,182 Q65,177 18,182Z" fill="#14141f"/>
+            <rect x="10" y="206" width="38" height="16" rx="8" fill="#111"/>
+            <rect x="82" y="206" width="38" height="16" rx="8" fill="#111"/>
             <ellipse cx="65" cy="57" rx="35" ry="38" fill="${sk}"/>
-            <ellipse cx="37" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/>
-            <ellipse cx="93" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/>
             <path d="M30,38 Q32,12 65,10 Q98,12 100,38 Q90,20 65,18 Q40,20 30,38Z" fill="${hair}"/>
             <path d="M30,38 Q27,50 28,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/>
             <path d="M100,38 Q103,50 102,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/>
-            <path d="M30,42 Q22,46 24,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/>
-            <path d="M100,42 Q108,46 106,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/>
-            <path d="M38,20 Q50,30 48,40" fill="none" stroke="${hair}" stroke-width="5" stroke-linecap="round"/>
-            <path d="M65,16 Q66,28 64,38" fill="none" stroke="${hair}" stroke-width="5" stroke-linecap="round"/>
-            <path d="M82,22 Q74,32 76,42" fill="none" stroke="${hair}" stroke-width="4.5" stroke-linecap="round"/>
             <path d="M62,68 Q60,74 65,76 Q70,74 68,68" fill="none" stroke="#c8956c" stroke-width="2" stroke-linecap="round"/>
-            ${brows[mood]||brows.idle}
-            ${eyes[mood]||eyes.idle}
-            ${blush}
-            ${mouths[mood]||mouths.idle}
+            <path d="${f.brows}" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>
+            ${f.eyes}
+            ${f.mouth.startsWith('ellipse')||f.mouth.startsWith('M')?(f.mouth.startsWith('ellipse')?f.mouth:'<path d="'+f.mouth+'" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>'):f.mouth}
             </svg>`;
         }
 
@@ -1066,110 +989,205 @@
             answered = false;
         let timerInt = null,
             timeLeft = 0;
-        const TIMER = [12, 12, 14];
-        const MODE_COLORS = ['', '#22c55e', '#3b82f6', '#f59e0b'];
-        const MODE_LABELS = ['', 'Sumas & Restas', 'Mult & División', '% & Regla de 3'];
+        let questionCounter = 0;
+        
+        const TIMER = [12, 15, 18, 20]; // Más tiempo para modos difíciles
+        const MODE_COLORS = ['', '#22c55e', '#3b82f6', '#f59e0b', '#ec4899'];
+        const MODE_LABELS = ['', 'Sumas & Restas', 'Mult & División', '% & Regla de 3', 'Rompecabezas'];
         const MODE_GRAD = ['', 'linear-gradient(90deg,#22c55e,#06d6a0)', 'linear-gradient(90deg,#3b82f6,#06b6d4)',
-            'linear-gradient(90deg,#f59e0b,#ef4444)'
+            'linear-gradient(90deg,#f59e0b,#ef4444)', 'linear-gradient(90deg,#ec4899,#8b5cf6)'
         ];
 
         function rand(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
-
         function rndFrom(a) { return a[Math.floor(Math.random() * a.length)]; }
-
         function diff() { return Math.min(10, 1 + Math.floor(score / 30)); }
 
         function generateAnswers(c, spread) {
             const s = new Set([c]);
             let tr = 0;
             const sp = spread || Math.max(3, Math.round(Math.abs(c) * 0.45));
-            while (s.size < 4 && tr++ < 150) { const v = c + rand(-sp, sp); if (v !== c && !s.has(v)) s.add(v); }
+            while (s.size < 4 && tr++ < 150) { 
+                const v = c + rand(-sp, sp); 
+                if (v !== c && !s.has(v) && v >= 0) s.add(v); 
+            }
+            while (s.size < 4) {
+                const v = c + rand(-sp*2, sp*2);
+                if (v !== c && !s.has(v) && v >= 0) s.add(v);
+            }
             return [...s].sort(() => Math.random() - 0.5);
+        }
+
+        function makePercentageQuestion(d) {
+            let a, b, q;
+            if (d <= 3) {
+                a = rndFrom([50, 100, 200, 500]);
+                b = rndFrom([10, 20, 25, 50]);
+                correctAns = Math.round(a * b / 100);
+                q = `¿Cuánto es el ${b}% de ${a}?`;
+            } else if (d <= 6) {
+                a = rand(30, 300);
+                b = rndFrom([5, 10, 15, 20, 25, 30, 40, 50, 75]);
+                correctAns = Math.round(a * b / 100);
+                q = `Calcula el ${b}% de ${a}`;
+            } else {
+                const contexts = [
+                    { a: rand(200, 800), b: rndFrom([15, 20, 25, 30]), text: 'descuento' },
+                    { a: rand(1000, 5000), b: rndFrom([5, 10, 15, 20]), text: 'de impuesto' },
+                    { a: rand(50, 300), b: rndFrom([10, 20, 30, 40]), text: 'de propina' }
+                ];
+                const ctx = rndFrom(contexts);
+                correctAns = Math.round(ctx.a * ctx.b / 100);
+                q = `Si hay un ${ctx.text} del ${ctx.b}% sobre ${ctx.a}€, ¿cuánto es?`;
+            }
+            return q;
+        }
+
+        function makeRuleOfThreeQuestion(d) {
+            let q;
+            if (d <= 3) {
+                const problems = [
+                    { a: 2, b: 6, x: 5, item: 'manzanas' },
+                    { a: 3, b: 9, x: 7, item: 'cuadernos' },
+                    { a: 4, b: 12, x: 6, item: 'bolígrafos' },
+                    { a: 5, b: 15, x: 8, item: 'galletas' }
+                ];
+                const p = rndFrom(problems);
+                correctAns = Math.round(p.b * p.x / p.a);
+                q = `Si ${p.a} ${p.item} cuestan ${p.b}€, ¿cuánto cuestan ${p.x}?`;
+            } else if (d <= 6) {
+                const templates = [
+                    { a: rand(3, 8), b: rand(6, 24), x: rand(4, 12), unit: 'kilos', item: 'fruta' },
+                    { a: rand(2, 6), b: rand(10, 30), x: rand(5, 15), unit: 'litros', item: 'zumo' }
+                ];
+                const t = rndFrom(templates);
+                correctAns = Math.round(t.b * t.x / t.a);
+                q = `Si ${t.a} ${t.unit} de ${t.item} cuestan ${t.b}€, ¿cuánto cuestan ${t.x} ${t.unit}?`;
+            } else {
+                const cp = rndFrom([
+                    { type: 'directa', a: rand(5, 15), b: rand(100, 600), x: rand(8, 20), context: 'trabajadores producen', unit: 'piezas' },
+                    { type: 'inversa', a: rand(4, 10), b: rand(6, 20), x: rand(3, 8), context: 'obreros tardan', unit: 'días' }
+                ]);
+                if (cp.type === 'directa') {
+                    correctAns = Math.round(cp.b * cp.x / cp.a);
+                    q = `Si ${cp.a} ${cp.context} ${cp.b} ${cp.unit}, ¿cuánto producen ${cp.x}?`;
+                } else {
+                    correctAns = Math.round(cp.b * cp.a / cp.x);
+                    q = `Si ${cp.a} ${cp.context} ${cp.b} ${cp.unit}, ¿cuánto tardan ${cp.x}?`;
+                }
+            }
+            return q;
+        }
+
+        function makePuzzleQuestion(d) {
+            let q;
+            
+            if (d <= 3) {
+                // Secuencias simples y acertijos lógicos fáciles
+                const puzzles = [
+                    { q: '¿Qué número sigue? 2, 4, 6, 8, __', ans: 10 },
+                    { q: '¿Qué número sigue? 5, 10, 15, 20, __', ans: 25 },
+                    { q: '¿Qué número sigue? 1, 3, 5, 7, __', ans: 9 },
+                    { q: '¿Qué número falta? 3 + __ = 10', ans: 7 },
+                    { q: 'El doble de 6 es...', ans: 12 },
+                    { q: 'La mitad de 20 es...', ans: 10 },
+                    { q: '¿Qué número sigue? 10, 20, 30, 40, __', ans: 50 },
+                    { q: '¿Cuántos lados tiene un hexágono?', ans: 6 }
+                ];
+                const p = rndFrom(puzzles);
+                correctAns = p.ans;
+                q = p.q;
+            } else if (d <= 6) {
+                // Secuencias más complejas y problemas de lógica
+                const puzzles = [
+                    { q: '¿Qué número sigue? 2, 4, 8, 16, __', ans: 32 },
+                    { q: '¿Qué número sigue? 1, 4, 9, 16, __', ans: 25 },
+                    { q: 'Si un tren sale a las 8 y tarda 45 min, ¿a qué hora llega? (formato: 8.45)', ans: 8.45 },
+                    { q: '¿Qué número sigue? 3, 6, 12, 24, __', ans: 48 },
+                    { q: '¿Cuánto es 7×8?', ans: 56 },
+                    { q: '¿Qué número falta? 15 + 25 = __', ans: 40 },
+                    { q: '¿Cuántas horas hay en 3 días?', ans: 72 },
+                    { q: 'Si tengo 24 caramelos y los reparto entre 6 niños, ¿cuántos recibe cada uno?', ans: 4 }
+                ];
+                const p = rndFrom(puzzles);
+                correctAns = p.ans;
+                q = p.q;
+            } else {
+                // Acertijos avanzados
+                const puzzles = [
+                    { q: '¿Qué número sigue? 1, 1, 2, 3, 5, 8, __ (Fibonacci)', ans: 13 },
+                    { q: '¿Qué número sigue? 2, 6, 12, 20, 30, __', ans: 42 },
+                    { q: 'Un rectángulo tiene área 48 y base 8. ¿Cuál es su altura?', ans: 6 },
+                    { q: '¿Cuánto es 15% de 200?', ans: 30 },
+                    { q: 'Si x+5=12, ¿cuánto vale x?', ans: 7 },
+                    { q: '¿Qué número sigue? 1, 8, 27, 64, __ (cubos)', ans: 125 },
+                    { q: '¿Cuántos minutos hay en 2 horas y media?', ans: 150 },
+                    { q: 'El triple de un número más 4 es 19. ¿Qué número es?', ans: 5 }
+                ];
+                const p = rndFrom(puzzles);
+                correctAns = p.ans;
+                q = p.q;
+            }
+            
+            return q;
         }
 
         function makeQ() {
             const d = diff(),
                 t = Math.random();
             let a, b, q;
+            
             if (gameMode === 1) {
-                if (d <= 3) { if (t < 0.5) { a = rand(1, 10 + d * 3);
-                        b = rand(1, 10 + d * 3);
-                        correctAns = a + b;
-                        q = `${a} + ${b}`; } else { a = rand(10, 20 + d * 5);
-                        b = rand(1, a);
-                        correctAns = a - b;
-                        q = `${a} − ${b}`; } } else if (d <= 6) { const big = 20 + d * 10; if (t < 0.5) { a = rand(10, big);
-                        b = rand(10, big);
-                        correctAns = a + b;
-                        q = `${a} + ${b}`; } else { a = rand(20, big * 2);
-                        b = rand(1, a);
-                        correctAns = a - b;
-                        q = `${a} − ${b}`; } } else { const big = 50 + d * 20; if (t < 0.4) { a = rand(50, big);
-                        b = rand(50, big);
-                        correctAns = a + b;
-                        q = `${a} + ${b}`; } else { a = rand(100, big * 2);
-                        b = rand(10, a);
-                        correctAns = a - b;
-                        q = `${a} − ${b}`; } }
+                if (d <= 3) { 
+                    if (t < 0.5) { a = rand(1, 10 + d * 3); b = rand(1, 10 + d * 3); correctAns = a + b; q = `${a} + ${b}`; } 
+                    else { a = rand(10, 20 + d * 5); b = rand(1, a); correctAns = a - b; q = `${a} − ${b}`; } 
+                } else if (d <= 6) { 
+                    const big = 20 + d * 10; 
+                    if (t < 0.5) { a = rand(10, big); b = rand(10, big); correctAns = a + b; q = `${a} + ${b}`; } 
+                    else { a = rand(20, big * 2); b = rand(1, a); correctAns = a - b; q = `${a} − ${b}`; } 
+                } else { 
+                    const big = 50 + d * 20; 
+                    if (t < 0.4) { a = rand(50, big); b = rand(50, big); correctAns = a + b; q = `${a} + ${b}`; } 
+                    else { a = rand(100, big * 2); b = rand(10, a); correctAns = a - b; q = `${a} − ${b}`; } 
+                }
             } else if (gameMode === 2) {
-                if (d <= 3) { if (t < 0.6) { a = rand(2, 5);
-                        b = rand(2, 5);
-                        correctAns = a * b;
-                        q = `${a} × ${b}`; } else { b = rand(2, 5);
-                        correctAns = rand(1, 5);
-                        a = correctAns * b;
-                        q = `${a} ÷ ${b}`; } } else if (d <= 6) { if (t < 0.5) { a = rand(3, 9);
-                        b = rand(3, 9);
-                        correctAns = a * b;
-                        q = `${a} × ${b}`; } else { b = rand(2, 9);
-                        correctAns = rand(2, 9);
-                        a = correctAns * b;
-                        q = `${a} ÷ ${b}`; } } else { if (t < 0.4) { a = rand(6, 15);
-                        b = rand(6, 15);
-                        correctAns = a * b;
-                        q = `${a} × ${b}`; } else if (t < 0.75) { b = rand(3, 12);
-                        correctAns = rand(3, 12);
-                        a = correctAns * b;
-                        q = `${a} ÷ ${b}`; } else { a = rand(11, 25);
-                        b = rand(2, 9);
-                        correctAns = a * b;
-                        q = `${a} × ${b}`; } }
-            } else {
-                if (d <= 3) { a = rndFrom([10, 20, 50, 100]);
-                    b = rndFrom([10, 20, 50]);
-                    correctAns = Math.round(a * b / 100);
-                    q = `${b}% de ${a}`; } else if (d <= 6) { if (t < 0.5) { a = rand(20, 200);
-                        b = rndFrom([10, 20, 25, 50]);
-                        correctAns = Math.round(a * b / 100);
-                        q = `${b}% de ${a}`; } else { const A = rand(2, 9),
-                            B = rand(2, 9),
-                            X = rand(2, 9);
-                        correctAns = Math.round(B * X / A);
-                        q = `Si ${A}→${B}, ¿${X}→?`; } } else { if (t < 0.4) { a = rand(30, 500);
-                        b = rndFrom([5, 10, 15, 20, 25, 30, 40, 50, 75]);
-                        correctAns = Math.round(a * b / 100);
-                        q = `${b}% de ${a}`; } else if (t < 0.72) { const A = rand(3, 15),
-                            B = rand(3, 15) * rand(2, 5),
-                            X = rand(3, 15);
-                        correctAns = Math.round(B * X / A);
-                        q = `Si ${A}→${B}, ¿${X}→?`; } else { a = rndFrom([50, 100, 200, 400]);
-                        b = rndFrom([5, 10, 20, 25]);
-                        const res = Math.round(a * b / 100);
-                        correctAns = b;
-                        q = `¿Qué % de ${a} es ${res}?`; } }
+                if (d <= 3) { 
+                    if (t < 0.6) { a = rand(2, 5); b = rand(2, 5); correctAns = a * b; q = `${a} × ${b}`; } 
+                    else { b = rand(2, 5); correctAns = rand(1, 5); a = correctAns * b; q = `${a} ÷ ${b}`; } 
+                } else if (d <= 6) { 
+                    if (t < 0.5) { a = rand(3, 9); b = rand(3, 9); correctAns = a * b; q = `${a} × ${b}`; } 
+                    else { b = rand(2, 9); correctAns = rand(2, 9); a = correctAns * b; q = `${a} ÷ ${b}`; } 
+                } else { 
+                    if (t < 0.4) { a = rand(6, 15); b = rand(6, 15); correctAns = a * b; q = `${a} × ${b}`; } 
+                    else if (t < 0.75) { b = rand(3, 12); correctAns = rand(3, 12); a = correctAns * b; q = `${a} ÷ ${b}`; } 
+                    else { a = rand(11, 25); b = rand(2, 9); correctAns = a * b; q = `${a} × ${b}`; } 
+                }
+            } else if (gameMode === 3) {
+                questionCounter++;
+                if (questionCounter % 2 === 1) {
+                    q = makePercentageQuestion(d);
+                } else {
+                    q = makeRuleOfThreeQuestion(d);
+                }
+            } else if (gameMode === 4) {
+                // Modo rompecabezas
+                q = makePuzzleQuestion(d);
             }
+            
             return q;
         }
 
-        function stopTimer() { if (timerInt) { clearInterval(timerInt);
-                timerInt = null; } }
+        function stopTimer() { if (timerInt) { clearInterval(timerInt); timerInt = null; } }
 
-        function startTimer() { stopTimer();
+        function startTimer() { 
+            stopTimer();
             timeLeft = TIMER[gameMode - 1];
             updateTimerUI();
-            timerInt = setInterval(() => { timeLeft--;
-                updateTimerUI(); if (timeLeft <= 0) { stopTimer();
-                    onTimeout(); } }, 1000); }
+            timerInt = setInterval(() => { 
+                timeLeft--;
+                updateTimerUI(); 
+                if (timeLeft <= 0) { stopTimer(); onTimeout(); } 
+            }, 1000); 
+        }
 
         function updateTimerUI() {
             const bar = document.getElementById('tbar'),
@@ -1183,30 +1201,40 @@
             num.textContent = timeLeft;
         }
 
-        function onTimeout() { if (answered) return;
+        function onTimeout() { 
+            if (answered) return;
             answered = true;
             lives--;
             sfxTimeout();
             setKidIn('scared');
             setFbIn('⏰ Tiempo agotado — era ' + correctAns, '#f87171');
-            document.querySelectorAll('.abtn').forEach(b => { b.style.pointerEvents = 'none'; if (+b.dataset.val ===
-                    correctAns) b.classList.add('reveal'); });
-            setTimeout(nextQ, 1200); }
+            document.querySelectorAll('.abtn').forEach(b => { b.style.pointerEvents = 'none'; if (+b.dataset.val === correctAns) b.classList.add('reveal'); });
+            setTimeout(nextQ, 1200); 
+        }
 
         function setKidIn(m) { const k = document.getElementById('kidWrap'); if (k) k.innerHTML = kid(m); }
+        function setFbIn(msg, col) { const f = document.getElementById('fb'); if (f) { f.textContent = msg; f.style.color = col; } }
 
-        function setFbIn(msg, col) { const f = document.getElementById('fb'); if (f) { f.textContent = msg;
-                f.style.color = col; } }
-
-        function nextQ() { stopTimer(); if (lives <= 0) { showGameOver(); return; }
+        function nextQ() { 
+            stopTimer(); 
+            if (lives <= 0) { showGameOver(); return; }
             answered = false;
             const q = makeQ();
-            const spread = gameMode === 3 ? Math.max(5, Math.round(Math.abs(correctAns) * 0.6)) : undefined;
+            const spread = gameMode === 4 ? Math.max(5, Math.round(Math.abs(correctAns) * 0.8)) : 
+                         gameMode === 3 ? Math.max(5, Math.round(Math.abs(correctAns) * 0.6)) : undefined;
             const ans = generateAnswers(correctAns, spread);
             const prog = Math.min(100, ((score % 30) / 30) * 100);
             const d = diff();
+            
+            let questionType = MODE_LABELS[gameMode];
+            if (gameMode === 3) {
+                questionType = questionCounter % 2 === 1 ? '💯 Porcentajes' : '📐 Regla de 3';
+            } else if (gameMode === 4) {
+                questionType = '🧩 Rompecabezas';
+            }
+            
             document.getElementById('app').innerHTML = `
-            <div class="lvlbadge" style="background:${MODE_COLORS[gameMode]}">${MODE_LABELS[gameMode]} · Dif.${d}/10</div>
+            <div class="lvlbadge" style="background:${MODE_COLORS[gameMode]}">${questionType} · Dif.${d}/10</div>
             <div class="kid-stage" id="kidWrap">${kid('idle')}</div>
             <div class="hud">
             <div class="pill">❤️ ${lives}</div>
@@ -1221,27 +1249,42 @@
             <div class="qbox">${q} = ?</div>
             <div class="ans-grid">${ans.map(a=>`<button class="abtn" data-val="${a}" onclick="check(this,${a})">${a}</button>`).join('')}</div>
             <div class="fb" id="fb"></div>`;
-            startTimer(); }
+            startTimer(); 
+        }
 
-        function check(btn, answer) { if (answered) return;
+        function check(btn, answer) { 
+            if (answered) return;
             answered = true;
             stopTimer();
-            document.querySelectorAll('.abtn').forEach(b => b.style.pointerEvents = 'none'); if (answer === correctAns) { btn
-                    .classList.add('correct');
+            document.querySelectorAll('.abtn').forEach(b => b.style.pointerEvents = 'none'); 
+            if (answer === correctAns) { 
+                btn.classList.add('correct');
                 score += 10;
                 sfxCorrect();
                 setKidIn('happy');
-                setFbIn('✅ ¡Correcto!', '#6ee7b7');
-                setTimeout(nextQ, 900); } else { btn.classList.add('wrong');
+                
+                let feedbackMsg = '✅ ¡Correcto!';
+                if (gameMode === 3) {
+                    feedbackMsg = questionCounter % 2 === 1 ? '✅ ¡Buen cálculo de porcentaje!' : '✅ ¡Excelente regla de 3!';
+                } else if (gameMode === 4) {
+                    feedbackMsg = '✅ ¡Buen razonamiento!';
+                }
+                
+                setFbIn(feedbackMsg, '#6ee7b7');
+                setTimeout(nextQ, 900); 
+            } else { 
+                btn.classList.add('wrong');
                 lives--;
                 sfxWrong();
                 setKidIn('sad');
                 setFbIn('❌ Era ' + correctAns, '#fca5a5');
-                document.querySelectorAll('.abtn').forEach(b => { if (+b.dataset.val === correctAns) b.classList.add(
-                        'reveal'); });
-                setTimeout(nextQ, 1150); } }
+                document.querySelectorAll('.abtn').forEach(b => { if (+b.dataset.val === correctAns) b.classList.add('reveal'); });
+                setTimeout(nextQ, 1150); 
+            } 
+        }
 
-        function showGameOver() { stopTimer();
+        function showGameOver() { 
+            stopTimer();
             const st = score >= 100 ? '⭐⭐⭐' : score >= 50 ? '⭐⭐' : '⭐';
             document.getElementById('app').innerHTML = `
             <div class="go-box">
@@ -1250,40 +1293,67 @@
             <div class="stars-row">${st}</div>
             <p>Puntuación: <strong style="color:#e0d4ff">${score} puntos</strong></p>
             <p>Dificultad máxima: <strong style="color:#e0d4ff">${diff()}/10</strong></p>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
             <button class="bigbtn" onclick="startMode(${gameMode})">🔄 Reintentar</button>
             <button class="bigbtn" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2)" onclick="goHome()">🏠 Menú</button>
             </div>
-            </div>`; }
+            </div>`; 
+        }
 
         // ══ NAVIGATION ══
-        function startMode(m) { gameMode = m;
+        function startMode(m) { 
+            gameMode = m;
             score = 0;
             lives = 3;
+            questionCounter = 0;
             document.getElementById('homeScreen').classList.add('hidden');
             document.getElementById('gameScreen').classList.remove('hidden');
             startMusic();
-            nextQ(); }
+            nextQ(); 
+        }
 
-        function goHome() { stopTimer();
+        function goHome() { 
+            stopTimer();
             stopMusic();
             document.getElementById('gameScreen').classList.add('hidden');
-            document.getElementById('homeScreen').classList.remove('hidden'); }
+            document.getElementById('homeScreen').classList.remove('hidden'); 
+        }
 
-        function applyMute() { const icon = muted ? '🔇' : '🔊';
+        function applyMute() { 
+            const icon = muted ? '🔇' : '🔊';
             const t = document.getElementById('muteToggle'),
                 mi = document.getElementById('muteIcon'),
-                gf = document.getElementById('gameMuteFab'); if (t) t.classList.toggle('on', !muted); if (mi) mi
-                .textContent = icon; if (gf) gf.textContent = icon; if (muted) stopMusic();
-            else if (!document.getElementById('gameScreen').classList.contains('hidden')) startMusic(); }
+                gf = document.getElementById('gameMuteFab'); 
+            if (t) t.classList.toggle('on', !muted); 
+            if (mi) mi.textContent = icon; 
+            if (gf) gf.textContent = icon; 
+            if (muted) stopMusic();
+            else if (!document.getElementById('gameScreen').classList.contains('hidden')) startMusic(); 
+        }
 
-        function toggleMuteHome() { muted = !muted;
-            applyMute(); }
+        function toggleMuteHome() { muted = !muted; applyMute(); }
+        function toggleMuteGame() { muted = !muted; applyMute(); }
 
-        function toggleMuteGame() { muted = !muted;
-            applyMute(); }
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            // Prevenir zoom en móviles
+            document.addEventListener('gesturestart', (e) => e.preventDefault());
+            document.addEventListener('gesturechange', (e) => e.preventDefault());
+            document.addEventListener('gestureend', (e) => e.preventDefault());
+            
+            // Ajustar viewport para mobile
+            if (/Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent)) {
+                document.querySelector('meta[name="viewport"]').content = 
+                    'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
+            }
+        });
 
-        document.getElementById('homeKid').innerHTML = kid('idle');
+        // Prevenir scroll no deseado
+        document.addEventListener('touchmove', function(e) {
+            if (e.target.closest('.screen')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>

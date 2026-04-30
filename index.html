@@ -36,7 +36,6 @@
             position: relative;
         }
 
-        /* Fondo animado con partículas */
         body::before {
             content: '';
             position: fixed;
@@ -51,7 +50,6 @@
             z-index: 0;
         }
 
-        /* Estrellas de fondo */
         .stars-container {
             position: fixed;
             top: 0;
@@ -75,7 +73,6 @@
             50% { opacity: 1; transform: scale(1.5); }
         }
 
-        /* Mensaje de orientación para móviles */
         .orientation-warning {
             display: none;
             position: fixed;
@@ -139,7 +136,7 @@
             display: none !important;
         }
 
-        /* HOME SCREEN - Versión compacta para móvil */
+        /* HOME SCREEN */
         .home-container {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
@@ -202,10 +199,10 @@
         }
 
         .home-kid {
-            width: clamp(70px, 10vw, 120px);
-            height: clamp(85px, 12vw, 150px);
-            margin: 5px auto;
-            display: none; /* Oculto en móvil para ahorrar espacio */
+            width: clamp(80px, 12vw, 140px);
+            height: clamp(100px, 15vw, 170px);
+            margin: 8px auto 4px;
+            display: block;
         }
 
         .home-kid svg {
@@ -392,7 +389,7 @@
             left: 17px;
         }
 
-        /* GAME SCREEN - Ultra compacto para móvil */
+        /* GAME SCREEN */
         .game-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
@@ -548,6 +545,7 @@
             border-color: #34d399;
             color: #a7f3d0;
             box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+            animation: correctPulse 0.5s ease-out;
         }
 
         .abtn.wrong {
@@ -555,6 +553,7 @@
             border-color: #f87171;
             color: #fecaca;
             box-shadow: 0 0 15px rgba(248, 113, 113, 0.3);
+            animation: wrongShake 0.5s ease-out;
         }
 
         .abtn.reveal {
@@ -563,12 +562,47 @@
             color: #a7f3d0;
         }
 
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Feedback visual mejorado */
         .fb {
-            font-size: clamp(0.7rem, 1.2vw, 0.9rem);
-            font-weight: 700;
-            min-height: 1.2em;
+            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+            font-weight: 800;
+            min-height: 1.5em;
             text-align: center;
             color: #c4b5fd;
+            padding: 4px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .fb.correct-fb {
+            background: rgba(52, 211, 153, 0.2);
+            color: #6ee7b7;
+            animation: fbPop 0.4s ease-out;
+            font-size: clamp(1rem, 2vw, 1.4rem);
+        }
+
+        .fb.wrong-fb {
+            background: rgba(248, 113, 113, 0.2);
+            color: #fca5a5;
+            animation: fbPop 0.4s ease-out;
+        }
+
+        @keyframes fbPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .lvlbadge {
@@ -694,7 +728,6 @@
             transform: scale(1.1);
         }
 
-        /* Footer */
         .home-footer {
             text-align: center;
             color: rgba(255, 255, 255, 0.3);
@@ -703,7 +736,29 @@
             letter-spacing: 0.5px;
         }
 
-        /* Ajustes específicos para pantallas muy pequeñas */
+        /* Efecto de confeti al acertar */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: confettiFall 1s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
         @media (max-height: 500px) {
             .kid-stage {
                 width: 50px;
@@ -723,6 +778,12 @@
                 gap: 3px;
                 padding: 6px 8px;
             }
+            
+            .home-kid {
+                width: 60px;
+                height: 75px;
+                margin: 4px auto;
+            }
         }
 
         @media (max-height: 400px) {
@@ -737,10 +798,9 @@
     </style>
 </head>
 <body>
-    <!-- Estrellas de fondo -->
     <div class="stars-container" id="starsContainer"></div>
+    <div class="confetti-container" id="confettiContainer"></div>
 
-    <!-- Mensaje de orientación para móviles -->
     <div class="orientation-warning" id="orientationWarning">
         <div class="rotate-icon">📱</div>
         <h2>Gira tu dispositivo</h2>
@@ -762,6 +822,8 @@
             
             <div class="divider"></div>
             
+            <div class="home-kid" id="homeKid"></div>
+            
             <div class="mode-section">
                 <div class="mode-label">🎯 Elige tu modalidad</div>
                 <div class="lvl-cards">
@@ -771,6 +833,7 @@
                         <div class="lvl-desc">Operaciones progresivas</div>
                         <div class="diff-pips">
                             <div class="pip lit"></div>
+                            <div class="pip"></div>
                             <div class="pip"></div>
                             <div class="pip"></div>
                         </div>
@@ -783,6 +846,7 @@
                             <div class="pip lit"></div>
                             <div class="pip lit"></div>
                             <div class="pip"></div>
+                            <div class="pip"></div>
                         </div>
                     </div>
                     <div class="lvl-card" data-mode="3" onclick="startMode(3)">
@@ -793,6 +857,7 @@
                             <div class="pip lit"></div>
                             <div class="pip lit"></div>
                             <div class="pip lit"></div>
+                            <div class="pip"></div>
                         </div>
                     </div>
                     <div class="lvl-card" data-mode="4" onclick="startMode(4)">
@@ -818,7 +883,7 @@
             </div>
             
             <div class="home-footer">
-                v4.3 · Optimizado para móviles · 4 modos de juego
+                v4.4 · Optimizado para móviles · 4 modos de juego
             </div>
         </div>
     </div>
@@ -851,6 +916,28 @@
             }
         }
         createStars();
+
+        // ══ CONFETI AL ACERTAR ══
+        function spawnConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#34d399', '#f59e0b', '#3b82f6', '#ec4899', '#8b5cf6', '#22c55e', '#ef4444', '#06b6d4'];
+            
+            for (let i = 0; i < 30; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.top = -(Math.random() * 20 + 10) + 'px';
+                piece.style.width = (Math.random() * 8 + 6) + 'px';
+                piece.style.height = (Math.random() * 8 + 6) + 'px';
+                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                piece.style.animationDuration = (Math.random() * 0.8 + 0.8) + 's';
+                piece.style.animationDelay = Math.random() * 0.3 + 's';
+                container.appendChild(piece);
+                
+                setTimeout(() => piece.remove(), 1500);
+            }
+        }
 
         // ══ DETECCIÓN DE ORIENTACIÓN ══
         function checkOrientation() {
@@ -933,51 +1020,116 @@
         function sfxTimeout() { tone(300, 0.15, 'square', 0.07);
             tone(220, 0.3, 'sawtooth', 0.07, 0.12); }
 
-        // ══ KID SVG (versión simplificada) ══
+        // ══ KID SVG con camiseta AC/DC ══
         function kid(mood) {
             const sk = '#F5C5A3',
+                sk2 = '#E8A882',
                 hair = '#1a1a1a',
-                shirtBg = '#111';
+                shoe1 = '#111',
+                shoe2 = '#222',
+                lace = '#fff',
+                pants1 = '#1c1c2e',
+                pants2 = '#14141f';
+            
+            const shirtBg = '#111';
+            // Camiseta AC/DC
+            const shirtDetail = `
+            <text x="65" y="132" font-size="16" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="2">AC</text>
+            <text x="65" y="144" font-size="7" fill="#fff" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" letter-spacing="3">⚡</text>
+            <text x="65" y="155" font-size="10" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="1">DC</text>
+            <line x1="50" y1="146" x2="60" y2="146" stroke="#ff4444" stroke-width="1.5"/>
+            <line x1="70" y1="146" x2="80" y2="146" stroke="#ff4444" stroke-width="1.5"/>`;
             
             const faces = {
-                idle: { mouth: 'M58,74 Q65,79 72,74', eyes: 'ellipse cx="53" cy="59" rx="5.5" ry="6" fill="#2d1a06"/>ellipse cx="77" cy="59" rx="5.5" ry="6" fill="#2d1a06"/>ellipse cx="51" cy="57" rx="2" ry="2" fill="#fff"/>ellipse cx="75" cy="57" rx="2" ry="2" fill="#fff"/>', brows: 'M47,51 Q53,48 59,51M71,51 Q77,48 83,51' },
-                happy: { mouth: 'M51,73 Q65,88 79,73', eyes: 'M48,60 Q53,53 58,60M72,60 Q77,53 82,60', brows: 'M47,49 Q53,45 59,49M71,49 Q77,45 83,49' },
-                sad: { mouth: 'M55,79 Q65,70 75,79', eyes: 'ellipse cx="53" cy="60" rx="5.5" ry="6" fill="#2d1a06"/>ellipse cx="77" cy="60" rx="5.5" ry="6" fill="#2d1a06"/>ellipse cx="51" cy="58" rx="2" ry="2" fill="#fff"/>ellipse cx="75" cy="58" rx="2" ry="2" fill="#fff"/>ellipse cx="52" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/>ellipse cx="76" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/>', brows: 'M47,50 Q53,55 59,50M71,50 Q77,55 83,50' },
-                scared: { mouth: 'ellipse cx="65" cy="78" rx="7" ry="6" fill="#e74c3c"/>ellipse cx="65" cy="75" rx="5" ry="2.5" fill="'+sk+'"/>', eyes: 'ellipse cx="53" cy="59" rx="7" ry="7.5" fill="#2d1a06"/>ellipse cx="77" cy="59" rx="7" ry="7.5" fill="#2d1a06"/>ellipse cx="50" cy="56" rx="2.8" ry="2.8" fill="#fff"/>ellipse cx="74" cy="56" rx="2.8" ry="2.8" fill="#fff"/>', brows: 'M47,52 Q53,57 59,52M71,52 Q77,57 83,52' },
-                celebrate: { mouth: 'M49,72 Q65,90 81,72', eyes: 'M47,57 Q53,50 59,57M71,57 Q77,50 83,57', brows: 'M46,47 Q53,42 60,47M70,47 Q77,42 84,47' }
+                idle: { 
+                    mouth: '<path d="M58,74 Q65,79 72,74" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>', 
+                    eyes: '<ellipse cx="53" cy="59" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="77" cy="59" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="51" cy="57" rx="2" ry="2" fill="#fff"/><ellipse cx="75" cy="57" rx="2" ry="2" fill="#fff"/>', 
+                    brows: 'M47,51 Q53,48 59,51 M71,51 Q77,48 83,51',
+                    blush: ''
+                },
+                happy: { 
+                    mouth: '<path d="M51,73 Q65,88 79,73" fill="#e74c3c"/><path d="M53,73 Q65,70 77,73" fill="'+sk+'"/><rect x="56" y="73" width="18" height="5" rx="2" fill="#fff" opacity="0.6"/>', 
+                    eyes: '<path d="M48,60 Q53,53 58,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/><path d="M72,60 Q77,53 82,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>', 
+                    brows: 'M47,49 Q53,45 59,49 M71,49 Q77,45 83,49',
+                    blush: '<ellipse cx="39" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/><ellipse cx="91" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/>'
+                },
+                sad: { 
+                    mouth: '<path d="M55,79 Q65,70 75,79" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>', 
+                    eyes: '<ellipse cx="53" cy="60" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="77" cy="60" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="51" cy="58" rx="2" ry="2" fill="#fff"/><ellipse cx="75" cy="58" rx="2" ry="2" fill="#fff"/><ellipse cx="52" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/><ellipse cx="76" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/>', 
+                    brows: 'M47,50 Q53,55 59,50 M71,50 Q77,55 83,50',
+                    blush: '<ellipse cx="41" cy="70" rx="7" ry="4" fill="#93c5fd" opacity="0.35"/><ellipse cx="89" cy="70" rx="7" ry="4" fill="#93c5fd" opacity="0.35"/>'
+                },
+                scared: { 
+                    mouth: '<ellipse cx="65" cy="78" rx="7" ry="6" fill="#e74c3c"/><ellipse cx="65" cy="75" rx="5" ry="2.5" fill="'+sk+'"/>', 
+                    eyes: '<ellipse cx="53" cy="59" rx="7" ry="7.5" fill="#2d1a06"/><ellipse cx="77" cy="59" rx="7" ry="7.5" fill="#2d1a06"/><ellipse cx="50" cy="56" rx="2.8" ry="2.8" fill="#fff"/><ellipse cx="74" cy="56" rx="2.8" ry="2.8" fill="#fff"/>', 
+                    brows: 'M47,52 Q53,57 59,52 M71,52 Q77,57 83,52',
+                    blush: '<ellipse cx="40" cy="68" rx="8" ry="4.5" fill="#fde68a" opacity="0.4"/><ellipse cx="90" cy="68" rx="8" ry="4.5" fill="#fde68a" opacity="0.4"/>'
+                },
+                celebrate: { 
+                    mouth: '<path d="M49,72 Q65,90 81,72" fill="#e74c3c"/><path d="M51,72 Q65,69 79,72" fill="'+sk+'"/><rect x="55" y="72" width="20" height="6" rx="2" fill="#fff" opacity="0.65"/>', 
+                    eyes: '<path d="M47,57 Q53,50 59,57" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/><path d="M71,57 Q77,50 83,57" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>', 
+                    brows: 'M46,47 Q53,42 60,47 M70,47 Q77,42 84,47',
+                    blush: '<ellipse cx="39" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/><ellipse cx="91" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/>'
+                }
             };
             
             const f = faces[mood] || faces.idle;
+            const extras = mood === 'celebrate' ? '<text x="6" y="30" font-size="18">⭐</text><text x="96" y="20" font-size="15">✨</text>' : 
+                          mood === 'sad' ? '<text x="87" y="44" font-size="14">💧</text>' :
+                          mood === 'scared' ? '<text x="0" y="40" font-size="13">😰</text>' : '';
             
             return `<svg viewBox="0 0 130 210" xmlns="http://www.w3.org/2000/svg">
+            ${extras}
             <ellipse cx="65" cy="208" rx="36" ry="5" fill="rgba(0,0,0,0.25)"/>
             <ellipse cx="65" cy="34" rx="36" ry="34" fill="${hair}"/>
-            <ellipse cx="29" cy="60" rx="6.5" ry="9" fill="${sk}"/>
-            <ellipse cx="101" cy="60" rx="6.5" ry="9" fill="${sk}"/>
+            <!-- Ears -->
+            <ellipse cx="29" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="29" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/>
+            <ellipse cx="101" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="101" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/>
+            <!-- Neck -->
             <rect x="57" y="87" width="16" height="22" rx="8" fill="${sk}"/>
+            <!-- Shirt body -->
             <path d="M20,104 Q20,96 65,94 Q110,96 110,104 L115,178 Q115,186 65,186 Q15,186 15,178 Z" fill="${shirtBg}"/>
             <ellipse cx="65" cy="97" rx="13" ry="6" fill="#222"/>
-            <ellipse cx="65" cy="130" rx="16" ry="16" fill="#f5d800"/>
-            <ellipse cx="60" cy="126" rx="3" ry="4" fill="#111"/>
-            <ellipse cx="70" cy="126" rx="3" ry="4" fill="#111"/>
-            <path d="M58,134 Q65,141 72,134" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- AC/DC detail -->
+            ${shirtDetail}
+            <!-- Arms -->
             <path d="M28,108 Q14,116 10,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
             <circle cx="10" cy="132" r="9" fill="${sk}"/>
             <path d="M102,108 Q116,116 120,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
             <circle cx="120" cy="132" r="9" fill="${sk}"/>
-            <path d="M18,182 Q16,192 14,210 Q30,212 42,210 L54,186 Z" fill="#1c1c2e"/>
-            <path d="M112,182 Q114,192 116,210 Q100,212 88,210 L76,186 Z" fill="#1c1c2e"/>
-            <path d="M18,182 L54,186 L65,190 L76,186 L112,182 Q65,177 18,182Z" fill="#14141f"/>
-            <rect x="10" y="206" width="38" height="16" rx="8" fill="#111"/>
-            <rect x="82" y="206" width="38" height="16" rx="8" fill="#111"/>
+            <!-- Pants -->
+            <path d="M18,182 Q16,192 14,210 Q30,212 42,210 L54,186 Z" fill="${pants1}"/>
+            <path d="M112,182 Q114,192 116,210 Q100,212 88,210 L76,186 Z" fill="${pants1}"/>
+            <path d="M18,182 L54,186 L65,190 L76,186 L112,182 Q65,177 18,182Z" fill="${pants2}"/>
+            <!-- Belt -->
+            <rect x="18" y="178" width="94" height="8" rx="4" fill="#2c1a0e"/>
+            <rect x="58" y="178" width="14" height="8" rx="2" fill="#8B6914"/>
+            <rect x="61" y="180" width="8" height="4" rx="1" fill="#D4A017"/>
+            <!-- Shoes -->
+            <rect x="10" y="206" width="38" height="16" rx="8" fill="${shoe1}"/>
+            <rect x="10" y="206" width="38" height="8" rx="5" fill="${shoe2}"/>
+            <rect x="82" y="206" width="38" height="16" rx="8" fill="${shoe1}"/>
+            <rect x="82" y="206" width="38" height="8" rx="5" fill="${shoe2}"/>
+            <!-- Head -->
             <ellipse cx="65" cy="57" rx="35" ry="38" fill="${sk}"/>
+            <ellipse cx="37" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/>
+            <ellipse cx="93" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/>
+            <!-- Hair -->
             <path d="M30,38 Q32,12 65,10 Q98,12 100,38 Q90,20 65,18 Q40,20 30,38Z" fill="${hair}"/>
             <path d="M30,38 Q27,50 28,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/>
             <path d="M100,38 Q103,50 102,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/>
+            <path d="M30,42 Q22,46 24,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/>
+            <path d="M100,42 Q108,46 106,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/>
+            <!-- Nose -->
             <path d="M62,68 Q60,74 65,76 Q70,74 68,68" fill="none" stroke="#c8956c" stroke-width="2" stroke-linecap="round"/>
+            <!-- Eyebrows -->
             <path d="${f.brows}" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>
+            <!-- Eyes -->
             ${f.eyes}
-            ${f.mouth.startsWith('ellipse')||f.mouth.startsWith('M')?(f.mouth.startsWith('ellipse')?f.mouth:'<path d="'+f.mouth+'" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>'):f.mouth}
+            <!-- Blush -->
+            ${f.blush}
+            <!-- Mouth -->
+            ${f.mouth}
             </svg>`;
         }
 
@@ -991,7 +1143,7 @@
             timeLeft = 0;
         let questionCounter = 0;
         
-        const TIMER = [12, 15, 18, 20]; // Más tiempo para modos difíciles
+        const TIMER = [12, 15, 18, 20];
         const MODE_COLORS = ['', '#22c55e', '#3b82f6', '#f59e0b', '#ec4899'];
         const MODE_LABELS = ['', 'Sumas & Restas', 'Mult & División', '% & Regla de 3', 'Rompecabezas'];
         const MODE_GRAD = ['', 'linear-gradient(90deg,#22c55e,#06d6a0)', 'linear-gradient(90deg,#3b82f6,#06b6d4)',
@@ -1082,46 +1234,49 @@
             let q;
             
             if (d <= 3) {
-                // Secuencias simples y acertijos lógicos fáciles
                 const puzzles = [
                     { q: '¿Qué número sigue? 2, 4, 6, 8, __', ans: 10 },
                     { q: '¿Qué número sigue? 5, 10, 15, 20, __', ans: 25 },
                     { q: '¿Qué número sigue? 1, 3, 5, 7, __', ans: 9 },
-                    { q: '¿Qué número falta? 3 + __ = 10', ans: 7 },
+                    { q: '¿Cuánto es 3 + 7?', ans: 10 },
                     { q: 'El doble de 6 es...', ans: 12 },
                     { q: 'La mitad de 20 es...', ans: 10 },
                     { q: '¿Qué número sigue? 10, 20, 30, 40, __', ans: 50 },
-                    { q: '¿Cuántos lados tiene un hexágono?', ans: 6 }
+                    { q: '¿Cuántos lados tiene un hexágono?', ans: 6 },
+                    { q: '¿Cuánto es 15 - 7?', ans: 8 },
+                    { q: '¿Cuánto es 4 × 3?', ans: 12 }
                 ];
                 const p = rndFrom(puzzles);
                 correctAns = p.ans;
                 q = p.q;
             } else if (d <= 6) {
-                // Secuencias más complejas y problemas de lógica
                 const puzzles = [
                     { q: '¿Qué número sigue? 2, 4, 8, 16, __', ans: 32 },
                     { q: '¿Qué número sigue? 1, 4, 9, 16, __', ans: 25 },
-                    { q: 'Si un tren sale a las 8 y tarda 45 min, ¿a qué hora llega? (formato: 8.45)', ans: 8.45 },
+                    { q: '¿Cuánto es 7 × 8?', ans: 56 },
                     { q: '¿Qué número sigue? 3, 6, 12, 24, __', ans: 48 },
-                    { q: '¿Cuánto es 7×8?', ans: 56 },
-                    { q: '¿Qué número falta? 15 + 25 = __', ans: 40 },
+                    { q: '¿Cuánto es 15 + 25?', ans: 40 },
                     { q: '¿Cuántas horas hay en 3 días?', ans: 72 },
-                    { q: 'Si tengo 24 caramelos y los reparto entre 6 niños, ¿cuántos recibe cada uno?', ans: 4 }
+                    { q: 'Si tengo 24 caramelos y los reparto entre 6 niños, ¿cuántos recibe cada uno?', ans: 4 },
+                    { q: '¿Cuántos minutos hay en una hora y media?', ans: 90 },
+                    { q: '¿Qué número sigue? 100, 90, 80, 70, __', ans: 60 },
+                    { q: 'El triple de 9 es...', ans: 27 }
                 ];
                 const p = rndFrom(puzzles);
                 correctAns = p.ans;
                 q = p.q;
             } else {
-                // Acertijos avanzados
                 const puzzles = [
                     { q: '¿Qué número sigue? 1, 1, 2, 3, 5, 8, __ (Fibonacci)', ans: 13 },
                     { q: '¿Qué número sigue? 2, 6, 12, 20, 30, __', ans: 42 },
                     { q: 'Un rectángulo tiene área 48 y base 8. ¿Cuál es su altura?', ans: 6 },
                     { q: '¿Cuánto es 15% de 200?', ans: 30 },
-                    { q: 'Si x+5=12, ¿cuánto vale x?', ans: 7 },
+                    { q: 'Si x + 5 = 12, ¿cuánto vale x?', ans: 7 },
                     { q: '¿Qué número sigue? 1, 8, 27, 64, __ (cubos)', ans: 125 },
                     { q: '¿Cuántos minutos hay en 2 horas y media?', ans: 150 },
-                    { q: 'El triple de un número más 4 es 19. ¿Qué número es?', ans: 5 }
+                    { q: 'El triple de un número más 4 es 19. ¿Qué número es?', ans: 5 },
+                    { q: '¿Cuánto es la raíz cuadrada de 144?', ans: 12 },
+                    { q: 'Si un libro cuesta 15€ y tiene 20% de descuento, ¿cuánto pagas?', ans: 12 }
                 ];
                 const p = rndFrom(puzzles);
                 correctAns = p.ans;
@@ -1169,7 +1324,6 @@
                     q = makeRuleOfThreeQuestion(d);
                 }
             } else if (gameMode === 4) {
-                // Modo rompecabezas
                 q = makePuzzleQuestion(d);
             }
             
@@ -1207,13 +1361,26 @@
             lives--;
             sfxTimeout();
             setKidIn('scared');
-            setFbIn('⏰ Tiempo agotado — era ' + correctAns, '#f87171');
+            setFbIn('⏰ Tiempo agotado — era ' + correctAns, '#f87171', false);
             document.querySelectorAll('.abtn').forEach(b => { b.style.pointerEvents = 'none'; if (+b.dataset.val === correctAns) b.classList.add('reveal'); });
             setTimeout(nextQ, 1200); 
         }
 
         function setKidIn(m) { const k = document.getElementById('kidWrap'); if (k) k.innerHTML = kid(m); }
-        function setFbIn(msg, col) { const f = document.getElementById('fb'); if (f) { f.textContent = msg; f.style.color = col; } }
+        
+        function setFbIn(msg, col, isCorrect) { 
+            const f = document.getElementById('fb'); 
+            if (f) { 
+                f.textContent = msg; 
+                f.style.color = col;
+                f.className = 'fb';
+                if (isCorrect === true) {
+                    f.classList.add('correct-fb');
+                } else if (isCorrect === false) {
+                    f.classList.add('wrong-fb');
+                }
+            } 
+        }
 
         function nextQ() { 
             stopTimer(); 
@@ -1261,23 +1428,24 @@
                 btn.classList.add('correct');
                 score += 10;
                 sfxCorrect();
-                setKidIn('happy');
+                setKidIn('celebrate');
+                spawnConfetti();
                 
-                let feedbackMsg = '✅ ¡Correcto!';
+                let feedbackMsg = '✅ ¡CORRECTO!';
                 if (gameMode === 3) {
-                    feedbackMsg = questionCounter % 2 === 1 ? '✅ ¡Buen cálculo de porcentaje!' : '✅ ¡Excelente regla de 3!';
+                    feedbackMsg = questionCounter % 2 === 1 ? '✅ ¡BUEN PORCENTAJE!' : '✅ ¡EXCELENTE REGLA DE 3!';
                 } else if (gameMode === 4) {
-                    feedbackMsg = '✅ ¡Buen razonamiento!';
+                    feedbackMsg = '✅ ¡BUEN RAZONAMIENTO!';
                 }
                 
-                setFbIn(feedbackMsg, '#6ee7b7');
+                setFbIn(feedbackMsg, '#6ee7b7', true);
                 setTimeout(nextQ, 900); 
             } else { 
                 btn.classList.add('wrong');
                 lives--;
                 sfxWrong();
                 setKidIn('sad');
-                setFbIn('❌ Era ' + correctAns, '#fca5a5');
+                setFbIn('❌ Era ' + correctAns, '#fca5a5', false);
                 document.querySelectorAll('.abtn').forEach(b => { if (+b.dataset.val === correctAns) b.classList.add('reveal'); });
                 setTimeout(nextQ, 1150); 
             } 
@@ -1336,19 +1504,19 @@
 
         // Inicialización
         document.addEventListener('DOMContentLoaded', () => {
-            // Prevenir zoom en móviles
             document.addEventListener('gesturestart', (e) => e.preventDefault());
             document.addEventListener('gesturechange', (e) => e.preventDefault());
             document.addEventListener('gestureend', (e) => e.preventDefault());
             
-            // Ajustar viewport para mobile
             if (/Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent)) {
                 document.querySelector('meta[name="viewport"]').content = 
                     'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
             }
+            
+            // Mostrar personaje en home
+            document.getElementById('homeKid').innerHTML = kid('idle');
         });
 
-        // Prevenir scroll no deseado
         document.addEventListener('touchmove', function(e) {
             if (e.target.closest('.screen')) {
                 e.preventDefault();

@@ -32,7 +32,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 8px;
+            padding: 12px;
             position: relative;
         }
 
@@ -117,7 +117,7 @@
 
         .screen {
             width: 100%;
-            max-width: 100%;
+            max-width: 1200px;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -126,9 +126,7 @@
             gap: 0;
             position: relative;
             z-index: 1;
-            overflow-y: auto;
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
+            overflow: hidden;
             padding: 4px 0;
         }
 
@@ -136,40 +134,81 @@
             display: none !important;
         }
 
-        /* HOME SCREEN */
+        /* HOME SCREEN - Layout horizontal: personaje izq + tarjetas der */
         .home-container {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 12px 14px;
+            border-radius: 20px;
+            padding: 20px 24px;
             width: 100%;
-            max-width: 100%;
+            height: 100%;
+            max-height: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        /* Panel izquierdo: personaje */
+        .home-left {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: clamp(140px, 20vw, 200px);
+        }
+
+        .home-kid {
+            width: clamp(140px, 18vw, 200px);
+            height: clamp(170px, 22vw, 240px);
+        }
+
+        .home-kid svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .home-kid-label {
+            color: #a89ccc;
+            font-size: clamp(0.7rem, 1vw, 0.85rem);
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Panel derecho: contenido */
+        .home-right {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+            min-width: 0;
         }
 
         .home-header {
-            text-align: center;
-            padding: 2px 0 8px;
-            position: relative;
+            text-align: left;
+            padding: 0;
         }
 
         .home-logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
+            gap: 10px;
             margin-bottom: 2px;
         }
 
         .home-logo-icon {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
             filter: drop-shadow(0 0 20px rgba(160, 120, 255, 0.5));
         }
 
         .home-title {
-            font-size: clamp(1.3rem, 3vw, 2.2rem);
+            font-size: clamp(1.5rem, 3.5vw, 2.4rem);
             font-weight: 900;
             background: linear-gradient(135deg, #c4b5fd, #818cf8, #a78bfa);
             -webkit-background-clip: text;
@@ -181,42 +220,29 @@
         .home-badge {
             background: linear-gradient(135deg, #7c3aed, #2563eb);
             color: white;
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            padding: 2px 8px;
+            padding: 3px 10px;
             border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-top: 2px;
             display: inline-block;
+            margin-top: 2px;
         }
 
         .home-sub {
-            font-size: clamp(0.6rem, 1.2vw, 0.85rem);
+            font-size: clamp(0.65rem, 1.1vw, 0.85rem);
             color: #a89ccc;
-            margin-top: 2px;
+            margin-top: 3px;
             font-weight: 500;
         }
 
-        .home-kid {
-            width: clamp(80px, 12vw, 140px);
-            height: clamp(100px, 15vw, 170px);
-            margin: 8px auto 4px;
-            display: block;
-        }
-
-        .home-kid svg {
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-        }
-
         .divider {
-            width: 40px;
-            height: 2px;
+            width: 50px;
+            height: 3px;
             background: linear-gradient(90deg, #7c3aed, #2563eb);
             border-radius: 3px;
-            margin: 4px auto 8px;
+            margin: 6px 0;
         }
 
         .mode-section {
@@ -224,36 +250,38 @@
         }
 
         .mode-label {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: #a89ccc;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin: 4px 0 6px;
+            margin: 0 0 8px;
             padding-left: 2px;
         }
 
         .lvl-cards {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
             width: 100%;
         }
 
         .lvl-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1.5px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: clamp(8px, 1.5vw, 14px) clamp(6px, 1vw, 10px);
+            border-radius: 16px;
+            padding: clamp(14px, 2vw, 20px) clamp(12px, 1.5vw, 16px);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3px;
+            justify-content: center;
+            gap: 6px;
             position: relative;
             overflow: hidden;
+            aspect-ratio: 1 / 0.9;
         }
 
         .lvl-card::before {
@@ -272,7 +300,7 @@
             transform: translateY(-4px);
             border-color: rgba(200, 170, 255, 0.6);
             background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
         }
 
         .lvl-card:hover::before {
@@ -284,13 +312,13 @@
         }
 
         .lvl-icon {
-            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
             position: relative;
             z-index: 1;
         }
 
         .lvl-name {
-            font-size: clamp(0.6rem, 1.1vw, 0.8rem);
+            font-size: clamp(0.75rem, 1.2vw, 0.95rem);
             font-weight: 800;
             color: #e0d4ff;
             position: relative;
@@ -299,7 +327,7 @@
         }
 
         .lvl-desc {
-            font-size: clamp(0.5rem, 0.9vw, 0.65rem);
+            font-size: clamp(0.6rem, 0.9vw, 0.7rem);
             color: #9b87cc;
             line-height: 1.3;
             position: relative;
@@ -308,15 +336,15 @@
 
         .diff-pips {
             display: flex;
-            gap: 4px;
-            margin-top: 2px;
+            gap: 5px;
+            margin-top: 3px;
             position: relative;
             z-index: 1;
         }
 
         .pip {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             transition: all 0.3s;
@@ -324,28 +352,35 @@
 
         .pip.lit {
             background: #f59e0b;
-            box-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
         }
 
         .lvl-card:hover .pip.lit {
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.7);
         }
 
-        .lvl-card:nth-child(1) { border-top: 2px solid #22c55e; }
-        .lvl-card:nth-child(2) { border-top: 2px solid #3b82f6; }
-        .lvl-card:nth-child(3) { border-top: 2px solid #f59e0b; }
-        .lvl-card:nth-child(4) { border-top: 2px solid #ec4899; }
+        .lvl-card:nth-child(1) { border-top: 3px solid #22c55e; }
+        .lvl-card:nth-child(2) { border-top: 3px solid #3b82f6; }
+        .lvl-card:nth-child(3) { border-top: 3px solid #f59e0b; }
+        .lvl-card:nth-child(4) { border-top: 3px solid #ec4899; }
+
+        .home-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 4px;
+        }
 
         .mute-row {
             display: flex;
             align-items: center;
             gap: 8px;
             color: #9b87cc;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             cursor: pointer;
             user-select: none;
-            margin-top: 8px;
-            padding: 6px 10px;
+            padding: 6px 12px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -358,8 +393,8 @@
         }
 
         .mute-toggle {
-            width: 36px;
-            height: 20px;
+            width: 40px;
+            height: 22px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 50px;
             position: relative;
@@ -370,47 +405,98 @@
 
         .mute-toggle.on {
             background: #7c3aed;
-            box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+            box-shadow: 0 0 12px rgba(124, 58, 237, 0.4);
         }
 
         .mute-knob {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             background: #fff;
             border-radius: 50%;
             position: absolute;
             top: 1px;
             left: 1px;
             transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         .mute-toggle.on .mute-knob {
-            left: 17px;
+            left: 19px;
         }
 
-        /* GAME SCREEN */
+        .home-footer {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.6rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* GAME SCREEN - Layout horizontal: personaje izq + juego der */
+        .game-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .game-back-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #c4b5fd;
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: clamp(0.7rem, 1vw, 0.8rem);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(5px);
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .back-btn:active { transform: scale(0.95); }
+
         .game-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 14px;
-            padding: clamp(8px, 1.5vw, 16px) clamp(8px, 1.5vw, 16px);
+            border-radius: 18px;
+            padding: clamp(12px, 2vw, 20px);
             width: 100%;
-            max-width: 100%;
-            height: 100%;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: clamp(16px, 3vw, 28px);
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Panel izquierdo: personaje en juego */
+        .game-left {
+            flex: 0 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: clamp(4px, 0.8vw, 8px);
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            gap: 8px;
+            min-width: clamp(120px, 16vw, 180px);
         }
 
         .kid-stage {
-            width: clamp(60px, 8vw, 100px);
-            height: clamp(75px, 10vw, 125px);
+            width: clamp(120px, 16vw, 180px);
+            height: clamp(150px, 20vw, 220px);
             position: relative;
             flex-shrink: 0;
         }
@@ -421,9 +507,19 @@
             overflow: visible;
         }
 
+        /* Panel derecho: juego */
+        .game-right {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: clamp(8px, 1.2vw, 12px);
+            min-width: 0;
+        }
+
         .hud {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             width: 100%;
             justify-content: center;
             flex-wrap: wrap;
@@ -433,13 +529,13 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 50px;
-            padding: 3px 10px;
-            font-size: clamp(0.6rem, 1vw, 0.8rem);
+            padding: 5px 14px;
+            font-size: clamp(0.7rem, 1.1vw, 0.85rem);
             font-weight: 700;
             color: #ddd0ff;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             backdrop-filter: blur(5px);
         }
 
@@ -447,30 +543,30 @@
             width: 100%;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .tbar-bg {
             flex: 1;
-            height: 8px;
+            height: 10px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .tbar {
             height: 100%;
             border-radius: 50px;
             transition: width 0.1s linear, background 0.3s;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         .tnum {
-            font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+            font-size: clamp(0.8rem, 1.2vw, 0.95rem);
             font-weight: 800;
             color: #ddd0ff;
-            min-width: 20px;
+            min-width: 24px;
             text-align: right;
             font-variant-numeric: tabular-nums;
         }
@@ -478,16 +574,16 @@
         .qbox {
             background: rgba(255, 255, 255, 0.08);
             border: 1.5px solid rgba(200, 180, 255, 0.25);
-            border-radius: 12px;
-            padding: clamp(8px, 1.2vw, 14px) clamp(12px, 2vw, 20px);
-            font-size: clamp(1.2rem, 3vw, 2rem);
+            border-radius: 14px;
+            padding: clamp(10px, 1.5vw, 18px) clamp(14px, 2vw, 24px);
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
             font-weight: 900;
             color: #fff;
             text-align: center;
             width: 100%;
             letter-spacing: 0.5px;
-            text-shadow: 0 2px 8px rgba(200, 180, 255, 0.3);
-            min-height: 50px;
+            text-shadow: 0 2px 10px rgba(200, 180, 255, 0.3);
+            min-height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -498,16 +594,16 @@
         .ans-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: clamp(6px, 1vw, 10px);
+            gap: clamp(10px, 1.5vw, 16px);
             width: 100%;
         }
 
         .abtn {
             background: rgba(255, 255, 255, 0.06);
-            border: 1.5px solid rgba(200, 180, 255, 0.22);
-            border-radius: 10px;
-            padding: clamp(10px, 1.5vw, 16px) 6px;
-            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            border: 2px solid rgba(200, 180, 255, 0.25);
+            border-radius: 14px;
+            padding: clamp(16px, 2.5vw, 24px) 12px;
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
             font-weight: 800;
             color: #e8dfff;
             cursor: pointer;
@@ -515,6 +611,10 @@
             touch-action: manipulation;
             position: relative;
             overflow: hidden;
+            min-height: clamp(55px, 8vw, 70px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .abtn::after {
@@ -532,71 +632,75 @@
         .abtn:hover::after { opacity: 1; }
 
         .abtn:hover {
-            background: rgba(200, 170, 255, 0.15);
-            border-color: rgba(200, 170, 255, 0.5);
-            transform: scale(1.03);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.2);
+            background: rgba(200, 170, 255, 0.18);
+            border-color: rgba(200, 170, 255, 0.6);
+            transform: scale(1.04);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.25);
         }
 
         .abtn:active { transform: scale(0.96); }
 
         .abtn.correct {
-            background: rgba(52, 211, 153, 0.25);
+            background: rgba(52, 211, 153, 0.3);
             border-color: #34d399;
             color: #a7f3d0;
-            box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.4);
             animation: correctPulse 0.5s ease-out;
+            border-width: 3px;
         }
 
         .abtn.wrong {
-            background: rgba(248, 113, 113, 0.25);
+            background: rgba(248, 113, 113, 0.3);
             border-color: #f87171;
             color: #fecaca;
-            box-shadow: 0 0 15px rgba(248, 113, 113, 0.3);
+            box-shadow: 0 0 20px rgba(248, 113, 113, 0.4);
             animation: wrongShake 0.5s ease-out;
+            border-width: 3px;
         }
 
         .abtn.reveal {
-            background: rgba(52, 211, 153, 0.2);
+            background: rgba(52, 211, 153, 0.25);
             border-color: #34d399;
             color: #a7f3d0;
+            border-width: 3px;
         }
 
         @keyframes correctPulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.08); }
             100% { transform: scale(1); }
         }
 
         @keyframes wrongShake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
         }
 
-        /* Feedback visual mejorado */
         .fb {
-            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+            font-size: clamp(0.9rem, 1.6vw, 1.2rem);
             font-weight: 800;
             min-height: 1.5em;
             text-align: center;
             color: #c4b5fd;
-            padding: 4px;
-            border-radius: 8px;
+            padding: 6px 12px;
+            border-radius: 10px;
             transition: all 0.3s;
         }
 
         .fb.correct-fb {
-            background: rgba(52, 211, 153, 0.2);
+            background: rgba(52, 211, 153, 0.25);
             color: #6ee7b7;
             animation: fbPop 0.4s ease-out;
-            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            border: 2px solid rgba(52, 211, 153, 0.4);
         }
 
         .fb.wrong-fb {
-            background: rgba(248, 113, 113, 0.2);
+            background: rgba(248, 113, 113, 0.25);
             color: #fca5a5;
             animation: fbPop 0.4s ease-out;
+            border: 2px solid rgba(248, 113, 113, 0.4);
         }
 
         @keyframes fbPop {
@@ -607,20 +711,20 @@
 
         .lvlbadge {
             position: absolute;
-            top: -10px;
-            right: 10px;
+            top: 10px;
+            right: 14px;
             border-radius: 50px;
-            padding: 2px 10px;
-            font-size: clamp(0.55rem, 0.9vw, 0.7rem);
+            padding: 4px 14px;
+            font-size: clamp(0.6rem, 0.9vw, 0.75rem);
             font-weight: 800;
             color: #fff;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
             z-index: 2;
         }
 
         .prog-track {
             width: 100%;
-            height: 5px;
+            height: 6px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             overflow: hidden;
@@ -634,82 +738,12 @@
             box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
         }
 
-        .back-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #c4b5fd;
-            border-radius: 50px;
-            padding: 4px 12px;
-            font-size: clamp(0.6rem, 1vw, 0.75rem);
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            align-self: flex-start;
-            margin-bottom: 2px;
-            backdrop-filter: blur(5px);
-        }
-
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.14);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .back-btn:active { transform: scale(0.95); }
-
-        .go-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 0;
-            text-align: center;
-        }
-
-        .go-box h2 {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            font-weight: 800;
-            color: #e0d4ff;
-        }
-
-        .go-box p {
-            color: #9b87cc;
-            font-size: clamp(0.7rem, 1.2vw, 0.9rem);
-        }
-
-        .stars-row {
-            font-size: clamp(1.5rem, 2.5vw, 2rem);
-            letter-spacing: 4px;
-            filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
-        }
-
-        .bigbtn {
-            background: linear-gradient(135deg, #7c3aed, #2563eb);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: clamp(8px, 1.2vw, 12px) clamp(16px, 2.5vw, 28px);
-            font-size: clamp(0.7rem, 1.2vw, 0.9rem);
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.2s;
-            touch-action: manipulation;
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
-            letter-spacing: 0.3px;
-        }
-
-        .bigbtn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
-        }
-
-        .bigbtn:active { transform: scale(0.97); }
-
         .mute-fab {
             position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 28px;
-            height: 28px;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
@@ -717,7 +751,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
             transition: all 0.2s;
             backdrop-filter: blur(5px);
             z-index: 2;
@@ -728,15 +762,57 @@
             transform: scale(1.1);
         }
 
-        .home-footer {
+        /* Game Over */
+        .go-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
             text-align: center;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.55rem;
-            margin-top: 6px;
+            width: 100%;
+        }
+
+        .go-box h2 {
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 800;
+            color: #e0d4ff;
+        }
+
+        .go-box p {
+            color: #9b87cc;
+            font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+        }
+
+        .stars-row {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            letter-spacing: 5px;
+            filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.5));
+        }
+
+        .bigbtn {
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: clamp(10px, 1.5vw, 14px) clamp(20px, 3vw, 32px);
+            font-size: clamp(0.8rem, 1.2vw, 1rem);
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            touch-action: manipulation;
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
             letter-spacing: 0.5px;
         }
 
-        /* Efecto de confeti al acertar */
+        .bigbtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .bigbtn:active { transform: scale(0.97); }
+
+        /* Confeti */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -759,40 +835,89 @@
             100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
 
-        @media (max-height: 500px) {
-            .kid-stage {
-                width: 50px;
-                height: 62px;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .home-container {
+                gap: 12px;
+                padding: 14px 16px;
             }
-            
-            .qbox {
-                min-height: 35px;
-                padding: 6px 10px;
+
+            .home-left {
+                min-width: clamp(100px, 25vw, 140px);
             }
-            
-            .abtn {
-                padding: 8px 4px;
-            }
-            
-            .game-card {
-                gap: 3px;
-                padding: 6px 8px;
-            }
-            
+
             .home-kid {
-                width: 60px;
-                height: 75px;
-                margin: 4px auto;
+                width: clamp(100px, 20vw, 140px);
+                height: clamp(125px, 25vw, 170px);
+            }
+
+            .lvl-cards {
+                gap: 8px;
+            }
+
+            .game-card {
+                gap: 10px;
+                padding: 10px 14px;
+            }
+
+            .game-left {
+                min-width: clamp(90px, 20vw, 130px);
+            }
+
+            .kid-stage {
+                width: clamp(90px, 18vw, 140px);
+                height: clamp(110px, 22vw, 170px);
+            }
+
+            .ans-grid {
+                gap: 8px;
+            }
+
+            .abtn {
+                padding: clamp(12px, 2vw, 18px) 8px;
+                min-height: clamp(45px, 7vw, 55px);
+                border-radius: 10px;
             }
         }
 
-        @media (max-height: 400px) {
-            .hud {
-                gap: 3px;
+        @media (max-height: 500px) {
+            .game-card {
+                gap: 6px;
+                padding: 8px 10px;
             }
-            
+
+            .game-left {
+                min-width: 70px;
+            }
+
+            .kid-stage {
+                width: 70px;
+                height: 85px;
+            }
+
+            .qbox {
+                min-height: 40px;
+                padding: 6px 10px;
+                font-size: clamp(1rem, 2.5vw, 1.4rem);
+            }
+
+            .abtn {
+                padding: 10px 6px;
+                min-height: 38px;
+                font-size: clamp(0.9rem, 2vw, 1.2rem);
+            }
+
+            .ans-grid {
+                gap: 6px;
+            }
+
+            .hud {
+                gap: 4px;
+            }
+
             .pill {
-                padding: 2px 6px;
+                padding: 3px 8px;
+                font-size: 0.65rem;
             }
         }
     </style>
@@ -811,99 +936,107 @@
     <!-- HOME SCREEN -->
     <div class="screen" id="homeScreen">
         <div class="home-container">
-            <div class="home-header">
-                <div class="home-logo">
-                    <span class="home-logo-icon">🧮</span>
-                    <span class="home-title">Math Quest</span>
-                </div>
-                <span class="home-badge">Edición Pro</span>
-                <div class="home-sub">Domina las matemáticas mientras te diviertes</div>
+            <!-- Panel izquierdo: Personaje -->
+            <div class="home-left">
+                <div class="home-kid" id="homeKid"></div>
+                <div class="home-kid-label">🧑‍🎤 Math Rocker</div>
             </div>
-            
-            <div class="divider"></div>
-            
-            <div class="home-kid" id="homeKid"></div>
-            
-            <div class="mode-section">
-                <div class="mode-label">🎯 Elige tu modalidad</div>
-                <div class="lvl-cards">
-                    <div class="lvl-card" data-mode="1" onclick="startMode(1)">
-                        <div class="lvl-icon">➕➖</div>
-                        <div class="lvl-name">Sumas & Restas</div>
-                        <div class="lvl-desc">Operaciones progresivas</div>
-                        <div class="diff-pips">
-                            <div class="pip lit"></div>
-                            <div class="pip"></div>
-                            <div class="pip"></div>
-                            <div class="pip"></div>
-                        </div>
+
+            <!-- Panel derecho: Contenido -->
+            <div class="home-right">
+                <div class="home-header">
+                    <div class="home-logo">
+                        <span class="home-logo-icon">🧮</span>
+                        <span class="home-title">Math Quest</span>
                     </div>
-                    <div class="lvl-card" data-mode="2" onclick="startMode(2)">
-                        <div class="lvl-icon">✖️➗</div>
-                        <div class="lvl-name">Mult & División</div>
-                        <div class="lvl-desc">Tablas y divisiones</div>
-                        <div class="diff-pips">
-                            <div class="pip lit"></div>
-                            <div class="pip lit"></div>
-                            <div class="pip"></div>
-                            <div class="pip"></div>
+                    <span class="home-badge">Edición Pro</span>
+                    <div class="home-sub">Domina las matemáticas mientras te diviertes</div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="mode-section">
+                    <div class="mode-label">🎯 Elige tu modalidad</div>
+                    <div class="lvl-cards">
+                        <div class="lvl-card" data-mode="1" onclick="startMode(1)">
+                            <div class="lvl-icon">➕➖</div>
+                            <div class="lvl-name">Sumas & Restas</div>
+                            <div class="lvl-desc">Operaciones progresivas</div>
+                            <div class="diff-pips">
+                                <div class="pip lit"></div>
+                                <div class="pip"></div>
+                                <div class="pip"></div>
+                                <div class="pip"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="lvl-card" data-mode="3" onclick="startMode(3)">
-                        <div class="lvl-icon">💯📐</div>
-                        <div class="lvl-name">% & Regla de 3</div>
-                        <div class="lvl-desc">Porcentajes y proporciones</div>
-                        <div class="diff-pips">
-                            <div class="pip lit"></div>
-                            <div class="pip lit"></div>
-                            <div class="pip lit"></div>
-                            <div class="pip"></div>
+                        <div class="lvl-card" data-mode="2" onclick="startMode(2)">
+                            <div class="lvl-icon">✖️➗</div>
+                            <div class="lvl-name">Mult & División</div>
+                            <div class="lvl-desc">Tablas y divisiones</div>
+                            <div class="diff-pips">
+                                <div class="pip lit"></div>
+                                <div class="pip lit"></div>
+                                <div class="pip"></div>
+                                <div class="pip"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="lvl-card" data-mode="4" onclick="startMode(4)">
-                        <div class="lvl-icon">🧩🔍</div>
-                        <div class="lvl-name">Rompecabezas</div>
-                        <div class="lvl-desc">Lógica, secuencias y acertijos</div>
-                        <div class="diff-pips">
-                            <div class="pip lit"></div>
-                            <div class="pip lit"></div>
-                            <div class="pip lit"></div>
-                            <div class="pip lit"></div>
+                        <div class="lvl-card" data-mode="3" onclick="startMode(3)">
+                            <div class="lvl-icon">💯📐</div>
+                            <div class="lvl-name">% & Regla de 3</div>
+                            <div class="lvl-desc">Porcentajes y proporciones</div>
+                            <div class="diff-pips">
+                                <div class="pip lit"></div>
+                                <div class="pip lit"></div>
+                                <div class="pip lit"></div>
+                                <div class="pip"></div>
+                            </div>
+                        </div>
+                        <div class="lvl-card" data-mode="4" onclick="startMode(4)">
+                            <div class="lvl-icon">🧩🔍</div>
+                            <div class="lvl-name">Rompecabezas</div>
+                            <div class="lvl-desc">Lógica y acertijos</div>
+                            <div class="diff-pips">
+                                <div class="pip lit"></div>
+                                <div class="pip lit"></div>
+                                <div class="pip lit"></div>
+                                <div class="pip lit"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="mute-row" onclick="toggleMuteHome()">
-                <span id="muteIcon">🔊</span>
-                <div class="mute-toggle on" id="muteToggle">
-                    <div class="mute-knob"></div>
+                
+                <div class="home-bottom">
+                    <div class="mute-row" onclick="toggleMuteHome()">
+                        <span id="muteIcon">🔊</span>
+                        <div class="mute-toggle on" id="muteToggle">
+                            <div class="mute-knob"></div>
+                        </div>
+                        <span>Música y sonido</span>
+                    </div>
+                    <div class="home-footer">v4.5 · 4 modos de juego</div>
                 </div>
-                <span>Música y efectos de sonido</span>
-            </div>
-            
-            <div class="home-footer">
-                v4.4 · Optimizado para móviles · 4 modos de juego
             </div>
         </div>
     </div>
 
     <!-- GAME SCREEN -->
     <div class="screen hidden" id="gameScreen">
-        <button class="back-btn" onclick="goHome()">← Menú</button>
-        <div class="game-card" id="gc">
-            <div class="mute-fab" id="gameMuteFab" onclick="toggleMuteGame()">🔊</div>
-            <div id="app" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:inherit"></div>
+        <div class="game-wrapper">
+            <div class="game-back-row">
+                <button class="back-btn" onclick="goHome()">← Menú</button>
+            </div>
+            <div class="game-card" id="gc">
+                <div class="mute-fab" id="gameMuteFab" onclick="toggleMuteGame()">🔊</div>
+                <div id="app" style="display:flex;align-items:center;gap:clamp(16px,3vw,28px);width:100%;height:100%"></div>
+            </div>
         </div>
     </div>
 
     <script>
-        // ══ CREAR ESTRELLAS DE FONDO ══
+        // ══ ESTRELLAS ══
         function createStars() {
             const container = document.getElementById('starsContainer');
-            const numberOfStars = 50;
-            
-            for (let i = 0; i < numberOfStars; i++) {
+            for (let i = 0; i < 50; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.style.left = Math.random() * 100 + '%';
@@ -917,45 +1050,39 @@
         }
         createStars();
 
-        // ══ CONFETI AL ACERTAR ══
+        // ══ CONFETI ══
         function spawnConfetti() {
             const container = document.getElementById('confettiContainer');
             const colors = ['#34d399', '#f59e0b', '#3b82f6', '#ec4899', '#8b5cf6', '#22c55e', '#ef4444', '#06b6d4'];
-            
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 40; i++) {
                 const piece = document.createElement('div');
                 piece.className = 'confetti-piece';
                 piece.style.left = Math.random() * 100 + '%';
                 piece.style.top = -(Math.random() * 20 + 10) + 'px';
-                piece.style.width = (Math.random() * 8 + 6) + 'px';
-                piece.style.height = (Math.random() * 8 + 6) + 'px';
+                piece.style.width = (Math.random() * 10 + 6) + 'px';
+                piece.style.height = (Math.random() * 10 + 6) + 'px';
                 piece.style.background = colors[Math.floor(Math.random() * colors.length)];
                 piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
                 piece.style.animationDuration = (Math.random() * 0.8 + 0.8) + 's';
                 piece.style.animationDelay = Math.random() * 0.3 + 's';
                 container.appendChild(piece);
-                
                 setTimeout(() => piece.remove(), 1500);
             }
         }
 
-        // ══ DETECCIÓN DE ORIENTACIÓN ══
+        // ══ ORIENTACIÓN ══
         function checkOrientation() {
             const warning = document.getElementById('orientationWarning');
             const isMobile = /Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent);
             const isPortrait = window.innerWidth < window.innerHeight;
-            
             if (isMobile && isPortrait && window.innerWidth < 768) {
                 warning.classList.add('show');
             } else {
                 warning.classList.remove('show');
             }
         }
-
         window.addEventListener('resize', checkOrientation);
-        window.addEventListener('orientationchange', () => {
-            setTimeout(checkOrientation, 300);
-        });
+        window.addEventListener('orientationchange', () => setTimeout(checkOrientation, 300));
         checkOrientation();
 
         // ══ AUDIO ══
@@ -965,563 +1092,237 @@
         function tone(freq, dur, type, vol, delay = 0) {
             if (muted) return;
             try {
-                const o = AC.createOscillator(),
-                    g = AC.createGain();
-                o.connect(g);
-                g.connect(AC.destination);
-                o.type = type;
-                o.frequency.value = freq;
+                const o = AC.createOscillator(), g = AC.createGain();
+                o.connect(g); g.connect(AC.destination);
+                o.type = type; o.frequency.value = freq;
                 const t = AC.currentTime + delay;
                 g.gain.setValueAtTime(0, t);
                 g.gain.linearRampToValueAtTime(vol, t + 0.06);
                 g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-                o.start(t);
-                o.stop(t + dur + 0.08);
+                o.start(t); o.stop(t + dur + 0.08);
             } catch(e) {}
         }
 
-        const CHORDS = [
-            [261.6, 329.6, 392],
-            [293.7, 349.2, 440],
-            [261.6, 392, 493.9],
-            [220, 293.7, 349.2],
-            [261.6, 329.6, 523.3],
-            [246.9, 311.1, 392]
-        ];
-        const SCALE = [261.6, 293.7, 329.6, 349.2, 392, 440, 493.9, 523.3];
-        let melIdx = 0,
-            melRunning = false,
-            melTimer = null;
+        const CHORDS = [[261.6,329.6,392],[293.7,349.2,440],[261.6,392,493.9],[220,293.7,349.2],[261.6,329.6,523.3],[246.9,311.1,392]];
+        const SCALE = [261.6,293.7,329.6,349.2,392,440,493.9,523.3];
+        let melIdx = 0, melRunning = false, melTimer = null;
 
         function melTick() {
             if (!melRunning) return;
             if (!muted) {
                 const ch = CHORDS[melIdx % CHORDS.length];
                 ch.forEach(f => tone(f, 3.5, 'sine', 0.025));
-                tone(ch[0] / 2, 4, 'sine', 0.02);
-                tone(SCALE[Math.floor(Math.random() * 8)], 1.5, 'sine', 0.014, 0.9);
-                tone(SCALE[(melIdx + 3) % 8], 1.2, 'sine', 0.011, 2.1);
+                tone(ch[0]/2, 4, 'sine', 0.02);
+                tone(SCALE[Math.floor(Math.random()*8)], 1.5, 'sine', 0.014, 0.9);
+                tone(SCALE[(melIdx+3)%8], 1.2, 'sine', 0.011, 2.1);
             }
-            melIdx++;
-            melTimer = setTimeout(melTick, 4400);
+            melIdx++; melTimer = setTimeout(melTick, 4400);
         }
-
-        function startMusic() { if (melRunning) return;
-            melRunning = true;
-            melTick(); }
-
+        function startMusic() { if (melRunning) return; melRunning = true; melTick(); }
         function stopMusic() { melRunning = false; if (melTimer) clearTimeout(melTimer); }
+        function sfxCorrect() { [523,659,784,1047].forEach((f,i) => tone(f,0.2,'triangle',0.1,i*0.08)); }
+        function sfxWrong() { tone(180,0.4,'sawtooth',0.09); tone(150,0.3,'sawtooth',0.06,0.15); }
+        function sfxTimeout() { tone(300,0.15,'square',0.07); tone(220,0.3,'sawtooth',0.07,0.12); }
 
-        function sfxCorrect() { [523, 659, 784, 1047].forEach((f, i) => tone(f, 0.2, 'triangle', 0.1, i * 0.08)); }
-
-        function sfxWrong() { tone(180, 0.4, 'sawtooth', 0.09);
-            tone(150, 0.3, 'sawtooth', 0.06, 0.15); }
-
-        function sfxTimeout() { tone(300, 0.15, 'square', 0.07);
-            tone(220, 0.3, 'sawtooth', 0.07, 0.12); }
-
-        // ══ KID SVG con camiseta AC/DC ══
+        // ══ KID SVG AC/DC ══
         function kid(mood) {
-            const sk = '#F5C5A3',
-                sk2 = '#E8A882',
-                hair = '#1a1a1a',
-                shoe1 = '#111',
-                shoe2 = '#222',
-                lace = '#fff',
-                pants1 = '#1c1c2e',
-                pants2 = '#14141f';
-            
+            const sk = '#F5C5A3', sk2 = '#E8A882', hair = '#1a1a1a';
             const shirtBg = '#111';
-            // Camiseta AC/DC
             const shirtDetail = `
-            <text x="65" y="132" font-size="16" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="2">AC</text>
-            <text x="65" y="144" font-size="7" fill="#fff" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" letter-spacing="3">⚡</text>
-            <text x="65" y="155" font-size="10" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="1">DC</text>
-            <line x1="50" y1="146" x2="60" y2="146" stroke="#ff4444" stroke-width="1.5"/>
-            <line x1="70" y1="146" x2="80" y2="146" stroke="#ff4444" stroke-width="1.5"/>`;
+            <text x="65" y="128" font-size="17" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="3">AC</text>
+            <text x="65" y="140" font-size="9" fill="#ff4444" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900">⚡</text>
+            <text x="65" y="153" font-size="10" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="1">DC</text>
+            <line x1="48" y1="142" x2="58" y2="142" stroke="#ff4444" stroke-width="2"/>
+            <line x1="72" y1="142" x2="82" y2="142" stroke="#ff4444" stroke-width="2"/>`;
             
             const faces = {
-                idle: { 
-                    mouth: '<path d="M58,74 Q65,79 72,74" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>', 
-                    eyes: '<ellipse cx="53" cy="59" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="77" cy="59" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="51" cy="57" rx="2" ry="2" fill="#fff"/><ellipse cx="75" cy="57" rx="2" ry="2" fill="#fff"/>', 
-                    brows: 'M47,51 Q53,48 59,51 M71,51 Q77,48 83,51',
-                    blush: ''
-                },
-                happy: { 
-                    mouth: '<path d="M51,73 Q65,88 79,73" fill="#e74c3c"/><path d="M53,73 Q65,70 77,73" fill="'+sk+'"/><rect x="56" y="73" width="18" height="5" rx="2" fill="#fff" opacity="0.6"/>', 
-                    eyes: '<path d="M48,60 Q53,53 58,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/><path d="M72,60 Q77,53 82,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>', 
-                    brows: 'M47,49 Q53,45 59,49 M71,49 Q77,45 83,49',
-                    blush: '<ellipse cx="39" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/><ellipse cx="91" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/>'
-                },
-                sad: { 
-                    mouth: '<path d="M55,79 Q65,70 75,79" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>', 
-                    eyes: '<ellipse cx="53" cy="60" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="77" cy="60" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="51" cy="58" rx="2" ry="2" fill="#fff"/><ellipse cx="75" cy="58" rx="2" ry="2" fill="#fff"/><ellipse cx="52" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/><ellipse cx="76" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/>', 
-                    brows: 'M47,50 Q53,55 59,50 M71,50 Q77,55 83,50',
-                    blush: '<ellipse cx="41" cy="70" rx="7" ry="4" fill="#93c5fd" opacity="0.35"/><ellipse cx="89" cy="70" rx="7" ry="4" fill="#93c5fd" opacity="0.35"/>'
-                },
-                scared: { 
-                    mouth: '<ellipse cx="65" cy="78" rx="7" ry="6" fill="#e74c3c"/><ellipse cx="65" cy="75" rx="5" ry="2.5" fill="'+sk+'"/>', 
-                    eyes: '<ellipse cx="53" cy="59" rx="7" ry="7.5" fill="#2d1a06"/><ellipse cx="77" cy="59" rx="7" ry="7.5" fill="#2d1a06"/><ellipse cx="50" cy="56" rx="2.8" ry="2.8" fill="#fff"/><ellipse cx="74" cy="56" rx="2.8" ry="2.8" fill="#fff"/>', 
-                    brows: 'M47,52 Q53,57 59,52 M71,52 Q77,57 83,52',
-                    blush: '<ellipse cx="40" cy="68" rx="8" ry="4.5" fill="#fde68a" opacity="0.4"/><ellipse cx="90" cy="68" rx="8" ry="4.5" fill="#fde68a" opacity="0.4"/>'
-                },
-                celebrate: { 
-                    mouth: '<path d="M49,72 Q65,90 81,72" fill="#e74c3c"/><path d="M51,72 Q65,69 79,72" fill="'+sk+'"/><rect x="55" y="72" width="20" height="6" rx="2" fill="#fff" opacity="0.65"/>', 
-                    eyes: '<path d="M47,57 Q53,50 59,57" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/><path d="M71,57 Q77,50 83,57" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>', 
-                    brows: 'M46,47 Q53,42 60,47 M70,47 Q77,42 84,47',
-                    blush: '<ellipse cx="39" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/><ellipse cx="91" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/>'
-                }
+                idle: { mouth: '<path d="M58,74 Q65,79 72,74" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>', eyes: '<ellipse cx="53" cy="59" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="77" cy="59" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="51" cy="57" rx="2" ry="2" fill="#fff"/><ellipse cx="75" cy="57" rx="2" ry="2" fill="#fff"/>', brows: 'M47,51 Q53,48 59,51 M71,51 Q77,48 83,51', blush: '' },
+                happy: { mouth: '<path d="M51,73 Q65,88 79,73" fill="#e74c3c"/><path d="M53,73 Q65,70 77,73" fill="'+sk+'"/><rect x="56" y="73" width="18" height="5" rx="2" fill="#fff" opacity="0.6"/>', eyes: '<path d="M48,60 Q53,53 58,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/><path d="M72,60 Q77,53 82,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>', brows: 'M47,49 Q53,45 59,49 M71,49 Q77,45 83,49', blush: '<ellipse cx="39" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/><ellipse cx="91" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/>' },
+                sad: { mouth: '<path d="M55,79 Q65,70 75,79" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>', eyes: '<ellipse cx="53" cy="60" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="77" cy="60" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="51" cy="58" rx="2" ry="2" fill="#fff"/><ellipse cx="75" cy="58" rx="2" ry="2" fill="#fff"/><ellipse cx="52" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/><ellipse cx="76" cy="69" rx="2" ry="3.5" fill="#93c5fd" opacity="0.75"/>', brows: 'M47,50 Q53,55 59,50 M71,50 Q77,55 83,50', blush: '<ellipse cx="41" cy="70" rx="7" ry="4" fill="#93c5fd" opacity="0.35"/><ellipse cx="89" cy="70" rx="7" ry="4" fill="#93c5fd" opacity="0.35"/>' },
+                scared: { mouth: '<ellipse cx="65" cy="78" rx="7" ry="6" fill="#e74c3c"/><ellipse cx="65" cy="75" rx="5" ry="2.5" fill="'+sk+'"/>', eyes: '<ellipse cx="53" cy="59" rx="7" ry="7.5" fill="#2d1a06"/><ellipse cx="77" cy="59" rx="7" ry="7.5" fill="#2d1a06"/><ellipse cx="50" cy="56" rx="2.8" ry="2.8" fill="#fff"/><ellipse cx="74" cy="56" rx="2.8" ry="2.8" fill="#fff"/>', brows: 'M47,52 Q53,57 59,52 M71,52 Q77,57 83,52', blush: '<ellipse cx="40" cy="68" rx="8" ry="4.5" fill="#fde68a" opacity="0.4"/><ellipse cx="90" cy="68" rx="8" ry="4.5" fill="#fde68a" opacity="0.4"/>' },
+                celebrate: { mouth: '<path d="M49,72 Q65,90 81,72" fill="#e74c3c"/><path d="M51,72 Q65,69 79,72" fill="'+sk+'"/><rect x="55" y="72" width="20" height="6" rx="2" fill="#fff" opacity="0.65"/>', eyes: '<path d="M47,57 Q53,50 59,57" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/><path d="M71,57 Q77,50 83,57" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>', brows: 'M46,47 Q53,42 60,47 M70,47 Q77,42 84,47', blush: '<ellipse cx="39" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/><ellipse cx="91" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/>' }
             };
-            
             const f = faces[mood] || faces.idle;
-            const extras = mood === 'celebrate' ? '<text x="6" y="30" font-size="18">⭐</text><text x="96" y="20" font-size="15">✨</text>' : 
-                          mood === 'sad' ? '<text x="87" y="44" font-size="14">💧</text>' :
-                          mood === 'scared' ? '<text x="0" y="40" font-size="13">😰</text>' : '';
+            const extras = mood === 'celebrate' ? '<text x="6" y="30" font-size="18">⭐</text><text x="96" y="20" font-size="15">✨</text>' : mood === 'sad' ? '<text x="87" y="44" font-size="14">💧</text>' : '';
             
             return `<svg viewBox="0 0 130 210" xmlns="http://www.w3.org/2000/svg">
             ${extras}
             <ellipse cx="65" cy="208" rx="36" ry="5" fill="rgba(0,0,0,0.25)"/>
             <ellipse cx="65" cy="34" rx="36" ry="34" fill="${hair}"/>
-            <!-- Ears -->
             <ellipse cx="29" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="29" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/>
             <ellipse cx="101" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="101" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/>
-            <!-- Neck -->
             <rect x="57" y="87" width="16" height="22" rx="8" fill="${sk}"/>
-            <!-- Shirt body -->
             <path d="M20,104 Q20,96 65,94 Q110,96 110,104 L115,178 Q115,186 65,186 Q15,186 15,178 Z" fill="${shirtBg}"/>
             <ellipse cx="65" cy="97" rx="13" ry="6" fill="#222"/>
-            <!-- AC/DC detail -->
             ${shirtDetail}
-            <!-- Arms -->
-            <path d="M28,108 Q14,116 10,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
-            <circle cx="10" cy="132" r="9" fill="${sk}"/>
-            <path d="M102,108 Q116,116 120,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/>
-            <circle cx="120" cy="132" r="9" fill="${sk}"/>
-            <!-- Pants -->
-            <path d="M18,182 Q16,192 14,210 Q30,212 42,210 L54,186 Z" fill="${pants1}"/>
-            <path d="M112,182 Q114,192 116,210 Q100,212 88,210 L76,186 Z" fill="${pants1}"/>
-            <path d="M18,182 L54,186 L65,190 L76,186 L112,182 Q65,177 18,182Z" fill="${pants2}"/>
-            <!-- Belt -->
-            <rect x="18" y="178" width="94" height="8" rx="4" fill="#2c1a0e"/>
-            <rect x="58" y="178" width="14" height="8" rx="2" fill="#8B6914"/>
-            <rect x="61" y="180" width="8" height="4" rx="1" fill="#D4A017"/>
-            <!-- Shoes -->
-            <rect x="10" y="206" width="38" height="16" rx="8" fill="${shoe1}"/>
-            <rect x="10" y="206" width="38" height="8" rx="5" fill="${shoe2}"/>
-            <rect x="82" y="206" width="38" height="16" rx="8" fill="${shoe1}"/>
-            <rect x="82" y="206" width="38" height="8" rx="5" fill="${shoe2}"/>
-            <!-- Head -->
+            <path d="M28,108 Q14,116 10,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/><circle cx="10" cy="132" r="9" fill="${sk}"/>
+            <path d="M102,108 Q116,116 120,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/><circle cx="120" cy="132" r="9" fill="${sk}"/>
+            <path d="M18,182 Q16,192 14,210 Q30,212 42,210 L54,186 Z" fill="#1c1c2e"/>
+            <path d="M112,182 Q114,192 116,210 Q100,212 88,210 L76,186 Z" fill="#1c1c2e"/>
+            <path d="M18,182 L54,186 L65,190 L76,186 L112,182 Q65,177 18,182Z" fill="#14141f"/>
+            <rect x="18" y="178" width="94" height="8" rx="4" fill="#2c1a0e"/><rect x="58" y="178" width="14" height="8" rx="2" fill="#8B6914"/><rect x="61" y="180" width="8" height="4" rx="1" fill="#D4A017"/>
+            <rect x="10" y="206" width="38" height="16" rx="8" fill="#111"/><rect x="10" y="206" width="38" height="8" rx="5" fill="#222"/>
+            <rect x="82" y="206" width="38" height="16" rx="8" fill="#111"/><rect x="82" y="206" width="38" height="8" rx="5" fill="#222"/>
             <ellipse cx="65" cy="57" rx="35" ry="38" fill="${sk}"/>
-            <ellipse cx="37" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/>
-            <ellipse cx="93" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/>
-            <!-- Hair -->
+            <ellipse cx="37" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/><ellipse cx="93" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/>
             <path d="M30,38 Q32,12 65,10 Q98,12 100,38 Q90,20 65,18 Q40,20 30,38Z" fill="${hair}"/>
             <path d="M30,38 Q27,50 28,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/>
             <path d="M100,38 Q103,50 102,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/>
             <path d="M30,42 Q22,46 24,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/>
             <path d="M100,42 Q108,46 106,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/>
-            <!-- Nose -->
             <path d="M62,68 Q60,74 65,76 Q70,74 68,68" fill="none" stroke="#c8956c" stroke-width="2" stroke-linecap="round"/>
-            <!-- Eyebrows -->
             <path d="${f.brows}" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>
-            <!-- Eyes -->
-            ${f.eyes}
-            <!-- Blush -->
-            ${f.blush}
-            <!-- Mouth -->
-            ${f.mouth}
+            ${f.eyes}${f.blush}${f.mouth}
             </svg>`;
         }
 
         // ══ GAME LOGIC ══
-        let gameMode = 1,
-            score = 0,
-            lives = 3,
-            correctAns = 0,
-            answered = false;
-        let timerInt = null,
-            timeLeft = 0;
-        let questionCounter = 0;
+        let gameMode = 1, score = 0, lives = 3, correctAns = 0, answered = false;
+        let timerInt = null, timeLeft = 0, questionCounter = 0;
         
         const TIMER = [12, 15, 18, 20];
         const MODE_COLORS = ['', '#22c55e', '#3b82f6', '#f59e0b', '#ec4899'];
         const MODE_LABELS = ['', 'Sumas & Restas', 'Mult & División', '% & Regla de 3', 'Rompecabezas'];
-        const MODE_GRAD = ['', 'linear-gradient(90deg,#22c55e,#06d6a0)', 'linear-gradient(90deg,#3b82f6,#06b6d4)',
-            'linear-gradient(90deg,#f59e0b,#ef4444)', 'linear-gradient(90deg,#ec4899,#8b5cf6)'
-        ];
+        const MODE_GRAD = ['', 'linear-gradient(90deg,#22c55e,#06d6a0)', 'linear-gradient(90deg,#3b82f6,#06b6d4)', 'linear-gradient(90deg,#f59e0b,#ef4444)', 'linear-gradient(90deg,#ec4899,#8b5cf6)'];
 
-        function rand(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
-        function rndFrom(a) { return a[Math.floor(Math.random() * a.length)]; }
-        function diff() { return Math.min(10, 1 + Math.floor(score / 30)); }
+        function rand(a,b) { return Math.floor(Math.random()*(b-a+1))+a; }
+        function rndFrom(a) { return a[Math.floor(Math.random()*a.length)]; }
+        function diff() { return Math.min(10, 1+Math.floor(score/30)); }
 
         function generateAnswers(c, spread) {
-            const s = new Set([c]);
-            let tr = 0;
-            const sp = spread || Math.max(3, Math.round(Math.abs(c) * 0.45));
-            while (s.size < 4 && tr++ < 150) { 
-                const v = c + rand(-sp, sp); 
-                if (v !== c && !s.has(v) && v >= 0) s.add(v); 
-            }
-            while (s.size < 4) {
-                const v = c + rand(-sp*2, sp*2);
-                if (v !== c && !s.has(v) && v >= 0) s.add(v);
-            }
-            return [...s].sort(() => Math.random() - 0.5);
+            const s = new Set([c]); let tr = 0;
+            const sp = spread || Math.max(3, Math.round(Math.abs(c)*0.45));
+            while (s.size < 4 && tr++ < 150) { const v = c+rand(-sp,sp); if (v!==c && !s.has(v) && v>=0) s.add(v); }
+            while (s.size < 4) { const v = c+rand(-sp*2,sp*2); if (v!==c && !s.has(v) && v>=0) s.add(v); }
+            return [...s].sort(()=>Math.random()-0.5);
         }
 
         function makePercentageQuestion(d) {
             let a, b, q;
-            if (d <= 3) {
-                a = rndFrom([50, 100, 200, 500]);
-                b = rndFrom([10, 20, 25, 50]);
-                correctAns = Math.round(a * b / 100);
-                q = `¿Cuánto es el ${b}% de ${a}?`;
-            } else if (d <= 6) {
-                a = rand(30, 300);
-                b = rndFrom([5, 10, 15, 20, 25, 30, 40, 50, 75]);
-                correctAns = Math.round(a * b / 100);
-                q = `Calcula el ${b}% de ${a}`;
-            } else {
-                const contexts = [
-                    { a: rand(200, 800), b: rndFrom([15, 20, 25, 30]), text: 'descuento' },
-                    { a: rand(1000, 5000), b: rndFrom([5, 10, 15, 20]), text: 'de impuesto' },
-                    { a: rand(50, 300), b: rndFrom([10, 20, 30, 40]), text: 'de propina' }
-                ];
-                const ctx = rndFrom(contexts);
-                correctAns = Math.round(ctx.a * ctx.b / 100);
-                q = `Si hay un ${ctx.text} del ${ctx.b}% sobre ${ctx.a}€, ¿cuánto es?`;
-            }
+            if (d <= 3) { a=rndFrom([50,100,200,500]); b=rndFrom([10,20,25,50]); correctAns=Math.round(a*b/100); q=`¿Cuánto es el ${b}% de ${a}?`; }
+            else if (d <= 6) { a=rand(30,300); b=rndFrom([5,10,15,20,25,30,40,50,75]); correctAns=Math.round(a*b/100); q=`Calcula el ${b}% de ${a}`; }
+            else { const ctx=rndFrom([{a:rand(200,800),b:rndFrom([15,20,25,30]),text:'descuento'},{a:rand(1000,5000),b:rndFrom([5,10,15,20]),text:'de impuesto'},{a:rand(50,300),b:rndFrom([10,20,30,40]),text:'de propina'}]); correctAns=Math.round(ctx.a*ctx.b/100); q=`Si hay un ${ctx.text} del ${ctx.b}% sobre ${ctx.a}€, ¿cuánto es?`; }
             return q;
         }
 
         function makeRuleOfThreeQuestion(d) {
             let q;
-            if (d <= 3) {
-                const problems = [
-                    { a: 2, b: 6, x: 5, item: 'manzanas' },
-                    { a: 3, b: 9, x: 7, item: 'cuadernos' },
-                    { a: 4, b: 12, x: 6, item: 'bolígrafos' },
-                    { a: 5, b: 15, x: 8, item: 'galletas' }
-                ];
-                const p = rndFrom(problems);
-                correctAns = Math.round(p.b * p.x / p.a);
-                q = `Si ${p.a} ${p.item} cuestan ${p.b}€, ¿cuánto cuestan ${p.x}?`;
-            } else if (d <= 6) {
-                const templates = [
-                    { a: rand(3, 8), b: rand(6, 24), x: rand(4, 12), unit: 'kilos', item: 'fruta' },
-                    { a: rand(2, 6), b: rand(10, 30), x: rand(5, 15), unit: 'litros', item: 'zumo' }
-                ];
-                const t = rndFrom(templates);
-                correctAns = Math.round(t.b * t.x / t.a);
-                q = `Si ${t.a} ${t.unit} de ${t.item} cuestan ${t.b}€, ¿cuánto cuestan ${t.x} ${t.unit}?`;
-            } else {
-                const cp = rndFrom([
-                    { type: 'directa', a: rand(5, 15), b: rand(100, 600), x: rand(8, 20), context: 'trabajadores producen', unit: 'piezas' },
-                    { type: 'inversa', a: rand(4, 10), b: rand(6, 20), x: rand(3, 8), context: 'obreros tardan', unit: 'días' }
-                ]);
-                if (cp.type === 'directa') {
-                    correctAns = Math.round(cp.b * cp.x / cp.a);
-                    q = `Si ${cp.a} ${cp.context} ${cp.b} ${cp.unit}, ¿cuánto producen ${cp.x}?`;
-                } else {
-                    correctAns = Math.round(cp.b * cp.a / cp.x);
-                    q = `Si ${cp.a} ${cp.context} ${cp.b} ${cp.unit}, ¿cuánto tardan ${cp.x}?`;
-                }
-            }
+            if (d<=3) { const p=rndFrom([{a:2,b:6,x:5,item:'manzanas'},{a:3,b:9,x:7,item:'cuadernos'},{a:4,b:12,x:6,item:'bolígrafos'},{a:5,b:15,x:8,item:'galletas'}]); correctAns=Math.round(p.b*p.x/p.a); q=`Si ${p.a} ${p.item} cuestan ${p.b}€, ¿cuánto cuestan ${p.x}?`; }
+            else if (d<=6) { const t=rndFrom([{a:rand(3,8),b:rand(6,24),x:rand(4,12),unit:'kilos',item:'fruta'},{a:rand(2,6),b:rand(10,30),x:rand(5,15),unit:'litros',item:'zumo'}]); correctAns=Math.round(t.b*t.x/t.a); q=`Si ${t.a} ${t.unit} de ${t.item} cuestan ${t.b}€, ¿cuánto cuestan ${t.x} ${t.unit}?`; }
+            else { const cp=rndFrom([{type:'directa',a:rand(5,15),b:rand(100,600),x:rand(8,20),context:'trabajadores producen',unit:'piezas'},{type:'inversa',a:rand(4,10),b:rand(6,20),x:rand(3,8),context:'obreros tardan',unit:'días'}]); if(cp.type==='directa'){correctAns=Math.round(cp.b*cp.x/cp.a);q=`Si ${cp.a} ${cp.context} ${cp.b} ${cp.unit}, ¿cuánto producen ${cp.x}?`;}else{correctAns=Math.round(cp.b*cp.a/cp.x);q=`Si ${cp.a} ${cp.context} ${cp.b} ${cp.unit}, ¿cuánto tardan ${cp.x}?`;} }
             return q;
         }
 
         function makePuzzleQuestion(d) {
             let q;
-            
-            if (d <= 3) {
-                const puzzles = [
-                    { q: '¿Qué número sigue? 2, 4, 6, 8, __', ans: 10 },
-                    { q: '¿Qué número sigue? 5, 10, 15, 20, __', ans: 25 },
-                    { q: '¿Qué número sigue? 1, 3, 5, 7, __', ans: 9 },
-                    { q: '¿Cuánto es 3 + 7?', ans: 10 },
-                    { q: 'El doble de 6 es...', ans: 12 },
-                    { q: 'La mitad de 20 es...', ans: 10 },
-                    { q: '¿Qué número sigue? 10, 20, 30, 40, __', ans: 50 },
-                    { q: '¿Cuántos lados tiene un hexágono?', ans: 6 },
-                    { q: '¿Cuánto es 15 - 7?', ans: 8 },
-                    { q: '¿Cuánto es 4 × 3?', ans: 12 }
-                ];
-                const p = rndFrom(puzzles);
-                correctAns = p.ans;
-                q = p.q;
-            } else if (d <= 6) {
-                const puzzles = [
-                    { q: '¿Qué número sigue? 2, 4, 8, 16, __', ans: 32 },
-                    { q: '¿Qué número sigue? 1, 4, 9, 16, __', ans: 25 },
-                    { q: '¿Cuánto es 7 × 8?', ans: 56 },
-                    { q: '¿Qué número sigue? 3, 6, 12, 24, __', ans: 48 },
-                    { q: '¿Cuánto es 15 + 25?', ans: 40 },
-                    { q: '¿Cuántas horas hay en 3 días?', ans: 72 },
-                    { q: 'Si tengo 24 caramelos y los reparto entre 6 niños, ¿cuántos recibe cada uno?', ans: 4 },
-                    { q: '¿Cuántos minutos hay en una hora y media?', ans: 90 },
-                    { q: '¿Qué número sigue? 100, 90, 80, 70, __', ans: 60 },
-                    { q: 'El triple de 9 es...', ans: 27 }
-                ];
-                const p = rndFrom(puzzles);
-                correctAns = p.ans;
-                q = p.q;
-            } else {
-                const puzzles = [
-                    { q: '¿Qué número sigue? 1, 1, 2, 3, 5, 8, __ (Fibonacci)', ans: 13 },
-                    { q: '¿Qué número sigue? 2, 6, 12, 20, 30, __', ans: 42 },
-                    { q: 'Un rectángulo tiene área 48 y base 8. ¿Cuál es su altura?', ans: 6 },
-                    { q: '¿Cuánto es 15% de 200?', ans: 30 },
-                    { q: 'Si x + 5 = 12, ¿cuánto vale x?', ans: 7 },
-                    { q: '¿Qué número sigue? 1, 8, 27, 64, __ (cubos)', ans: 125 },
-                    { q: '¿Cuántos minutos hay en 2 horas y media?', ans: 150 },
-                    { q: 'El triple de un número más 4 es 19. ¿Qué número es?', ans: 5 },
-                    { q: '¿Cuánto es la raíz cuadrada de 144?', ans: 12 },
-                    { q: 'Si un libro cuesta 15€ y tiene 20% de descuento, ¿cuánto pagas?', ans: 12 }
-                ];
-                const p = rndFrom(puzzles);
-                correctAns = p.ans;
-                q = p.q;
-            }
-            
+            if (d<=3) { const p=rndFrom([{q:'¿Qué número sigue? 2,4,6,8,__',ans:10},{q:'¿Qué número sigue? 5,10,15,20,__',ans:25},{q:'¿Qué número sigue? 1,3,5,7,__',ans:9},{q:'¿Cuánto es 3+7?',ans:10},{q:'El doble de 6 es...',ans:12},{q:'La mitad de 20 es...',ans:10},{q:'¿Cuántos lados tiene un hexágono?',ans:6},{q:'¿Cuánto es 15-7?',ans:8},{q:'¿Cuánto es 4×3?',ans:12}]); correctAns=p.ans; q=p.q; }
+            else if (d<=6) { const p=rndFrom([{q:'¿Qué número sigue? 2,4,8,16,__',ans:32},{q:'¿Qué número sigue? 1,4,9,16,__',ans:25},{q:'¿Cuánto es 7×8?',ans:56},{q:'¿Qué número sigue? 3,6,12,24,__',ans:48},{q:'¿Cuánto es 15+25?',ans:40},{q:'¿Cuántas horas hay en 3 días?',ans:72},{q:'Si tengo 24 caramelos y los reparto entre 6 niños, ¿cuántos recibe cada uno?',ans:4},{q:'¿Cuántos minutos hay en una hora y media?',ans:90},{q:'El triple de 9 es...',ans:27}]); correctAns=p.ans; q=p.q; }
+            else { const p=rndFrom([{q:'¿Qué número sigue? 1,1,2,3,5,8,__ (Fibonacci)',ans:13},{q:'¿Qué número sigue? 2,6,12,20,30,__',ans:42},{q:'Un rectángulo tiene área 48 y base 8. ¿Cuál es su altura?',ans:6},{q:'¿Cuánto es 15% de 200?',ans:30},{q:'Si x+5=12, ¿cuánto vale x?',ans:7},{q:'¿Qué número sigue? 1,8,27,64,__ (cubos)',ans:125},{q:'¿Cuántos minutos hay en 2 horas y media?',ans:150},{q:'El triple de un número más 4 es 19. ¿Qué número es?',ans:5},{q:'¿Cuánto es la raíz cuadrada de 144?',ans:12},{q:'Si un libro cuesta 15€ y tiene 20% de descuento, ¿cuánto pagas?',ans:12}]); correctAns=p.ans; q=p.q; }
             return q;
         }
 
         function makeQ() {
-            const d = diff(),
-                t = Math.random();
-            let a, b, q;
-            
-            if (gameMode === 1) {
-                if (d <= 3) { 
-                    if (t < 0.5) { a = rand(1, 10 + d * 3); b = rand(1, 10 + d * 3); correctAns = a + b; q = `${a} + ${b}`; } 
-                    else { a = rand(10, 20 + d * 5); b = rand(1, a); correctAns = a - b; q = `${a} − ${b}`; } 
-                } else if (d <= 6) { 
-                    const big = 20 + d * 10; 
-                    if (t < 0.5) { a = rand(10, big); b = rand(10, big); correctAns = a + b; q = `${a} + ${b}`; } 
-                    else { a = rand(20, big * 2); b = rand(1, a); correctAns = a - b; q = `${a} − ${b}`; } 
-                } else { 
-                    const big = 50 + d * 20; 
-                    if (t < 0.4) { a = rand(50, big); b = rand(50, big); correctAns = a + b; q = `${a} + ${b}`; } 
-                    else { a = rand(100, big * 2); b = rand(10, a); correctAns = a - b; q = `${a} − ${b}`; } 
-                }
-            } else if (gameMode === 2) {
-                if (d <= 3) { 
-                    if (t < 0.6) { a = rand(2, 5); b = rand(2, 5); correctAns = a * b; q = `${a} × ${b}`; } 
-                    else { b = rand(2, 5); correctAns = rand(1, 5); a = correctAns * b; q = `${a} ÷ ${b}`; } 
-                } else if (d <= 6) { 
-                    if (t < 0.5) { a = rand(3, 9); b = rand(3, 9); correctAns = a * b; q = `${a} × ${b}`; } 
-                    else { b = rand(2, 9); correctAns = rand(2, 9); a = correctAns * b; q = `${a} ÷ ${b}`; } 
-                } else { 
-                    if (t < 0.4) { a = rand(6, 15); b = rand(6, 15); correctAns = a * b; q = `${a} × ${b}`; } 
-                    else if (t < 0.75) { b = rand(3, 12); correctAns = rand(3, 12); a = correctAns * b; q = `${a} ÷ ${b}`; } 
-                    else { a = rand(11, 25); b = rand(2, 9); correctAns = a * b; q = `${a} × ${b}`; } 
-                }
-            } else if (gameMode === 3) {
-                questionCounter++;
-                if (questionCounter % 2 === 1) {
-                    q = makePercentageQuestion(d);
-                } else {
-                    q = makeRuleOfThreeQuestion(d);
-                }
-            } else if (gameMode === 4) {
-                q = makePuzzleQuestion(d);
-            }
-            
+            const d=diff(), t=Math.random(); let a,b,q;
+            if(gameMode===1){if(d<=3){if(t<0.5){a=rand(1,10+d*3);b=rand(1,10+d*3);correctAns=a+b;q=`${a}+${b}`;}else{a=rand(10,20+d*5);b=rand(1,a);correctAns=a-b;q=`${a}−${b}`;}}else if(d<=6){const big=20+d*10;if(t<0.5){a=rand(10,big);b=rand(10,big);correctAns=a+b;q=`${a}+${b}`;}else{a=rand(20,big*2);b=rand(1,a);correctAns=a-b;q=`${a}−${b}`;}}else{const big=50+d*20;if(t<0.4){a=rand(50,big);b=rand(50,big);correctAns=a+b;q=`${a}+${b}`;}else{a=rand(100,big*2);b=rand(10,a);correctAns=a-b;q=`${a}−${b}`;}}}
+            else if(gameMode===2){if(d<=3){if(t<0.6){a=rand(2,5);b=rand(2,5);correctAns=a*b;q=`${a}×${b}`;}else{b=rand(2,5);correctAns=rand(1,5);a=correctAns*b;q=`${a}÷${b}`;}}else if(d<=6){if(t<0.5){a=rand(3,9);b=rand(3,9);correctAns=a*b;q=`${a}×${b}`;}else{b=rand(2,9);correctAns=rand(2,9);a=correctAns*b;q=`${a}÷${b}`;}}else{if(t<0.4){a=rand(6,15);b=rand(6,15);correctAns=a*b;q=`${a}×${b}`;}else if(t<0.75){b=rand(3,12);correctAns=rand(3,12);a=correctAns*b;q=`${a}÷${b}`;}else{a=rand(11,25);b=rand(2,9);correctAns=a*b;q=`${a}×${b}`;}}}
+            else if(gameMode===3){questionCounter++;if(questionCounter%2===1){q=makePercentageQuestion(d);}else{q=makeRuleOfThreeQuestion(d);}}
+            else if(gameMode===4){q=makePuzzleQuestion(d);}
             return q;
         }
 
-        function stopTimer() { if (timerInt) { clearInterval(timerInt); timerInt = null; } }
+        function stopTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}}
+        function startTimer(){stopTimer();timeLeft=TIMER[gameMode-1];updateTimerUI();timerInt=setInterval(()=>{timeLeft--;updateTimerUI();if(timeLeft<=0){stopTimer();onTimeout();}},1000);}
+        function updateTimerUI(){const bar=document.getElementById('tbar'),num=document.getElementById('tnum');if(!bar||!num)return;const max=TIMER[gameMode-1],pct=(timeLeft/max)*100;bar.style.width=pct+'%';bar.style.background=timeLeft>max*0.55?MODE_GRAD[gameMode]:timeLeft>max*0.3?'linear-gradient(90deg,#f59e0b,#ef4444)':'#ef4444';num.textContent=timeLeft;}
+        function onTimeout(){if(answered)return;answered=true;lives--;sfxTimeout();setKidIn('scared');setFbIn('⏰ Tiempo agotado — era '+correctAns,'#f87171',false);document.querySelectorAll('.abtn').forEach(b=>{b.style.pointerEvents='none';if(+b.dataset.val===correctAns)b.classList.add('reveal');});setTimeout(nextQ,1200);}
+        function setKidIn(m){const k=document.getElementById('kidWrap');if(k)k.innerHTML=kid(m);}
+        function setFbIn(msg,col,isCorrect){const f=document.getElementById('fb');if(f){f.textContent=msg;f.style.color=col;f.className='fb';if(isCorrect===true)f.classList.add('correct-fb');else if(isCorrect===false)f.classList.add('wrong-fb');}}
 
-        function startTimer() { 
-            stopTimer();
-            timeLeft = TIMER[gameMode - 1];
-            updateTimerUI();
-            timerInt = setInterval(() => { 
-                timeLeft--;
-                updateTimerUI(); 
-                if (timeLeft <= 0) { stopTimer(); onTimeout(); } 
-            }, 1000); 
-        }
-
-        function updateTimerUI() {
-            const bar = document.getElementById('tbar'),
-                num = document.getElementById('tnum');
-            if (!bar || !num) return;
-            const max = TIMER[gameMode - 1],
-                pct = (timeLeft / max) * 100;
-            bar.style.width = pct + '%';
-            bar.style.background = timeLeft > max * 0.55 ? MODE_GRAD[gameMode] : timeLeft > max * 0.3 ?
-                'linear-gradient(90deg,#f59e0b,#ef4444)' : '#ef4444';
-            num.textContent = timeLeft;
-        }
-
-        function onTimeout() { 
-            if (answered) return;
-            answered = true;
-            lives--;
-            sfxTimeout();
-            setKidIn('scared');
-            setFbIn('⏰ Tiempo agotado — era ' + correctAns, '#f87171', false);
-            document.querySelectorAll('.abtn').forEach(b => { b.style.pointerEvents = 'none'; if (+b.dataset.val === correctAns) b.classList.add('reveal'); });
-            setTimeout(nextQ, 1200); 
-        }
-
-        function setKidIn(m) { const k = document.getElementById('kidWrap'); if (k) k.innerHTML = kid(m); }
-        
-        function setFbIn(msg, col, isCorrect) { 
-            const f = document.getElementById('fb'); 
-            if (f) { 
-                f.textContent = msg; 
-                f.style.color = col;
-                f.className = 'fb';
-                if (isCorrect === true) {
-                    f.classList.add('correct-fb');
-                } else if (isCorrect === false) {
-                    f.classList.add('wrong-fb');
-                }
-            } 
-        }
-
-        function nextQ() { 
-            stopTimer(); 
-            if (lives <= 0) { showGameOver(); return; }
-            answered = false;
-            const q = makeQ();
-            const spread = gameMode === 4 ? Math.max(5, Math.round(Math.abs(correctAns) * 0.8)) : 
-                         gameMode === 3 ? Math.max(5, Math.round(Math.abs(correctAns) * 0.6)) : undefined;
-            const ans = generateAnswers(correctAns, spread);
-            const prog = Math.min(100, ((score % 30) / 30) * 100);
-            const d = diff();
+        function nextQ(){
+            stopTimer();if(lives<=0){showGameOver();return;}
+            answered=false;
+            const q=makeQ();
+            const spread=gameMode===4?Math.max(5,Math.round(Math.abs(correctAns)*0.8)):gameMode===3?Math.max(5,Math.round(Math.abs(correctAns)*0.6)):undefined;
+            const ans=generateAnswers(correctAns,spread);
+            const prog=Math.min(100,((score%30)/30)*100);
+            const d=diff();
+            let questionType=MODE_LABELS[gameMode];
+            if(gameMode===3)questionType=questionCounter%2===1?'💯 Porcentajes':'📐 Regla de 3';
+            else if(gameMode===4)questionType='🧩 Rompecabezas';
             
-            let questionType = MODE_LABELS[gameMode];
-            if (gameMode === 3) {
-                questionType = questionCounter % 2 === 1 ? '💯 Porcentajes' : '📐 Regla de 3';
-            } else if (gameMode === 4) {
-                questionType = '🧩 Rompecabezas';
+            document.getElementById('app').innerHTML=`
+            <div class="game-left">
+                <div class="kid-stage" id="kidWrap">${kid('idle')}</div>
+            </div>
+            <div class="game-right">
+                <div class="lvlbadge" style="background:${MODE_COLORS[gameMode]}">${questionType} · Dif.${d}/10</div>
+                <div class="hud">
+                    <div class="pill">❤️ ${lives}</div>
+                    <div class="pill">⭐ ${score} pts</div>
+                    <div class="pill">🎯 Dif.${d}/10</div>
+                </div>
+                <div class="timer-wrap">
+                    <div class="tbar-bg"><div class="tbar" id="tbar" style="width:100%"></div></div>
+                    <div class="tnum" id="tnum">${TIMER[gameMode-1]}</div>
+                </div>
+                <div class="prog-track"><div class="prog-fill" style="width:${prog}%;background:${MODE_GRAD[gameMode]}"></div></div>
+                <div class="qbox">${q} = ?</div>
+                <div class="ans-grid">${ans.map(a=>`<button class="abtn" data-val="${a}" onclick="check(this,${a})">${a}</button>`).join('')}</div>
+                <div class="fb" id="fb"></div>
+            </div>`;
+            startTimer();
+        }
+
+        function check(btn,answer){
+            if(answered)return;answered=true;stopTimer();
+            document.querySelectorAll('.abtn').forEach(b=>b.style.pointerEvents='none');
+            if(answer===correctAns){
+                btn.classList.add('correct');score+=10;sfxCorrect();setKidIn('celebrate');spawnConfetti();
+                let msg='✅ ¡CORRECTO!';
+                if(gameMode===3)msg=questionCounter%2===1?'✅ ¡BUEN PORCENTAJE!':'✅ ¡EXCELENTE REGLA DE 3!';
+                else if(gameMode===4)msg='✅ ¡BUEN RAZONAMIENTO!';
+                setFbIn(msg,'#6ee7b7',true);setTimeout(nextQ,900);
+            }else{
+                btn.classList.add('wrong');lives--;sfxWrong();setKidIn('sad');
+                setFbIn('❌ Era '+correctAns,'#fca5a5',false);
+                document.querySelectorAll('.abtn').forEach(b=>{if(+b.dataset.val===correctAns)b.classList.add('reveal');});
+                setTimeout(nextQ,1150);
             }
-            
-            document.getElementById('app').innerHTML = `
-            <div class="lvlbadge" style="background:${MODE_COLORS[gameMode]}">${questionType} · Dif.${d}/10</div>
-            <div class="kid-stage" id="kidWrap">${kid('idle')}</div>
-            <div class="hud">
-            <div class="pill">❤️ ${lives}</div>
-            <div class="pill">⭐ ${score} pts</div>
-            <div class="pill">🎯 Dif.${d}/10</div>
-            </div>
-            <div class="timer-wrap">
-            <div class="tbar-bg"><div class="tbar" id="tbar" style="width:100%"></div></div>
-            <div class="tnum" id="tnum">${TIMER[gameMode-1]}</div>
-            </div>
-            <div class="prog-track"><div class="prog-fill" style="width:${prog}%;background:${MODE_GRAD[gameMode]}"></div></div>
-            <div class="qbox">${q} = ?</div>
-            <div class="ans-grid">${ans.map(a=>`<button class="abtn" data-val="${a}" onclick="check(this,${a})">${a}</button>`).join('')}</div>
-            <div class="fb" id="fb"></div>`;
-            startTimer(); 
         }
 
-        function check(btn, answer) { 
-            if (answered) return;
-            answered = true;
+        function showGameOver(){
             stopTimer();
-            document.querySelectorAll('.abtn').forEach(b => b.style.pointerEvents = 'none'); 
-            if (answer === correctAns) { 
-                btn.classList.add('correct');
-                score += 10;
-                sfxCorrect();
-                setKidIn('celebrate');
-                spawnConfetti();
-                
-                let feedbackMsg = '✅ ¡CORRECTO!';
-                if (gameMode === 3) {
-                    feedbackMsg = questionCounter % 2 === 1 ? '✅ ¡BUEN PORCENTAJE!' : '✅ ¡EXCELENTE REGLA DE 3!';
-                } else if (gameMode === 4) {
-                    feedbackMsg = '✅ ¡BUEN RAZONAMIENTO!';
-                }
-                
-                setFbIn(feedbackMsg, '#6ee7b7', true);
-                setTimeout(nextQ, 900); 
-            } else { 
-                btn.classList.add('wrong');
-                lives--;
-                sfxWrong();
-                setKidIn('sad');
-                setFbIn('❌ Era ' + correctAns, '#fca5a5', false);
-                document.querySelectorAll('.abtn').forEach(b => { if (+b.dataset.val === correctAns) b.classList.add('reveal'); });
-                setTimeout(nextQ, 1150); 
-            } 
+            const st=score>=100?'⭐⭐⭐':score>=50?'⭐⭐':'⭐';
+            document.getElementById('app').innerHTML=`
+            <div class="go-box" style="width:100%">
+                <div class="kid-stage">${kid('sad')}</div>
+                <h2>Fin del juego</h2>
+                <div class="stars-row">${st}</div>
+                <p>Puntuación: <strong style="color:#e0d4ff">${score} puntos</strong></p>
+                <p>Dificultad máxima: <strong style="color:#e0d4ff">${diff()}/10</strong></p>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+                    <button class="bigbtn" onclick="startMode(${gameMode})">🔄 Reintentar</button>
+                    <button class="bigbtn" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2)" onclick="goHome()">🏠 Menú</button>
+                </div>
+            </div>`;
         }
 
-        function showGameOver() { 
-            stopTimer();
-            const st = score >= 100 ? '⭐⭐⭐' : score >= 50 ? '⭐⭐' : '⭐';
-            document.getElementById('app').innerHTML = `
-            <div class="go-box">
-            <div class="kid-stage">${kid('sad')}</div>
-            <h2>Fin del juego</h2>
-            <div class="stars-row">${st}</div>
-            <p>Puntuación: <strong style="color:#e0d4ff">${score} puntos</strong></p>
-            <p>Dificultad máxima: <strong style="color:#e0d4ff">${diff()}/10</strong></p>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-            <button class="bigbtn" onclick="startMode(${gameMode})">🔄 Reintentar</button>
-            <button class="bigbtn" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2)" onclick="goHome()">🏠 Menú</button>
-            </div>
-            </div>`; 
-        }
+        function startMode(m){gameMode=m;score=0;lives=3;questionCounter=0;document.getElementById('homeScreen').classList.add('hidden');document.getElementById('gameScreen').classList.remove('hidden');startMusic();nextQ();}
+        function goHome(){stopTimer();stopMusic();document.getElementById('gameScreen').classList.add('hidden');document.getElementById('homeScreen').classList.remove('hidden');}
+        function applyMute(){const icon=muted?'🔇':'🔊';const t=document.getElementById('muteToggle'),mi=document.getElementById('muteIcon'),gf=document.getElementById('gameMuteFab');if(t)t.classList.toggle('on',!muted);if(mi)mi.textContent=icon;if(gf)gf.textContent=icon;if(muted)stopMusic();else if(!document.getElementById('gameScreen').classList.contains('hidden'))startMusic();}
+        function toggleMuteHome(){muted=!muted;applyMute();}
+        function toggleMuteGame(){muted=!muted;applyMute();}
 
-        // ══ NAVIGATION ══
-        function startMode(m) { 
-            gameMode = m;
-            score = 0;
-            lives = 3;
-            questionCounter = 0;
-            document.getElementById('homeScreen').classList.add('hidden');
-            document.getElementById('gameScreen').classList.remove('hidden');
-            startMusic();
-            nextQ(); 
-        }
-
-        function goHome() { 
-            stopTimer();
-            stopMusic();
-            document.getElementById('gameScreen').classList.add('hidden');
-            document.getElementById('homeScreen').classList.remove('hidden'); 
-        }
-
-        function applyMute() { 
-            const icon = muted ? '🔇' : '🔊';
-            const t = document.getElementById('muteToggle'),
-                mi = document.getElementById('muteIcon'),
-                gf = document.getElementById('gameMuteFab'); 
-            if (t) t.classList.toggle('on', !muted); 
-            if (mi) mi.textContent = icon; 
-            if (gf) gf.textContent = icon; 
-            if (muted) stopMusic();
-            else if (!document.getElementById('gameScreen').classList.contains('hidden')) startMusic(); 
-        }
-
-        function toggleMuteHome() { muted = !muted; applyMute(); }
-        function toggleMuteGame() { muted = !muted; applyMute(); }
-
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', () => {
-            document.addEventListener('gesturestart', (e) => e.preventDefault());
-            document.addEventListener('gesturechange', (e) => e.preventDefault());
-            document.addEventListener('gestureend', (e) => e.preventDefault());
-            
-            if (/Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent)) {
-                document.querySelector('meta[name="viewport"]').content = 
-                    'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
+        document.addEventListener('DOMContentLoaded',()=>{
+            document.addEventListener('gesturestart',(e)=>e.preventDefault());
+            document.addEventListener('gesturechange',(e)=>e.preventDefault());
+            document.addEventListener('gestureend',(e)=>e.preventDefault());
+            if(/Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent)){
+                document.querySelector('meta[name="viewport"]').content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
             }
-            
-            // Mostrar personaje en home
-            document.getElementById('homeKid').innerHTML = kid('idle');
+            document.getElementById('homeKid').innerHTML=kid('idle');
         });
 
-        document.addEventListener('touchmove', function(e) {
-            if (e.target.closest('.screen')) {
-                e.preventDefault();
-            }
-        }, { passive: false });
+        document.addEventListener('touchmove',function(e){if(e.target.closest('.screen')){e.preventDefault();}},{passive:false});
     </script>
 </body>
 </html>

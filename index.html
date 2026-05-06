@@ -71,46 +71,9 @@
             50% { opacity: 0.8; transform: scale(1.5); }
         }
 
+        /* Quitamos el aviso de orientación para móvil */
         .orientation-warning {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 20px;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .orientation-warning.show {
-            display: flex;
-        }
-
-        .orientation-warning .rotate-icon {
-            font-size: 70px;
-            animation: rotate-phone 2s ease-in-out infinite;
-        }
-
-        @keyframes rotate-phone {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(90deg); }
-        }
-
-        .orientation-warning h2 {
-            color: #e0d4ff;
-            font-size: 1.4rem;
-            font-weight: 800;
-        }
-
-        .orientation-warning p {
-            color: #a89ccc;
-            font-size: 1rem;
+            display: none !important;
         }
 
         .screen {
@@ -803,81 +766,63 @@
         }
 
         /* ============================================
-           MÓVIL HORIZONTAL - Elementos más grandes
+           MÓVIL VERTICAL - Diseño optimizado
            ============================================ */
-        @media (max-width: 768px) and (orientation: landscape) {
+        @media (max-width: 768px) {
             body {
-                padding: 4px;
+                padding: 8px;
             }
 
             .home-container {
-                flex-direction: row;
-                gap: 8px;
-                padding: 8px;
-                border-radius: 10px;
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px;
             }
 
             .home-left {
-                flex: 0 0 auto;
-                width: auto;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
             }
 
             .home-kid {
-                width: 100px;
-                height: 125px;
+                width: 70px;
+                height: 88px;
             }
 
             .home-kid-label {
-                font-size: 0.6rem;
+                font-size: 0.7rem;
             }
 
             .home-right {
-                flex: 1 1 auto;
-                gap: 6px;
-            }
-
-            .home-logo {
-                gap: 6px;
+                gap: 10px;
             }
 
             .home-logo-icon {
-                font-size: 1.4rem;
-            }
-
-            .home-title {
                 font-size: 1.5rem;
             }
 
-            .home-badge {
-                font-size: 0.5rem;
-                padding: 2px 6px;
+            .home-title {
+                font-size: 1.6rem;
             }
 
             .home-sub {
-                font-size: 0.6rem;
-            }
-
-            .divider {
-                width: 30px;
-                height: 2px;
-                margin: 4px 0;
+                font-size: 0.7rem;
             }
 
             .mode-label {
-                font-size: 0.6rem;
-                margin: 0 0 4px;
+                font-size: 0.7rem;
             }
 
             .lvl-cards {
-                gap: 6px;
+                gap: 8px;
             }
 
             .lvl-card {
-                padding: 10px 6px;
-                border-radius: 10px;
-                gap: 4px;
                 aspect-ratio: auto;
                 min-height: 90px;
+                padding: 12px 8px;
+                border-radius: 12px;
             }
 
             .lvl-icon {
@@ -885,202 +830,154 @@
             }
 
             .lvl-name {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
 
             .lvl-desc {
-                font-size: 0.5rem;
-            }
-
-            .diff-pips {
-                gap: 3px;
-            }
-
-            .pip {
-                width: 5px;
-                height: 5px;
+                font-size: 0.55rem;
             }
 
             .home-bottom {
-                gap: 6px;
+                gap: 8px;
             }
 
             .mute-row {
-                font-size: 0.55rem;
-                padding: 4px 8px;
-                gap: 5px;
+                font-size: 0.6rem;
+                padding: 5px 10px;
             }
 
-            .mute-toggle {
-                width: 28px;
-                height: 16px;
-            }
-
-            .mute-knob {
-                width: 12px;
-                height: 12px;
-                top: 1px;
-                left: 1px;
-            }
-
-            .mute-toggle.on .mute-knob { 
-                left: 13px; 
-            }
-
-            .home-footer {
-                font-size: 0.45rem;
-            }
-
-            /* Game screen para móvil horizontal */
+            /* Game screen en móvil vertical */
             .game-wrapper {
-                gap: 3px;
-            }
-
-            .game-back-row {
                 gap: 6px;
             }
 
             .back-btn {
-                padding: 5px 12px;
-                font-size: 0.7rem;
+                padding: 6px 14px;
+                font-size: 0.75rem;
             }
 
             .game-card {
-                gap: 0;
-                padding: 8px;
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px;
             }
 
             .game-left {
                 display: none;
             }
 
-            .kid-stage-inline {
-                display: block;
-                width: 50px;
-                height: 62px;
-                position: absolute;
-                top: 8px;
-                left: 10px;
-                z-index: 1;
-            }
-
-            .kid-stage-inline svg {
-                width: 100%;
-                height: 100%;
-                overflow: visible;
-            }
-
             .game-right {
                 width: 100%;
-                gap: 6px;
+                gap: 8px;
             }
 
             .hud {
                 gap: 6px;
-                margin-bottom: 2px;
             }
 
             .pill {
                 padding: 4px 10px;
-                font-size: 0.65rem;
+                font-size: 0.7rem;
             }
 
             .timer-wrap {
-                gap: 6px;
+                gap: 8px;
             }
 
             .tbar-bg {
-                height: 8px;
+                height: 10px;
             }
 
             .tnum {
-                font-size: 0.7rem;
-                min-width: 20px;
+                font-size: 0.8rem;
+                min-width: 22px;
             }
 
             .prog-track {
-                height: 5px;
+                height: 6px;
             }
 
             .qbox {
-                min-height: 45px;
-                padding: 10px 16px;
-                font-size: 1.4rem;
-                border-radius: 10px;
+                min-height: 50px;
+                padding: 12px 16px;
+                font-size: 1.5rem;
+                border-radius: 12px;
                 border-width: 2px;
             }
 
             .ans-grid {
-                gap: 8px;
+                gap: 10px;
             }
 
             .abtn {
-                padding: 14px 8px;
-                min-height: 50px;
-                font-size: 1.3rem;
-                border-radius: 10px;
+                padding: 16px 10px;
+                min-height: 60px;
+                font-size: 1.4rem;
+                border-radius: 12px;
                 border-width: 2px;
             }
 
             .fb {
-                font-size: 0.7rem;
-                min-height: 1.2em;
-                padding: 4px 8px;
+                font-size: 0.8rem;
+                padding: 5px 10px;
             }
 
             .lvlbadge {
-                font-size: 0.55rem;
-                padding: 3px 8px;
-                top: 6px;
-                right: 8px;
+                font-size: 0.6rem;
+                padding: 3px 10px;
+                top: 8px;
+                right: 10px;
             }
 
             .mute-fab {
-                width: 26px;
-                height: 26px;
-                font-size: 11px;
+                width: 30px;
+                height: 30px;
+                font-size: 13px;
                 top: 8px;
                 right: 8px;
             }
+
+            .go-box h2 {
+                font-size: 1.4rem;
+            }
+
+            .go-box p {
+                font-size: 0.75rem;
+            }
+
+            .bigbtn {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
         }
 
-        /* ============================================
-           PANTALLAS MUY PEQUEÑAS EN HORIZONTAL
-           ============================================ */
-        @media (max-width: 640px) and (orientation: landscape) {
+        /* Pantallas más pequeñas */
+        @media (max-width: 400px) {
             body {
-                padding: 3px;
+                padding: 6px;
             }
 
             .home-container {
-                padding: 6px;
-                gap: 6px;
+                padding: 10px;
+                gap: 8px;
             }
 
             .home-kid {
-                width: 80px;
-                height: 100px;
-            }
-
-            .home-kid-label {
-                font-size: 0.5rem;
+                width: 55px;
+                height: 69px;
             }
 
             .home-title {
-                font-size: 1.2rem;
-            }
-
-            .home-logo-icon {
-                font-size: 1.1rem;
+                font-size: 1.3rem;
             }
 
             .home-sub {
-                font-size: 0.5rem;
+                font-size: 0.6rem;
             }
 
             .lvl-card {
                 min-height: 75px;
-                padding: 8px 5px;
+                padding: 10px 6px;
             }
 
             .lvl-icon {
@@ -1088,31 +985,32 @@
             }
 
             .lvl-name {
-                font-size: 0.6rem;
+                font-size: 0.65rem;
             }
 
             .lvl-desc {
-                font-size: 0.45rem;
+                font-size: 0.5rem;
             }
 
             .game-card {
-                padding: 6px;
+                padding: 8px;
+                gap: 6px;
             }
 
             .qbox {
-                min-height: 40px;
-                padding: 8px 12px;
+                min-height: 42px;
+                padding: 10px 12px;
                 font-size: 1.2rem;
             }
 
             .abtn {
-                padding: 12px 6px;
-                min-height: 42px;
-                font-size: 1.1rem;
+                padding: 14px 8px;
+                min-height: 50px;
+                font-size: 1.2rem;
             }
 
             .ans-grid {
-                gap: 6px;
+                gap: 8px;
             }
 
             .pill {
@@ -1121,55 +1019,20 @@
             }
         }
 
-        /* ============================================
-           PANTALLAS CON ALTURA MUY LIMITADA
-           ============================================ */
-        @media (max-height: 400px) and (orientation: landscape) {
-            body {
-                padding: 2px;
-            }
-
-            .home-container {
-                padding: 6px;
-                gap: 6px;
-                border-radius: 8px;
-            }
-
+        /* Pantallas muy pequeñas */
+        @media (max-width: 320px) {
             .home-kid {
-                width: 60px;
-                height: 75px;
-            }
-
-            .home-kid-label {
-                font-size: 0.45rem;
+                width: 45px;
+                height: 56px;
             }
 
             .home-title {
                 font-size: 1.1rem;
             }
 
-            .home-logo-icon {
-                font-size: 1rem;
-            }
-
-            .home-sub {
-                font-size: 0.45rem;
-            }
-
-            .home-badge {
-                font-size: 0.4rem;
-            }
-
-            .mode-label {
-                font-size: 0.5rem;
-                margin: 0;
-            }
-
             .lvl-card {
-                min-height: 60px;
-                padding: 6px 4px;
-                gap: 2px;
-                border-radius: 8px;
+                min-height: 65px;
+                padding: 8px 5px;
             }
 
             .lvl-icon {
@@ -1184,165 +1047,20 @@
                 display: none;
             }
 
-            .diff-pips {
-                gap: 2px;
-            }
-
-            .pip {
-                width: 4px;
-                height: 4px;
-            }
-
-            .mute-row {
-                font-size: 0.45rem;
-                padding: 3px 6px;
-            }
-
-            .game-wrapper {
-                gap: 2px;
-            }
-
-            .game-back-row {
-                gap: 4px;
-            }
-
-            .back-btn {
-                padding: 3px 8px;
-                font-size: 0.6rem;
-            }
-
-            .game-card {
-                padding: 5px;
-                border-radius: 8px;
-            }
-
-            .hud {
-                gap: 4px;
-            }
-
-            .pill {
-                padding: 2px 6px;
-                font-size: 0.55rem;
-            }
-
-            .timer-wrap {
-                gap: 4px;
-            }
-
-            .tbar-bg {
-                height: 6px;
-            }
-
-            .tnum {
-                font-size: 0.6rem;
-                min-width: 16px;
-            }
-
-            .prog-track {
-                height: 3px;
-            }
-
             .qbox {
-                min-height: 35px;
-                padding: 6px 10px;
-                font-size: 1.1rem;
-                border-radius: 8px;
-            }
-
-            .ans-grid {
-                gap: 5px;
-            }
-
-            .abtn {
-                padding: 10px 5px;
                 min-height: 36px;
-                font-size: 1rem;
-                border-radius: 8px;
-            }
-
-            .fb {
-                font-size: 0.6rem;
-                padding: 2px 6px;
-            }
-
-            .lvlbadge {
-                font-size: 0.45rem;
-                padding: 2px 6px;
-                top: 4px;
-                right: 6px;
-            }
-
-            .mute-fab {
-                width: 22px;
-                height: 22px;
-                font-size: 9px;
-                top: 5px;
-                right: 5px;
-            }
-        }
-
-        /* ============================================
-           IPHONE SE Y PANTALLAS SIMILARES
-           ============================================ */
-        @media (max-width: 568px) and (orientation: landscape) {
-            .home-container {
-                padding: 5px;
-                gap: 5px;
-            }
-
-            .home-kid {
-                width: 50px;
-                height: 62px;
-            }
-
-            .home-kid-label {
-                font-size: 0.4rem;
-            }
-
-            .home-title {
-                font-size: 1rem;
-            }
-
-            .home-logo-icon {
-                font-size: 0.9rem;
-            }
-
-            .lvl-card {
-                min-height: 55px;
-                padding: 5px 3px;
-            }
-
-            .lvl-icon {
-                font-size: 1.1rem;
-            }
-
-            .lvl-name {
-                font-size: 0.5rem;
-            }
-
-            .game-card {
-                padding: 4px;
-            }
-
-            .qbox {
-                min-height: 30px;
-                padding: 5px 8px;
+                padding: 8px 10px;
                 font-size: 1rem;
             }
 
             .abtn {
-                padding: 8px 4px;
-                min-height: 32px;
-                font-size: 0.9rem;
+                padding: 12px 6px;
+                min-height: 42px;
+                font-size: 1rem;
             }
 
             .ans-grid {
-                gap: 4px;
-            }
-
-            .pill {
-                padding: 2px 5px;
-                font-size: 0.5rem;
+                gap: 6px;
             }
         }
     </style>
@@ -1350,13 +1068,6 @@
 <body>
     <div class="stars-container" id="starsContainer"></div>
     <div class="confetti-container" id="confettiContainer"></div>
-
-    <div class="orientation-warning" id="orientationWarning">
-        <div class="rotate-icon">📱</div>
-        <h2>Gira tu dispositivo</h2>
-        <p>Para una mejor experiencia,<br>juega en modo horizontal</p>
-        <p style="font-size: 0.8rem; opacity: 0.6;">↻ Gira tu móvil ↺</p>
-    </div>
 
     <!-- HOME SCREEN -->
     <div class="screen" id="homeScreen">
@@ -1490,21 +1201,6 @@
                 setTimeout(() => piece.remove(), 1500);
             }
         }
-
-        // ══ ORIENTACIÓN ══
-        function checkOrientation() {
-            const warning = document.getElementById('orientationWarning');
-            const isMobile = /Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent);
-            const isPortrait = window.innerWidth < window.innerHeight;
-            if (isMobile && isPortrait && window.innerWidth < 768) {
-                warning.classList.add('show');
-            } else {
-                warning.classList.remove('show');
-            }
-        }
-        window.addEventListener('resize', checkOrientation);
-        window.addEventListener('orientationchange', () => setTimeout(checkOrientation, 300));
-        checkOrientation();
 
         // ══ AUDIO ══
         const AC = new (window.AudioContext || window.webkitAudioContext)();

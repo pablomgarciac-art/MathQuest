@@ -71,7 +71,6 @@
             50% { opacity: 0.8; transform: scale(1.5); }
         }
 
-        /* Quitamos el aviso de orientación para móvil */
         .orientation-warning {
             display: none !important;
         }
@@ -766,100 +765,145 @@
         }
 
         /* ============================================
-           MÓVIL VERTICAL - Diseño optimizado
+           MÓVIL VERTICAL - Ajuste máximo
            ============================================ */
         @media (max-width: 768px) {
             body {
-                padding: 8px;
+                padding: 4px;
             }
 
             .home-container {
                 flex-direction: column;
-                gap: 10px;
-                padding: 12px;
+                gap: 6px;
+                padding: 8px;
+                border-radius: 10px;
             }
 
             .home-left {
                 flex-direction: row;
                 align-items: center;
-                gap: 10px;
+                gap: 8px;
             }
 
             .home-kid {
-                width: 70px;
-                height: 88px;
+                width: 50px;
+                height: 62px;
             }
 
             .home-kid-label {
-                font-size: 0.7rem;
+                font-size: 0.6rem;
             }
 
             .home-right {
-                gap: 10px;
+                gap: 6px;
+            }
+
+            .home-logo {
+                gap: 5px;
+                margin-bottom: 0;
             }
 
             .home-logo-icon {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
             }
 
             .home-title {
-                font-size: 1.6rem;
+                font-size: 1.3rem;
+            }
+
+            .home-badge {
+                font-size: 0.45rem;
+                padding: 1px 5px;
             }
 
             .home-sub {
-                font-size: 0.7rem;
+                font-size: 0.6rem;
+                margin-top: 0;
+            }
+
+            .divider {
+                width: 30px;
+                height: 2px;
+                margin: 2px 0;
             }
 
             .mode-label {
-                font-size: 0.7rem;
+                font-size: 0.6rem;
+                margin: 0 0 2px;
             }
 
             .lvl-cards {
-                gap: 8px;
+                gap: 6px;
             }
 
             .lvl-card {
                 aspect-ratio: auto;
-                min-height: 90px;
-                padding: 12px 8px;
-                border-radius: 12px;
+                min-height: 85px;
+                padding: 8px 6px;
+                border-radius: 10px;
+                gap: 3px;
             }
 
             .lvl-icon {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .lvl-name {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
 
             .lvl-desc {
-                font-size: 0.55rem;
+                font-size: 0.5rem;
             }
 
             .home-bottom {
-                gap: 8px;
+                gap: 6px;
+                margin-top: 2px;
             }
 
             .mute-row {
-                font-size: 0.6rem;
-                padding: 5px 10px;
+                font-size: 0.55rem;
+                padding: 4px 8px;
+                gap: 4px;
             }
 
-            /* Game screen en móvil vertical */
+            .mute-toggle {
+                width: 28px;
+                height: 16px;
+            }
+
+            .mute-knob {
+                width: 12px;
+                height: 12px;
+                top: 1px;
+                left: 1px;
+            }
+
+            .mute-toggle.on .mute-knob { left: 13px; }
+
+            .home-footer {
+                font-size: 0.45rem;
+            }
+
+            /* Game screen - APROVECHAR TODO EL ALTO */
             .game-wrapper {
-                gap: 6px;
+                gap: 3px;
+            }
+
+            .game-back-row {
+                gap: 4px;
             }
 
             .back-btn {
-                padding: 6px 14px;
-                font-size: 0.75rem;
+                padding: 4px 10px;
+                font-size: 0.65rem;
             }
 
             .game-card {
                 flex-direction: column;
-                gap: 8px;
-                padding: 10px;
+                gap: 4px;
+                padding: 8px;
+                border-radius: 10px;
             }
 
             .game-left {
@@ -868,133 +912,165 @@
 
             .game-right {
                 width: 100%;
-                gap: 8px;
+                gap: 5px;
             }
 
             .hud {
-                gap: 6px;
+                gap: 4px;
             }
 
             .pill {
-                padding: 4px 10px;
-                font-size: 0.7rem;
+                padding: 3px 8px;
+                font-size: 0.6rem;
             }
 
             .timer-wrap {
-                gap: 8px;
+                gap: 5px;
             }
 
             .tbar-bg {
-                height: 10px;
+                height: 8px;
             }
 
             .tnum {
-                font-size: 0.8rem;
-                min-width: 22px;
+                font-size: 0.7rem;
+                min-width: 18px;
             }
 
             .prog-track {
-                height: 6px;
+                height: 4px;
             }
 
             .qbox {
-                min-height: 50px;
-                padding: 12px 16px;
-                font-size: 1.5rem;
-                border-radius: 12px;
+                min-height: 48px;
+                padding: 12px 14px;
+                font-size: 1.4rem;
+                border-radius: 10px;
                 border-width: 2px;
             }
 
             .ans-grid {
-                gap: 10px;
+                gap: 8px;
+                flex: 1;
             }
 
             .abtn {
-                padding: 16px 10px;
-                min-height: 60px;
-                font-size: 1.4rem;
+                padding: 0;
+                min-height: 65px;
+                font-size: 1.6rem;
                 border-radius: 12px;
                 border-width: 2px;
             }
 
             .fb {
-                font-size: 0.8rem;
-                padding: 5px 10px;
+                font-size: 0.7rem;
+                padding: 4px 8px;
+                min-height: 1em;
             }
 
             .lvlbadge {
-                font-size: 0.6rem;
-                padding: 3px 10px;
-                top: 8px;
-                right: 10px;
+                font-size: 0.5rem;
+                padding: 2px 7px;
+                top: 5px;
+                right: 7px;
             }
 
             .mute-fab {
-                width: 30px;
-                height: 30px;
-                font-size: 13px;
-                top: 8px;
-                right: 8px;
+                width: 26px;
+                height: 26px;
+                font-size: 11px;
+                top: 6px;
+                right: 6px;
             }
 
             .go-box h2 {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
 
             .go-box p {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
 
             .bigbtn {
-                padding: 10px 20px;
-                font-size: 0.8rem;
+                padding: 8px 16px;
+                font-size: 0.75rem;
             }
         }
 
         /* Pantallas más pequeñas */
         @media (max-width: 400px) {
             body {
-                padding: 6px;
+                padding: 3px;
             }
 
             .home-container {
-                padding: 10px;
-                gap: 8px;
+                padding: 6px;
+                gap: 5px;
             }
 
             .home-kid {
-                width: 55px;
-                height: 69px;
+                width: 40px;
+                height: 50px;
             }
 
-            .home-title {
-                font-size: 1.3rem;
-            }
-
-            .home-sub {
-                font-size: 0.6rem;
-            }
-
-            .lvl-card {
-                min-height: 75px;
-                padding: 10px 6px;
-            }
-
-            .lvl-icon {
-                font-size: 1.6rem;
-            }
-
-            .lvl-name {
-                font-size: 0.65rem;
-            }
-
-            .lvl-desc {
+            .home-kid-label {
                 font-size: 0.5rem;
             }
 
+            .home-title {
+                font-size: 1.1rem;
+            }
+
+            .home-logo-icon {
+                font-size: 1rem;
+            }
+
+            .home-sub {
+                font-size: 0.5rem;
+            }
+
+            .mode-label {
+                font-size: 0.5rem;
+            }
+
+            .lvl-card {
+                min-height: 70px;
+                padding: 6px 4px;
+                gap: 2px;
+            }
+
+            .lvl-icon {
+                font-size: 1.4rem;
+            }
+
+            .lvl-name {
+                font-size: 0.6rem;
+            }
+
+            .lvl-desc {
+                font-size: 0.45rem;
+            }
+
             .game-card {
-                padding: 8px;
-                gap: 6px;
+                padding: 6px;
+                gap: 3px;
+            }
+
+            .game-right {
+                gap: 4px;
+            }
+
+            .hud {
+                gap: 3px;
+            }
+
+            .pill {
+                padding: 2px 6px;
+                font-size: 0.55rem;
+            }
+
+            .tbar-bg {
+                height: 7px;
             }
 
             .qbox {
@@ -1004,39 +1080,51 @@
             }
 
             .abtn {
-                padding: 14px 8px;
-                min-height: 50px;
-                font-size: 1.2rem;
+                min-height: 55px;
+                font-size: 1.3rem;
             }
 
             .ans-grid {
-                gap: 8px;
+                gap: 6px;
             }
 
-            .pill {
-                padding: 3px 8px;
+            .fb {
                 font-size: 0.6rem;
+                padding: 3px 6px;
             }
         }
 
         /* Pantallas muy pequeñas */
-        @media (max-width: 320px) {
+        @media (max-width: 360px) {
+            body {
+                padding: 2px;
+            }
+
+            .home-container {
+                padding: 5px;
+                gap: 4px;
+            }
+
             .home-kid {
-                width: 45px;
-                height: 56px;
+                width: 35px;
+                height: 44px;
             }
 
             .home-title {
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+
+            .home-logo-icon {
+                font-size: 0.9rem;
             }
 
             .lvl-card {
-                min-height: 65px;
-                padding: 8px 5px;
+                min-height: 60px;
+                padding: 5px 3px;
             }
 
             .lvl-icon {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
 
             .lvl-name {
@@ -1047,20 +1135,42 @@
                 display: none;
             }
 
+            .game-card {
+                padding: 5px;
+                gap: 2px;
+            }
+
+            .game-right {
+                gap: 3px;
+            }
+
             .qbox {
-                min-height: 36px;
+                min-height: 38px;
                 padding: 8px 10px;
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .abtn {
-                padding: 12px 6px;
-                min-height: 42px;
-                font-size: 1rem;
+                min-height: 48px;
+                font-size: 1.2rem;
+                border-radius: 10px;
             }
 
             .ans-grid {
-                gap: 6px;
+                gap: 5px;
+            }
+
+            .pill {
+                padding: 2px 5px;
+                font-size: 0.5rem;
+            }
+
+            .tbar-bg {
+                height: 6px;
+            }
+
+            .tnum {
+                font-size: 0.6rem;
             }
         }
     </style>

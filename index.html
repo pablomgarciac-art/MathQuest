@@ -765,145 +765,166 @@
         }
 
         /* ============================================
-           MÓVIL VERTICAL - Ajuste máximo
+           MÓVIL VERTICAL - OCUPAR TODO EL ALTO
            ============================================ */
         @media (max-width: 768px) {
             body {
-                padding: 4px;
+                padding: 0;
+            }
+
+            .screen {
+                height: 100%;
             }
 
             .home-container {
                 flex-direction: column;
-                gap: 6px;
-                padding: 8px;
-                border-radius: 10px;
+                gap: 4px;
+                padding: 6px;
+                border-radius: 0;
+                height: 100%;
             }
 
             .home-left {
                 flex-direction: row;
                 align-items: center;
-                gap: 8px;
+                gap: 6px;
+                flex-shrink: 0;
             }
 
             .home-kid {
-                width: 50px;
-                height: 62px;
+                width: 45px;
+                height: 56px;
             }
 
             .home-kid-label {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
             }
 
             .home-right {
-                gap: 6px;
+                gap: 4px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .home-header {
+                flex-shrink: 0;
             }
 
             .home-logo {
-                gap: 5px;
+                gap: 4px;
                 margin-bottom: 0;
             }
 
             .home-logo-icon {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .home-title {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
 
             .home-badge {
-                font-size: 0.45rem;
+                font-size: 0.4rem;
                 padding: 1px 5px;
             }
 
             .home-sub {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
                 margin-top: 0;
             }
 
             .divider {
-                width: 30px;
-                height: 2px;
+                width: 25px;
+                height: 1.5px;
                 margin: 2px 0;
+                flex-shrink: 0;
             }
 
             .mode-label {
-                font-size: 0.6rem;
-                margin: 0 0 2px;
+                font-size: 0.55rem;
+                margin: 0;
+                flex-shrink: 0;
             }
 
             .lvl-cards {
-                gap: 6px;
+                gap: 5px;
+                flex: 1;
+                align-content: stretch;
             }
 
             .lvl-card {
                 aspect-ratio: auto;
-                min-height: 85px;
-                padding: 8px 6px;
-                border-radius: 10px;
-                gap: 3px;
+                min-height: 0;
+                height: 100%;
+                padding: 8px 5px;
+                border-radius: 8px;
+                gap: 2px;
             }
 
             .lvl-icon {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             .lvl-name {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
             }
 
             .lvl-desc {
-                font-size: 0.5rem;
+                font-size: 0.48rem;
             }
 
             .home-bottom {
-                gap: 6px;
-                margin-top: 2px;
+                gap: 4px;
+                margin-top: 0;
+                flex-shrink: 0;
             }
 
             .mute-row {
-                font-size: 0.55rem;
-                padding: 4px 8px;
-                gap: 4px;
-            }
-
-            .mute-toggle {
-                width: 28px;
-                height: 16px;
-            }
-
-            .mute-knob {
-                width: 12px;
-                height: 12px;
-                top: 1px;
-                left: 1px;
-            }
-
-            .mute-toggle.on .mute-knob { left: 13px; }
-
-            .home-footer {
-                font-size: 0.45rem;
-            }
-
-            /* Game screen - APROVECHAR TODO EL ALTO */
-            .game-wrapper {
+                font-size: 0.5rem;
+                padding: 3px 7px;
                 gap: 3px;
             }
 
+            .mute-toggle {
+                width: 26px;
+                height: 14px;
+            }
+
+            .mute-knob {
+                width: 10px;
+                height: 10px;
+            }
+
+            .mute-toggle.on .mute-knob { left: 12px; }
+
+            .home-footer {
+                font-size: 0.4rem;
+            }
+
+            /* GAME - OCUPAR TODO */
+            .game-wrapper {
+                gap: 0;
+                height: 100%;
+            }
+
             .game-back-row {
-                gap: 4px;
+                gap: 0;
+                padding: 4px 6px;
+                flex-shrink: 0;
             }
 
             .back-btn {
-                padding: 4px 10px;
-                font-size: 0.65rem;
+                padding: 6px 12px;
+                font-size: 0.7rem;
             }
 
             .game-card {
                 flex-direction: column;
-                gap: 4px;
-                padding: 8px;
-                border-radius: 10px;
+                gap: 0;
+                padding: 6px;
+                border-radius: 0;
+                flex: 1;
             }
 
             .game-left {
@@ -912,20 +933,25 @@
 
             .game-right {
                 width: 100%;
-                gap: 5px;
-            }
-
-            .hud {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
                 gap: 4px;
             }
 
+            .hud {
+                gap: 3px;
+                flex-shrink: 0;
+            }
+
             .pill {
-                padding: 3px 8px;
+                padding: 3px 7px;
                 font-size: 0.6rem;
             }
 
             .timer-wrap {
-                gap: 5px;
+                gap: 4px;
+                flex-shrink: 0;
             }
 
             .tbar-bg {
@@ -938,49 +964,54 @@
             }
 
             .prog-track {
-                height: 4px;
+                height: 3px;
+                flex-shrink: 0;
             }
 
             .qbox {
-                min-height: 48px;
-                padding: 12px 14px;
-                font-size: 1.4rem;
-                border-radius: 10px;
+                min-height: 0;
+                flex: 0 0 auto;
+                padding: 10px 12px;
+                font-size: 1.3rem;
+                border-radius: 8px;
                 border-width: 2px;
             }
 
             .ans-grid {
-                gap: 8px;
+                gap: 6px;
                 flex: 1;
+                align-content: stretch;
             }
 
             .abtn {
                 padding: 0;
-                min-height: 65px;
-                font-size: 1.6rem;
-                border-radius: 12px;
+                min-height: 0;
+                height: 100%;
+                font-size: 1.8rem;
+                border-radius: 10px;
                 border-width: 2px;
             }
 
             .fb {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
                 padding: 4px 8px;
-                min-height: 1em;
+                min-height: 0;
+                flex-shrink: 0;
             }
 
             .lvlbadge {
                 font-size: 0.5rem;
-                padding: 2px 7px;
-                top: 5px;
-                right: 7px;
+                padding: 2px 6px;
+                top: 4px;
+                right: 6px;
             }
 
             .mute-fab {
-                width: 26px;
-                height: 26px;
-                font-size: 11px;
-                top: 6px;
-                right: 6px;
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+                top: 5px;
+                right: 5px;
             }
 
             .go-box h2 {
@@ -997,71 +1028,68 @@
             }
         }
 
-        /* Pantallas más pequeñas */
         @media (max-width: 400px) {
-            body {
-                padding: 3px;
-            }
-
             .home-container {
-                padding: 6px;
-                gap: 5px;
+                padding: 4px;
+                gap: 3px;
             }
 
             .home-kid {
-                width: 40px;
-                height: 50px;
+                width: 38px;
+                height: 48px;
             }
 
             .home-kid-label {
-                font-size: 0.5rem;
+                font-size: 0.48rem;
             }
 
             .home-title {
-                font-size: 1.1rem;
-            }
-
-            .home-logo-icon {
                 font-size: 1rem;
             }
 
+            .home-logo-icon {
+                font-size: 0.9rem;
+            }
+
             .home-sub {
-                font-size: 0.5rem;
+                font-size: 0.48rem;
             }
 
             .mode-label {
-                font-size: 0.5rem;
+                font-size: 0.48rem;
             }
 
-            .lvl-card {
-                min-height: 70px;
-                padding: 6px 4px;
-                gap: 2px;
-            }
-
-            .lvl-icon {
-                font-size: 1.4rem;
-            }
-
-            .lvl-name {
-                font-size: 0.6rem;
-            }
-
-            .lvl-desc {
-                font-size: 0.45rem;
-            }
-
-            .game-card {
-                padding: 6px;
-                gap: 3px;
-            }
-
-            .game-right {
+            .lvl-cards {
                 gap: 4px;
             }
 
-            .hud {
+            .lvl-card {
+                padding: 6px 4px;
+                gap: 1px;
+            }
+
+            .lvl-icon {
+                font-size: 1.3rem;
+            }
+
+            .lvl-name {
+                font-size: 0.58rem;
+            }
+
+            .lvl-desc {
+                font-size: 0.42rem;
+            }
+
+            .game-card {
+                padding: 4px;
+            }
+
+            .game-right {
                 gap: 3px;
+            }
+
+            .hud {
+                gap: 2px;
             }
 
             .pill {
@@ -1074,18 +1102,16 @@
             }
 
             .qbox {
-                min-height: 42px;
-                padding: 10px 12px;
-                font-size: 1.2rem;
+                padding: 8px 10px;
+                font-size: 1.1rem;
             }
 
             .abtn {
-                min-height: 55px;
-                font-size: 1.3rem;
+                font-size: 1.5rem;
             }
 
             .ans-grid {
-                gap: 6px;
+                gap: 5px;
             }
 
             .fb {
@@ -1094,70 +1120,93 @@
             }
         }
 
-        /* Pantallas muy pequeñas */
         @media (max-width: 360px) {
-            body {
-                padding: 2px;
-            }
-
             .home-container {
-                padding: 5px;
-                gap: 4px;
+                padding: 3px;
+                gap: 2px;
             }
 
             .home-kid {
-                width: 35px;
-                height: 44px;
+                width: 32px;
+                height: 40px;
             }
 
             .home-title {
-                font-size: 1rem;
-            }
-
-            .home-logo-icon {
                 font-size: 0.9rem;
             }
 
+            .home-logo-icon {
+                font-size: 0.8rem;
+            }
+
+            .home-sub {
+                font-size: 0.42rem;
+            }
+
+            .home-badge {
+                font-size: 0.35rem;
+            }
+
+            .mode-label {
+                font-size: 0.42rem;
+            }
+
+            .lvl-cards {
+                gap: 3px;
+            }
+
             .lvl-card {
-                min-height: 60px;
                 padding: 5px 3px;
+                border-radius: 6px;
             }
 
             .lvl-icon {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .lvl-name {
-                font-size: 0.55rem;
+                font-size: 0.52rem;
             }
 
             .lvl-desc {
                 display: none;
             }
 
+            .mute-row {
+                font-size: 0.42rem;
+                padding: 2px 5px;
+            }
+
             .game-card {
-                padding: 5px;
-                gap: 2px;
+                padding: 3px;
             }
 
             .game-right {
-                gap: 3px;
+                gap: 2px;
+            }
+
+            .game-back-row {
+                padding: 3px 5px;
+            }
+
+            .back-btn {
+                padding: 4px 10px;
+                font-size: 0.6rem;
             }
 
             .qbox {
-                min-height: 38px;
-                padding: 8px 10px;
-                font-size: 1.1rem;
+                padding: 6px 8px;
+                font-size: 1rem;
+                border-radius: 6px;
             }
 
             .abtn {
-                min-height: 48px;
-                font-size: 1.2rem;
-                border-radius: 10px;
+                font-size: 1.3rem;
+                border-radius: 8px;
             }
 
             .ans-grid {
-                gap: 5px;
+                gap: 4px;
             }
 
             .pill {

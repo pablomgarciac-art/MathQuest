@@ -705,7 +705,7 @@
         }
 
         /* ============================================
-           MÓVIL VERTICAL - Forzar altura real
+           MÓVIL VERTICAL - HOME OCUPANDO TODO EL ANCHO
            ============================================ */
         @media (max-width: 768px) {
             body {
@@ -714,70 +714,161 @@
 
             .screen {
                 height: 100% !important;
+                width: 100% !important;
             }
 
             .home-container {
                 flex-direction: column;
-                gap: 4px;
-                padding: 6px;
+                gap: 6px;
+                padding: 8px;
                 border-radius: 0;
                 height: 100% !important;
+                width: 100%;
             }
 
             .home-left {
                 flex-direction: row;
                 align-items: center;
-                gap: 6px;
+                gap: 8px;
                 flex-shrink: 0;
+                width: 100%;
+                justify-content: center;
             }
 
-            .home-kid { width: 45px; height: 56px; }
-            .home-kid-label { font-size: 0.55rem; }
+            .home-kid { 
+                width: 40px; 
+                height: 50px; 
+            }
+
+            .home-kid-label { 
+                font-size: 0.6rem; 
+            }
 
             .home-right {
-                gap: 4px;
+                gap: 6px;
                 flex: 1;
                 display: flex;
                 flex-direction: column;
                 min-height: 0;
+                width: 100%;
             }
 
-            .home-header { flex-shrink: 0; }
-            .home-logo { gap: 4px; margin-bottom: 0; }
-            .home-logo-icon { font-size: 1.1rem; }
-            .home-title { font-size: 1.2rem; }
-            .home-badge { font-size: 0.4rem; padding: 1px 5px; }
-            .home-sub { font-size: 0.55rem; margin-top: 0; }
-            .divider { width: 25px; height: 1.5px; margin: 2px 0; flex-shrink: 0; }
-            .mode-label { font-size: 0.55rem; margin: 0; flex-shrink: 0; }
+            .home-header { 
+                flex-shrink: 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .home-logo { 
+                gap: 6px; 
+                margin-bottom: 0;
+                justify-content: center;
+            }
+
+            .home-logo-icon { 
+                font-size: 1.4rem; 
+            }
+
+            .home-title { 
+                font-size: 1.4rem; 
+            }
+
+            .home-badge { 
+                font-size: 0.45rem; 
+                padding: 2px 6px; 
+            }
+
+            .home-sub { 
+                font-size: 0.6rem; 
+                margin-top: 2px;
+                text-align: center;
+            }
+
+            .divider { 
+                width: 50px; 
+                height: 2px; 
+                margin: 6px auto; 
+                flex-shrink: 0; 
+            }
+
+            .mode-label { 
+                font-size: 0.65rem; 
+                margin: 0; 
+                flex-shrink: 0;
+                text-align: center;
+                width: 100%;
+            }
 
             .lvl-cards {
-                gap: 5px;
+                gap: 8px;
                 flex: 1;
                 min-height: 0;
+                width: 100%;
             }
 
             .lvl-card {
                 aspect-ratio: auto;
                 min-height: 0;
                 height: 100%;
-                padding: 8px 5px;
-                border-radius: 8px;
-                gap: 2px;
+                padding: 12px 10px;
+                border-radius: 12px;
+                gap: 5px;
             }
 
-            .lvl-icon { font-size: 1.6rem; }
-            .lvl-name { font-size: 0.65rem; }
-            .lvl-desc { font-size: 0.48rem; }
+            .lvl-icon { 
+                font-size: 2.2rem; 
+            }
 
-            .home-bottom { gap: 4px; margin-top: 0; flex-shrink: 0; }
-            .mute-row { font-size: 0.5rem; padding: 3px 7px; gap: 3px; }
-            .mute-toggle { width: 26px; height: 14px; }
-            .mute-knob { width: 10px; height: 10px; }
-            .mute-toggle.on .mute-knob { left: 12px; }
-            .home-footer { font-size: 0.4rem; }
+            .lvl-name { 
+                font-size: 0.75rem; 
+            }
 
-            /* GAME */
+            .lvl-desc { 
+                font-size: 0.55rem; 
+            }
+
+            .diff-pips {
+                gap: 4px;
+            }
+
+            .pip {
+                width: 6px;
+                height: 6px;
+            }
+
+            .home-bottom { 
+                gap: 8px; 
+                margin-top: 2px; 
+                flex-shrink: 0;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .mute-row { 
+                font-size: 0.6rem; 
+                padding: 5px 12px; 
+                gap: 5px; 
+            }
+
+            .mute-toggle { 
+                width: 30px; 
+                height: 16px; 
+            }
+
+            .mute-knob { 
+                width: 12px; 
+                height: 12px; 
+            }
+
+            .mute-toggle.on .mute-knob { 
+                left: 14px; 
+            }
+
+            .home-footer { 
+                font-size: 0.5rem; 
+            }
+
+            /* GAME - igual que antes */
             .game-wrapper { gap: 0; height: 100% !important; }
             .game-back-row { gap: 0; padding: 4px 6px; flex-shrink: 0; }
             .back-btn { padding: 6px 12px; font-size: 0.7rem; }
@@ -841,18 +932,18 @@
         }
 
         @media (max-width: 400px) {
-            .home-container { padding: 4px; gap: 3px; }
-            .home-kid { width: 38px; height: 48px; }
-            .home-kid-label { font-size: 0.48rem; }
-            .home-title { font-size: 1rem; }
-            .home-logo-icon { font-size: 0.9rem; }
-            .home-sub { font-size: 0.48rem; }
-            .mode-label { font-size: 0.48rem; }
-            .lvl-cards { gap: 4px; }
-            .lvl-card { padding: 6px 4px; gap: 1px; }
-            .lvl-icon { font-size: 1.3rem; }
-            .lvl-name { font-size: 0.58rem; }
-            .lvl-desc { font-size: 0.42rem; }
+            .home-container { padding: 6px; gap: 5px; }
+            .home-kid { width: 35px; height: 44px; }
+            .home-kid-label { font-size: 0.55rem; }
+            .home-title { font-size: 1.2rem; }
+            .home-logo-icon { font-size: 1.2rem; }
+            .home-sub { font-size: 0.55rem; }
+            .mode-label { font-size: 0.55rem; }
+            .lvl-cards { gap: 6px; }
+            .lvl-card { padding: 10px 8px; gap: 4px; }
+            .lvl-icon { font-size: 1.8rem; }
+            .lvl-name { font-size: 0.65rem; }
+            .lvl-desc { font-size: 0.5rem; }
             .game-card { padding: 4px; }
             .game-right { gap: 3px; }
             .hud { gap: 2px; }
@@ -865,19 +956,19 @@
         }
 
         @media (max-width: 360px) {
-            .home-container { padding: 3px; gap: 2px; }
-            .home-kid { width: 32px; height: 40px; }
-            .home-title { font-size: 0.9rem; }
-            .home-logo-icon { font-size: 0.8rem; }
-            .home-sub { font-size: 0.42rem; }
-            .home-badge { font-size: 0.35rem; }
-            .mode-label { font-size: 0.42rem; }
-            .lvl-cards { gap: 3px; }
-            .lvl-card { padding: 5px 3px; border-radius: 6px; }
-            .lvl-icon { font-size: 1.1rem; }
-            .lvl-name { font-size: 0.52rem; }
+            .home-container { padding: 4px; gap: 3px; }
+            .home-kid { width: 30px; height: 38px; }
+            .home-title { font-size: 1.1rem; }
+            .home-logo-icon { font-size: 1rem; }
+            .home-sub { font-size: 0.5rem; }
+            .home-badge { font-size: 0.4rem; }
+            .mode-label { font-size: 0.5rem; }
+            .lvl-cards { gap: 5px; }
+            .lvl-card { padding: 8px 6px; gap: 3px; border-radius: 10px; }
+            .lvl-icon { font-size: 1.5rem; }
+            .lvl-name { font-size: 0.6rem; }
             .lvl-desc { display: none; }
-            .mute-row { font-size: 0.42rem; padding: 2px 5px; }
+            .mute-row { font-size: 0.5rem; padding: 4px 8px; }
             .game-card { padding: 3px; }
             .game-right { gap: 2px; }
             .game-back-row { padding: 3px 5px; }
@@ -921,32 +1012,42 @@
                         <div class="lvl-icon">➕➖</div>
                         <div class="lvl-name">Sumas & Restas</div>
                         <div class="lvl-desc">Operaciones progresivas</div>
-                        <div class="diff-pips"><div class="pip lit"></div><div class="pip"></div><div class="pip"></div><div class="pip"></div></div>
+                        <div class="diff-pips">
+                            <div class="pip lit"></div><div class="pip"></div><div class="pip"></div><div class="pip"></div>
+                        </div>
                     </div>
                     <div class="lvl-card" data-mode="2" onclick="startMode(2)">
                         <div class="lvl-icon">✖️➗</div>
                         <div class="lvl-name">Mult & División</div>
                         <div class="lvl-desc">Tablas y divisiones</div>
-                        <div class="diff-pips"><div class="pip lit"></div><div class="pip lit"></div><div class="pip"></div><div class="pip"></div></div>
+                        <div class="diff-pips">
+                            <div class="pip lit"></div><div class="pip lit"></div><div class="pip"></div><div class="pip"></div>
+                        </div>
                     </div>
                     <div class="lvl-card" data-mode="3" onclick="startMode(3)">
                         <div class="lvl-icon">💯📐</div>
                         <div class="lvl-name">% & Regla de 3</div>
                         <div class="lvl-desc">Porcentajes y proporciones</div>
-                        <div class="diff-pips"><div class="pip lit"></div><div class="pip lit"></div><div class="pip lit"></div><div class="pip"></div></div>
+                        <div class="diff-pips">
+                            <div class="pip lit"></div><div class="pip lit"></div><div class="pip lit"></div><div class="pip"></div>
+                        </div>
                     </div>
                     <div class="lvl-card" data-mode="4" onclick="startMode(4)">
                         <div class="lvl-icon">🧩🔍</div>
                         <div class="lvl-name">Rompecabezas</div>
                         <div class="lvl-desc">Lógica y acertijos</div>
-                        <div class="diff-pips"><div class="pip lit"></div><div class="pip lit"></div><div class="pip lit"></div><div class="pip lit"></div></div>
+                        <div class="diff-pips">
+                            <div class="pip lit"></div><div class="pip lit"></div><div class="pip lit"></div><div class="pip lit"></div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="home-bottom">
                     <div class="mute-row" onclick="toggleMuteHome()">
                         <span id="muteIcon">🔊</span>
-                        <div class="mute-toggle on" id="muteToggle"><div class="mute-knob"></div></div>
+                        <div class="mute-toggle on" id="muteToggle">
+                            <div class="mute-knob"></div>
+                        </div>
                         <span>Sonido</span>
                     </div>
                     <div class="home-footer">v5.0 · 4 modos</div>
@@ -1058,10 +1159,17 @@
         function sfxWrong() { tone(180,0.3,'sawtooth',0.07); tone(150,0.2,'sawtooth',0.05,0.1); }
         function sfxTimeout() { tone(300,0.12,'square',0.05); tone(220,0.2,'sawtooth',0.05,0.1); }
 
-        // ══ KID SVG ══
+        // ══ KID SVG AC/DC ══
         function kid(mood) {
-            const sk = '#F5C5A3', sk2 = '#E8A882', hair = '#1a1a1a', shirtBg = '#111';
-            const shirtDetail = `<text x="65" y="128" font-size="17" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="3">AC</text><text x="65" y="140" font-size="9" fill="#ff4444" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900">⚡</text><text x="65" y="153" font-size="10" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="1">DC</text><line x1="48" y1="142" x2="58" y2="142" stroke="#ff4444" stroke-width="2"/><line x1="72" y1="142" x2="82" y2="142" stroke="#ff4444" stroke-width="2"/>`;
+            const sk = '#F5C5A3', sk2 = '#E8A882', hair = '#1a1a1a';
+            const shirtBg = '#111';
+            const shirtDetail = `
+            <text x="65" y="128" font-size="17" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="3">AC</text>
+            <text x="65" y="140" font-size="9" fill="#ff4444" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900">⚡</text>
+            <text x="65" y="153" font-size="10" fill="#fff" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" letter-spacing="1">DC</text>
+            <line x1="48" y1="142" x2="58" y2="142" stroke="#ff4444" stroke-width="2"/>
+            <line x1="72" y1="142" x2="82" y2="142" stroke="#ff4444" stroke-width="2"/>`;
+            
             const faces = {
                 idle: { mouth: '<path d="M58,74 Q65,79 72,74" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>', eyes: '<ellipse cx="53" cy="59" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="77" cy="59" rx="5.5" ry="6" fill="#2d1a06"/><ellipse cx="51" cy="57" rx="2" ry="2" fill="#fff"/><ellipse cx="75" cy="57" rx="2" ry="2" fill="#fff"/>', brows: 'M47,51 Q53,48 59,51 M71,51 Q77,48 83,51', blush: '' },
                 happy: { mouth: '<path d="M51,73 Q65,88 79,73" fill="#e74c3c"/><path d="M53,73 Q65,70 77,73" fill="'+sk+'"/><rect x="56" y="73" width="18" height="5" rx="2" fill="#fff" opacity="0.6"/>', eyes: '<path d="M48,60 Q53,53 58,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/><path d="M72,60 Q77,53 82,60" fill="none" stroke="#2d1a06" stroke-width="3.2" stroke-linecap="round"/>', brows: 'M47,49 Q53,45 59,49 M71,49 Q77,45 83,49', blush: '<ellipse cx="39" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/><ellipse cx="91" cy="69" rx="9" ry="5.5" fill="#ffb3c1" opacity="0.5"/>' },
@@ -1071,7 +1179,36 @@
             };
             const f = faces[mood] || faces.idle;
             const extras = mood === 'celebrate' ? '<text x="6" y="30" font-size="16">⭐</text><text x="96" y="20" font-size="13">✨</text>' : '';
-            return `<svg viewBox="0 0 130 210" xmlns="http://www.w3.org/2000/svg">${extras}<ellipse cx="65" cy="208" rx="36" ry="5" fill="rgba(0,0,0,0.25)"/><ellipse cx="65" cy="34" rx="36" ry="34" fill="${hair}"/><ellipse cx="29" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="29" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/><ellipse cx="101" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="101" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/><rect x="57" y="87" width="16" height="22" rx="8" fill="${sk}"/><path d="M20,104 Q20,96 65,94 Q110,96 110,104 L115,178 Q115,186 65,186 Q15,186 15,178 Z" fill="${shirtBg}"/><ellipse cx="65" cy="97" rx="13" ry="6" fill="#222"/>${shirtDetail}<path d="M28,108 Q14,116 10,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/><circle cx="10" cy="132" r="9" fill="${sk}"/><path d="M102,108 Q116,116 120,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/><circle cx="120" cy="132" r="9" fill="${sk}"/><path d="M18,182 Q16,192 14,210 Q30,212 42,210 L54,186 Z" fill="#1c1c2e"/><path d="M112,182 Q114,192 116,210 Q100,212 88,210 L76,186 Z" fill="#1c1c2e"/><path d="M18,182 L54,186 L65,190 L76,186 L112,182 Q65,177 18,182Z" fill="#14141f"/><rect x="18" y="178" width="94" height="8" rx="4" fill="#2c1a0e"/><rect x="58" y="178" width="14" height="8" rx="2" fill="#8B6914"/><rect x="61" y="180" width="8" height="4" rx="1" fill="#D4A017"/><rect x="10" y="206" width="38" height="16" rx="8" fill="#111"/><rect x="10" y="206" width="38" height="8" rx="5" fill="#222"/><rect x="82" y="206" width="38" height="16" rx="8" fill="#111"/><rect x="82" y="206" width="38" height="8" rx="5" fill="#222"/><ellipse cx="65" cy="57" rx="35" ry="38" fill="${sk}"/><ellipse cx="37" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/><ellipse cx="93" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/><path d="M30,38 Q32,12 65,10 Q98,12 100,38 Q90,20 65,18 Q40,20 30,38Z" fill="${hair}"/><path d="M30,38 Q27,50 28,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/><path d="M100,38 Q103,50 102,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/><path d="M30,42 Q22,46 24,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/><path d="M100,42 Q108,46 106,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/><path d="M62,68 Q60,74 65,76 Q70,74 68,68" fill="none" stroke="#c8956c" stroke-width="2" stroke-linecap="round"/><path d="${f.brows}" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>${f.eyes}${f.blush}${f.mouth}</svg>`;
+            
+            return `<svg viewBox="0 0 130 210" xmlns="http://www.w3.org/2000/svg">
+            ${extras}
+            <ellipse cx="65" cy="208" rx="36" ry="5" fill="rgba(0,0,0,0.25)"/>
+            <ellipse cx="65" cy="34" rx="36" ry="34" fill="${hair}"/>
+            <ellipse cx="29" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="29" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/>
+            <ellipse cx="101" cy="60" rx="6.5" ry="9" fill="${sk}"/><ellipse cx="101" cy="60" rx="3.8" ry="6" fill="${sk2}" opacity="0.55"/>
+            <rect x="57" y="87" width="16" height="22" rx="8" fill="${sk}"/>
+            <path d="M20,104 Q20,96 65,94 Q110,96 110,104 L115,178 Q115,186 65,186 Q15,186 15,178 Z" fill="${shirtBg}"/>
+            <ellipse cx="65" cy="97" rx="13" ry="6" fill="#222"/>
+            ${shirtDetail}
+            <path d="M28,108 Q14,116 10,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/><circle cx="10" cy="132" r="9" fill="${sk}"/>
+            <path d="M102,108 Q116,116 120,130" fill="none" stroke="${shirtBg}" stroke-width="14" stroke-linecap="round"/><circle cx="120" cy="132" r="9" fill="${sk}"/>
+            <path d="M18,182 Q16,192 14,210 Q30,212 42,210 L54,186 Z" fill="#1c1c2e"/>
+            <path d="M112,182 Q114,192 116,210 Q100,212 88,210 L76,186 Z" fill="#1c1c2e"/>
+            <path d="M18,182 L54,186 L65,190 L76,186 L112,182 Q65,177 18,182Z" fill="#14141f"/>
+            <rect x="18" y="178" width="94" height="8" rx="4" fill="#2c1a0e"/><rect x="58" y="178" width="14" height="8" rx="2" fill="#8B6914"/><rect x="61" y="180" width="8" height="4" rx="1" fill="#D4A017"/>
+            <rect x="10" y="206" width="38" height="16" rx="8" fill="#111"/><rect x="10" y="206" width="38" height="8" rx="5" fill="#222"/>
+            <rect x="82" y="206" width="38" height="16" rx="8" fill="#111"/><rect x="82" y="206" width="38" height="8" rx="5" fill="#222"/>
+            <ellipse cx="65" cy="57" rx="35" ry="38" fill="${sk}"/>
+            <ellipse cx="37" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/><ellipse cx="93" cy="68" rx="8" ry="5" fill="${sk2}" opacity="0.22"/>
+            <path d="M30,38 Q32,12 65,10 Q98,12 100,38 Q90,20 65,18 Q40,20 30,38Z" fill="${hair}"/>
+            <path d="M30,38 Q27,50 28,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/>
+            <path d="M100,38 Q103,50 102,60" fill="none" stroke="${hair}" stroke-width="8" stroke-linecap="round"/>
+            <path d="M30,42 Q22,46 24,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/>
+            <path d="M100,42 Q108,46 106,56" fill="none" stroke="${hair}" stroke-width="6" stroke-linecap="round"/>
+            <path d="M62,68 Q60,74 65,76 Q70,74 68,68" fill="none" stroke="#c8956c" stroke-width="2" stroke-linecap="round"/>
+            <path d="${f.brows}" fill="none" stroke="#4a2c0a" stroke-width="2.2" stroke-linecap="round"/>
+            ${f.eyes}${f.blush}${f.mouth}
+            </svg>`;
         }
 
         // ══ GAME LOGIC ══
